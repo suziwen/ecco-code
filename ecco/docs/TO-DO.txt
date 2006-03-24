@@ -1,2 +1,15 @@
--test
--test2
+-GERENCIADOR DE ARQUIVOS
+-abrir arquivo
+-renomear arquivos e diretoriosleconfig
+-mover arquivos e diretorios
+-criar diretorio e arquivo
+-RECON(forçar extensoes .java, .txt, .htm, .html, .xml, .c, .cpp, .py,
+.pl, .cgi, .cpp, .c++, .css, .js, .xhtml, .php, .sql
+
+-CONSOLE
+comandos permitidos: ls, rm, rmdir, mkdir, cd, pwd, mv, cp + executar
+compiladores/interpretadores
+(java, perl, python, c, cpp)
+
+-EDITOR
+salvar, compilar/executar
