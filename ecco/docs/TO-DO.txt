@@ -41,4 +41,7 @@
 -Webserver 100% java
 ----http://jetty.mortbay.org/jetty/index.html
 
+-XHTML
+----http://www.w3.org/TR/2002/REC-xhtml1-20020801/#guidelines
+
 
