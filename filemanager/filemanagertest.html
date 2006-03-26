@@ -1,0 +1,124 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+
+<html>
+<head>
+	<title>Untitled</title>
+</head>
+
+<body>
+
+<style>
+#filelist { width:200px;font:12px sans-serif }
+#filelist a { text-decoration:none; }
+#filelist a:hover { text-decoration:underline; } 
+#filelist .project { display:block;font-weight:bold; }
+#filelist .directory { display:none;font-weight:bold; }
+#filelist .file { display:none; }
+#filelist .level-1 { margin-left:20px; }
+#filelist .level-2 { margin-left:40px; }
+</style>
+
+<div id="filelist"></div>
+
+
+<script>
+/// bugs //
+// ao abrir um projeto e um diretorio depois fechar um projeto, os arquivos do diretorio permanecem abertos
+// a listagem de diretorios vai só até o segundo nivel
+// fazer a funcao showItem dar replace no conteudo existente ao inves de append
+// a cada refresh da lista deve verificar os diretorios e projetos ja abertos para manter assim
+
+fmList = { "project": [ {
+		     "name": "Ecco",
+			 "file" :  [ 
+			 	{ "name": "teste.java" }, 
+				{ "name": "main.java" },
+  				{ "name": "janela.java" } 
+ 			 ],
+			"directory": [ {
+				"name" : "imagens",
+    			"file": [
+      				{"name": "teste1.gif"},
+      				{"name": "teste2.jpg"}
+    			]
+  			} ]
+		  }, {
+		  	"name": "Fortaleza",
+			"file" :  [ 
+			 	{ "name": "teste.java" }, 
+				{ "name": "main.java" },
+  				{ "name": "janela.java" } 
+ 			 ]  }
+		   ] 
+		}
+		
+// Objeto para gerenciamento dos arquivos //////////////////////////////
+fileManager = {
+
+	div : Object,
+	list : Object,
+
+	init : function(div,list) {
+		this.div = div;
+		this.list = list
+		this.run(list);
+	},
+
+	// mostra lista de projetos, diretorios e arquivo no browser
+	show : function(content,id,label,level) {
+		var item = document.createElement('a');
+		item.className = label+' '+level;
+		item.id = id;
+		item.href = 'javascript:void(0)';
+		item.appendChild(document.createTextNode(content));
+		item.onclick = (label=='file') ? this.open : this.collapse;
+		div.appendChild(item);
+	},
+
+	// mostra ou esconde conteudo de projetos/diretorios
+	collapse : function() {
+		var actual = this.nextSibling;
+		var re = new RegExp(this.id.toString()+"[df]\\d$");
+		while (actual) {
+			if(actual.id.match(re)) {
+				actual.style.display = (actual.style.display!='block') ? 'block' : 'none';
+			}
+			actual = actual.nextSibling;
+		}
+	},
+
+	// abrir arquivos no editor
+	open : function() {
+		alert('aqui entra funcao para abrir este arquivo no editor');
+	},
+
+	// parsing dos dados do json
+	run : function(obj) {
+		for(i=0;i<obj.length;i++) {
+			this.show(obj[i]['name'],'p'+i,'project','level-0');
+			if(obj[i]['directory']) {
+				for(j=0;j<obj[i]['directory'].length;j++) {
+					this.show(obj[i]['directory'][j]['name'],'p'+i+'d'+j,'directory','level-1');
+					for(k=0;k<obj[i]['directory'][j]['file'].length;k++) {
+						this.show(obj[i]['directory'][j]['file'][k]['name'],'p'+i+'d'+j+'f'+k,'file','level-2');
+					}
+				}
+			}
+			if(obj[i]['file']) {
+				for(m=0;m<obj[i]['file'].length;m++) {
+					this.show(obj[i]['file'][m]['name'],'p'+i+'f'+j,'file','level-1');
+				}
+			}
+		}
+	}
+}
+
+
+div = document.getElementById('filelist');
+list = fmList['project'];
+fileManager.init(div,list)
+
+</script>
+
+</body>
+</html>
