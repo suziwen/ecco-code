@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project name="" company="" webLink="" view-date="2006-07-03" view-index="0" gantt-divider-location="432" resource-divider-location="301" version="1.12">
-<view zooming-state="default:3"/>
+<project name="" company="" webLink="" view-date="2006-02-27" view-index="0" gantt-divider-location="406" resource-divider-location="301" version="1.12">
+<view zooming-state="default:4"/>
 <!-- -->
 <calendars>
 <day-types>
@@ -14,7 +14,7 @@
 </day-types>
 </calendars>    <description>    </description>
 
-    <tasks >
+    <tasks color="#8cb6ce">
         <taskproperties>
             <taskproperty id="tpd0" name="type" type="default" valuetype="icon" />
             <taskproperty id="tpd1" name="priority" type="default" valuetype="icon" />
@@ -27,7 +27,7 @@
             <taskproperty id="tpd8" name="coordinator" type="default" valuetype="text" />
             <taskproperty id="tpd9" name="predecessors" type="default" valuetype="text" />
         </taskproperties>
-        <task id="7" name="Requisitos do projeto" meeting="false" start="2006-01-21" duration="83" complete="0" priority="1" expand="true">
+        <task id="7" name="Requisitos do projeto" meeting="false" start="2006-01-21" duration="97" complete="0" priority="1" expand="true">
             <task id="0" name="Pesquisa de possíveis temas" meeting="false" start="2006-01-21" duration="16" complete="0" priority="1" expand="true">
             </task>
             <task id="1" name="Prospecção de interesses" meeting="false" start="2006-02-03" duration="8" complete="0" priority="1" expand="true">
@@ -48,7 +48,9 @@
             </task>
             <task id="12" name="Correções no plano de trabalho" meeting="false" start="2006-03-17" duration="8" complete="0" priority="1" expand="true">
             </task>
-            <task id="10" name="Preparação os recursos necessários" meeting="false" start="2006-03-17" duration="7" complete="0" priority="1" expand="true">
+            <task id="10" name="Preparação da infraestrutura necessária" meeting="false" start="2006-02-27" duration="1" complete="0" priority="1" expand="true">
+            </task>
+            <task id="26" name="Pesquisa tecnologias necessárias" color="#8cb6ce" meeting="false" start="2006-03-27" duration="32" complete="0" priority="1" expand="true">
             </task>
             <task id="11" name="Estimativa de tempo e divisão do projeto" meeting="false" start="2006-03-24" duration="21" complete="0" priority="1" expand="true">
             </task>
@@ -65,8 +67,8 @@
             <task id="18" name="Especifição dos Componentes" meeting="false" start="2006-04-19" duration="11" complete="0" priority="1" expand="true">
             </task>
         </task>
-        <task id="19" name="Implementação" meeting="false" start="2006-04-30" duration="96" complete="0" priority="1" expand="true">
-            <task id="20" name="Codificar interface gráfica" meeting="false" start="2006-04-30" duration="25" complete="0" priority="1" expand="true">
+        <task id="19" name="Implementação" meeting="false" start="2006-03-24" duration="133" complete="0" priority="1" expand="true">
+            <task id="20" name="Codificar interface gráfica" meeting="false" start="2006-03-24" duration="62" complete="0" priority="1" expand="true">
             </task>
             <task id="21" name="Codificar interface cliente-servidor" meeting="false" start="2006-05-30" duration="66" complete="0" priority="1" expand="true">
             </task>
