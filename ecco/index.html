@@ -3,12 +3,12 @@
 <head>
 <meta http-equiv="Content-type" content="text/html; charset=utf-8" />
 <meta http-equiv="Content-Language" content="pt-br" />
-<meta name="description" content="Editor e Compilador de Código Online" />
-<meta name="keywords" content="editor, compilador, educacional, programação" />
+<meta name="description" content="Editor e Compilador de Cò£¨§o Online" />
+<meta name="keywords" content="editor, compilador, educacional, programaè¢¯" />
 <link rel="SHORTCUT ICON" href="/images/favicon.ico" />
 <!-- script type="text/javascript" src="/includes/scripts.js"></script -->
 <!-- link rel="stylesheet" href="/includes/styles.css" /-->
-<title>ECCO - Editor e Compilador de Código Online</title>
+<title>ECCO - Editor e Compilador de Cò£¨§o Online</title>
 <style>
 body { background: #efebde; font-size: 1.25ex; font-family: verdana, arial, sans-serif; margin: 1px; color:#000; }
 html>body { background: #efebde; font: x-small verdana, arial, sans-serif; margin: 1px; color:#000;padding:0; }
@@ -32,8 +32,8 @@ form { display:inline; }
 #editor #e-content { height:99%;margin:0.1em;border:1px solid #adaa9c;margin:0.2em; }
 #editor #e-content #text-area { height:91%;border:1px solid #adaa9c;background-color:white;margin:1em;overflow:auto; }
 #console { border:0px solid black;height:29.7%;position:relative;}
-#console #c-content { height:60%;margin:0.2em;border:1px solid #adaa9c; }
-#console #c-content #c-screen { background-color:black;height:82%;margin:0 1em 1em 1em;font-family:courier;color:#eee }
+#console #c-content { height:60%;margin:0.5em;border:1px solid #adaa9c; }
+#console #c-content #c-screen { background-color:black;height:91.1%;font-family:courier;color:#eee }
 #console #c-content #c-tab { margin:0.2em 1em 0 1em; }
 
 
@@ -80,7 +80,7 @@ function minMaxC(obj) {
 	</div>
 </div>
 <table cellspacing="0" cellpadding=0 id="container"><tr>
-	<td id="filemanager"><div id="f-outter"><div class="min-max" onclick="minMaxFM(this)">X</div></div>
+	<td id="filemanager"><div id="f-outter"><a href="javascript:void(0)" class="min-max" onclick="minMaxFM(this)">X</a></div>
 		<div id="f-content">
 			<div id="f-tab">gerenciador de arquivos</div>
 			<div id="f-screen"></div>
@@ -97,7 +97,7 @@ function minMaxC(obj) {
 	</td>
 </tr></table>
 <div id="console">
-		<div class="min-max" onclick="minMaxC(this)">X</div>
+		<a href="javascript:void(0)" class="min-max" onclick="minMaxC(this)">X</a>
 		<div id="c-content">
 			<div id="c-tab">console</div>
 			<div id="c-screen">
