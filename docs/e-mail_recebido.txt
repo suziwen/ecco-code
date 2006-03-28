@@ -1,0 +1,35 @@
+------------------------------------------------
+Dear Fabio M. Blanco,
+
+
+while searching for an online C code editor, I found your ECCO project 
+on sourceforge.net. At our institute we host several distance learning 
+modules, some of which require the student to perform programming tasks 
+in C.
+
+That's why I'm interested in ECCO. Do you have a timescale for the 
+availability of ECCO? Do you know of other online editors not focused 
+on 
+web development?
+
+Thanks and best regards,
+
+Attila Weyland
+
+-- 
+Dr. Attila Weyland
+University of Bern, IAM, Neubrückstrasse 10, CH-3012 Bern
+Phone: +41 (0)31 631 8648 / Fax: +41 (0)31 631 3261 
+---RESPOSTA--------------------------------------
+Dear Dr. Attila Weyland
+
+We are at an early development stage of this project but we are working in a very strict schedule and will have a functional version at 15 august of this year. At october of this year we will have, for sure, a public release.
+This is our graduation project and it must happen until the end of the year.
+
+I dont know any similar projects with this specifications and I think this is the first one of this kind.
+
+Hope our project can help you in the near future.
+
+Goodbye
+[]s
+ECCO Development Team
