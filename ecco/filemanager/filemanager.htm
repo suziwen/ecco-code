@@ -1,0 +1,140 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+
+<html>
+<head>
+<meta http-equiv="refresh" content="2000">
+	<title>Untitled</title>
+	<style>
+	#file-manager div { margin-left:20px;border:1px solid red }
+	.projects {  }
+	.directory {   }
+	.project { display:block }
+
+	.closed { display:none; }	
+	.opened { display:block; }	
+	
+	.file{  }
+	.inside { display:none }
+	
+	a { display:block }
+	</style>
+<script>  
+/*
+ajaxUpdate( "rightdiv", "getData.php", {
+    params:"id=12&AJAX=true",
+    meth:"post",
+    async:true,
+    startfunc:"elemOn('loading')",
+    endfunc:"elemOff('loading'); elemOn('rightdiv')",
+    errorfunc:"ajaxError()" }
+  );*/
+function ajaxUpdate(elemid, url, options) {
+	var parameters = options.params || false;
+	var method = options.meth || "post";
+  	var async = options.mode || true;
+  	var onStart = options.onStart || false;
+  	var onEnd = options.onEnd || false;
+  	var onError = options.onError || false;
+	
+  	if(window.XMLHttpRequest) req = new XMLHttpRequest();
+  	else if(window.ActiveXObject) req = new ActiveXObject("Microsoft.XMLHTTP");
+  	else { alert("Browser nao suporta AJAX" ); return false; }
+
+  	if(onStart) eval(onStart);
+  
+  	req.open(method, url+( parameters ? "?"+parameters : "" ), async);
+  	req.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+  	req.onreadystatechange = function() {
+	    if (req.readyState == 4) {
+			if (req.status == 200) {
+				//document.getElementById(elemid).innerHTML = req.responseText;
+				XMLobj = req.responseXML;
+	          	if(onEnd) eval(onEnd);
+	        	return true;
+	        }
+			else {
+	        	//if(onEnd) eval(onEnd); //executar a funcao final mesmo com erro?
+	         	if(onError) eval(onError);
+	          	return false;
+	        }
+		}
+  	};
+
+  	req.send(null);
+}
+
+function ajaxError() {
+	alert('erro ao acessar o servidor');
+}
+
+
+function act(obj) {
+	if(obj.className=='projects') alert('ação sobre todos os projetos');
+	else if(obj.className=='project') // ação sobre projeto especifico
+		obj.nextSibling.className = (obj.nextSibling.className!='closed') ? 'closed' : 'opened';
+	else if(obj.className=='directory') // ação sobre diretório especifico
+		obj.nextSibling.className = (obj.nextSibling.className!='closed') ? 'closed' : 'opened';
+	else alert('ação sobre o arquivo: '+ obj.innerHTML) // ação sobre arquivos
+}
+
+function collapseState(project, branchName) {
+	if(project=='') return 'class="opened" id="projects"'; // all projects always open
+	else if(document.getElementById(project+'-'+branchName)) {
+		obj = document.getElementById(project+'-'+branchName);
+		return 'class="'+obj.className+'" id="'+obj.id+'"';
+	}
+	else {
+		return 'class="closed" id="'+project+'-'+branchName+'"';
+	}
+}
+
+function traverse(tree) {
+	if(tree.nodeType!=1) { /* workaround for firefox CR/NL */ }
+	else if(tree.hasChildNodes()) {
+//		level++
+		if(tree.tagName=='project') project = tree.getAttribute('name');
+		if(tree.tagName=='projects') project = '';
+		out+='<a href="javascript:void(0)" onclick="act(this)" class="'+tree.tagName+'">'+tree.getAttribute('name')+'</a>';
+		out+='<div '+collapseState(project,tree.getAttribute('name'))+'>';
+		var nodes=tree.childNodes.length;
+		for(var i=0; i<nodes; i++) traverse(tree.childNodes[i]);
+		out+='</div>';
+	}
+	else {
+		out+='<a href="javascript:void(0)" onclick="act(this)" class="'+tree.tagName+'">'+tree.getAttribute('name')+'</a>';
+		}
+}
+
+function parseXML() {
+	out='';
+//	if(!arguments[0]) x = XMLobj.getElementsByTagName("projects")[0].childNodes[0].nodeName;
+	traverse(XMLobj.documentElement);
+	document.getElementById('file-manager').innerHTML = out;
+}
+/*
+document.getElementsByTagName("body").item(0);
+mlObj.childNodes(3).hasChildNodes()
+childNodes(i).tagName
+getAttribute("id")
+parentNode 
+nextSibling 
+previousSibling
+attributes
+data
+nodeName
+nodeType
+nodeValue
+*/
+//ajaxUpdate('lista','teste.xml',{parameters:'', method:'post', async:true, onStart:'', onEnd:'parseXML();', onError:'ajaxError()'})
+</script>
+</head>
+
+<body onload="ajaxUpdate('lista','teste.xml',{parameters:'', method:'post', async:true, onStart:'', onEnd:'parseXML();', onError:'ajaxError()'})">
+
+<div id="file-manager"></div>
+
+<a href=javascript:void(0) onclick="ajaxUpdate('lista','teste.xml',{parameters:'', method:'post', async:true, onStart:'', onEnd:'parseXML();', onError:'ajaxError()'})">[carrega xml novamente]</a>
+
+
+</body>
+</html>
