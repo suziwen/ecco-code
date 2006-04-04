@@ -3,9 +3,9 @@ Ajax = {
 	list : Object,
 
 	get : function(url, options) {
-		var parameters = options.params || false;
-		var method = options.meth || "post";
-	  	var async = options.mode || true;
+		var parameters = options.parameters || false;
+		var method = options.method || "get";
+	  	var async = options.async || true;
 	  	var onStart = options.onStart || false;
 	  	var onEnd = options.onEnd || false;
 	  	var onError = options.onError || false;
