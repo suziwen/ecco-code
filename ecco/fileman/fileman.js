@@ -1,5 +1,5 @@
 
-FileManager = {
+Fileman = {
 	div : Object,
 	obj : Object,
 	out : String,
@@ -11,7 +11,7 @@ FileManager = {
 	},
 	
 	update : function() {
-		Ajax.get('filemanager1.xml',{parameters:'', method:'post', async:true, onStart:'', onEnd:'FileManager.parse(XMLobj.documentElement);FileManager.write();', onError:'Ajax.error()'})
+		Ajax.get(filemanXML,{onEnd:'Fileman.parse(XMLobj.documentElement);Fileman.write();', onError:'Ajax.error()'})
 	},
 	
 	write : function() {
@@ -28,7 +28,7 @@ FileManager = {
 				project = tree.getAttribute('name');
 			if(tree.tagName=='projects') 
 				project = '';
-			this.out += '<a onclick="FileManager.menu(this)" ondblclick="FileManager.act(this)" class="'+tree.tagName+'">'+tree.getAttribute('name')+'</a>';
+			this.out += '<a onclick="Fileman.menu(this)" ondblclick="Fileman.act(this)" class="'+tree.tagName+'">'+tree.getAttribute('name')+'</a>';
 			this.out += '<div '+this.collapse(project,tree.getAttribute('name'))+'>';
 			var nodes = tree.childNodes.length;
 			for(var i=0; i<nodes; i++) 
@@ -36,7 +36,7 @@ FileManager = {
 			this.out += '</div>';
 		}
 		else {
-			this.out+='<a onclick="FileManager.menu(this)" ondblclick="FileManager.act(this)" class="'+tree.tagName+'">'+tree.getAttribute('name')+'</a>';
+			this.out+='<a onclick="Fileman.menu(this)" ondblclick="Fileman.act(this)" class="'+tree.tagName+'">'+tree.getAttribute('name')+'</a>';
 		}
 	},
 	
