@@ -1,0 +1,31 @@
+<fileman>
+	
+	<menu>
+		<projects>
+			<mail>Enviar por e-mail</mail>
+		</projects>
+
+		<project>
+			<open>Expandir</open>
+			<rename>Renomear</rename>
+			<remove>Apagar</remove>
+		</project>
+		
+		<directory>
+			<open>Expandir</open>
+			<rename>Renomear</rename>
+			<remove>Apagar</remove>
+		</directory>
+		
+		<file>
+			<open>Abrir</open>
+			<rename>Renomear</rename>
+			<remove>Apagar</remove>
+		</file>
+	</menu>
+	
+	<messages>
+		<msg id="fileNotFound">Arquivo [fileNotFound] não encontrado</msg>
+	</messages>
+
+</fileman>
