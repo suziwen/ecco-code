@@ -3,17 +3,28 @@
 <html>
 <head>
 	<title>Untitled</title>
-	<link type="text/css" rel="stylesheet" href="fileman/fileman.css" />
-	<script type="text/javascript" src="main/ajax.js"></script>
-	<script type="text/javascript" src="main/ecco.js"></script>
-	<script type="text/javascript" src="main/messages.js"></script>	
-	<script type="text/javascript" src="fileman/fileman.js"></script>
+	<link type="text/css" rel="stylesheet" href="styles/fileman.css" />
+	<link type="text/css" rel="stylesheet" href="styles/ecco.css" />
+	<link type="text/css" rel="stylesheet" href="styles/content.css" />		
+	<script type="text/javascript" src="scripts/config.js"></script>
+	<script type="text/javascript" src="scripts/ajax.js"></script>
+	<script type="text/javascript" src="scripts/content.js"></script>	
+	<script type="text/javascript" src="scripts/ecco.js"></script>
+	<script type="text/javascript" src="scripts/fileman.js"></script>
+	<script>
+	
+	onload = function() {
+		ecco = new ECCO();
+		ecco.initialize();
+	}
+	
+	</script>
 </head>
 
-<body onload="Ecco.init()">
-
+<body>
+<div id="messages">Olá [usernane], seja bem vindo ao ECCO</div>
 <div id="fileman"></div>
-<a href=javascript:void(0) onclick="Fileman.update()">[carrega xml novamente]</a>
+<a href=javascript:void(0) onclick="fileman.update()">[carrega xml novamente]</a>
 
 </body>
 </html>

@@ -1,5 +1,5 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
 <fileman>
-	
 	<menu>
 		<projects>
 			<mail>Enviar por e-mail</mail>
@@ -25,7 +25,8 @@
 	</menu>
 	
 	<messages>
-		<msg id="fileNotFound">Arquivo [fileNotFound] não encontrado</msg>
+		<msg id="fileNotFound">Arquivo não encontrado: [fileNotFound]</msg>
+		<msg id="fileWriteError">Arquivo [fileWriteError] não encontrado</msg>
 	</messages>
 
 </fileman>
