@@ -11,8 +11,10 @@ AJAX = function(){
 	  	var onError = options.onError || false;
 		var request;
 		
-	  	if(window.XMLHttpRequest) request = new XMLHttpRequest();
-	  	else if(window.ActiveXObject) request = new ActiveXObject("Microsoft.XMLHTTP");
+	  	if(window.XMLHttpRequest) 
+	  		request = new XMLHttpRequest();
+	  	else if(window.ActiveXObject) 
+	  		request = new ActiveXObject("Microsoft.XMLHTTP");
 	  	else { 
 			alert(cfg['browser_error']); return false; 
 		}
@@ -25,12 +27,14 @@ AJAX = function(){
 		    if (request.readyState == 4) {
 				if (request.status == 200) {
 					xmlDoc = request.responseXML;
-		          	if(onEnd) eval(onEnd);
+		          	if(onEnd) 
+		          		eval(onEnd);
 		        	return true;
 		        }
 				else {
 		        	//if(onEnd) eval(onEnd); //executar a funcao final mesmo com erro?
-		         	if(onError) eval(onError);
+		         	if(onError) 
+		         		eval(onError);
 		          	return false;
 		        }
 			}

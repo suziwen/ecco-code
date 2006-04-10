@@ -48,7 +48,8 @@ Content = function() {
 			}
 		}
 
-		if(arguments[2]) out = out.replace('\['+id+'\]',arguments[2]);
+		if(arguments[2])
+			out = out.replace('\['+id+'\]',arguments[2]);
 		document.getElementById('messages').innerHTML = out;
 	}
 	

@@ -1,12 +1,14 @@
 
 Fileman = function() {
+	
 	var div = document.getElementById('fileman');
 	var obj = Object;
 	var out = '';
 	
 	this.update = function() {
-		ajax.get(cfg['docFileman'],{ onEnd:'fileman.parse(xmlDoc.documentElement);fileman.write();', 
-									 onError:'content.error("fileman","fileNotFound",cfg["docFileman"])' })
+		ajax.get(cfg['docFileman'],
+				{ onEnd:'fileman.parse(xmlDoc.documentElement);fileman.write();', 
+				  onError:'content.error("fileman","fileNotFound",cfg["docFileman"])' })
 	}
 	
 	this.write = function() {
