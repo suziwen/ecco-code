@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<console>
+	<menu>
+		<projects>
+			<mail>Enviar por e-mail</mail>
+		</projects>
+
+		<project>
+			<open>Expandir</open>
+			<rename>Renomear</rename>
+			<remove>Apagar</remove>
+		</project>
+		
+		<directory>
+			<open>Expandir</open>
+			<rename>Renomear</rename>
+			<remove>Apagar</remove>
+		</directory>
+		
+		<file>
+			<open>Abrir</open>
+			<rename>Renomear</rename>
+			<remove>Apagar</remove>
+		</file>
+	</menu>
+</console>

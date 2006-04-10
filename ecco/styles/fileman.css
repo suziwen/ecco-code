@@ -1,9 +1,9 @@
 #fileman a { display:block; cursor:pointer; cursor:hand; font-family:arial; text-decoration:underline; font-size:12px; }
-#fileman div { margin-left:20px;border:1px solid red }
+#fileman div { margin-left:20px;}
 
-#fileman .projects {  }
-#fileman .project { display:block }
-#fileman .directory {   }
+#fileman .projects { font-weight:bold; }
+#fileman .project { display:block;font-weight:bold;color:blue }
+#fileman .directory { font-weight:bold;color:blue  }
 #fileman .file{  }
 
 #fileman .closed { display:none; }	
