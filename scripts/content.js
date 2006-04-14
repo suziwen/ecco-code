@@ -21,12 +21,12 @@ Content = function() {
 		ajax.get(cfg['docEditorContent'],
 				{ async:false, 
 				  onEnd:'content.set("editor", xmlDoc);', 
-				  onError:'alert(cfg["msgEditorError"])'})
+				  onError:'alert(cfg["msgEditorError"])' })
 				  
 		ajax.get(cfg['docEccoContent'],
 				{ async:false, 
 				  onEnd:'content.set("ecco", xmlDoc);', 
-				  onError:'alert(cfg["msgEccoError"])'})		
+				  onError:'alert(cfg["msgEccoError"])' })		
 	}
 		
 	// set messages retrieved from initialize() to local vars
@@ -48,9 +48,12 @@ Content = function() {
 			}
 		}
 
-		if(arguments[2])
-			out = out.replace('\['+id+'\]',arguments[2]);
+		if(arguments[2]) out = out.replace('\['+id+'\]',arguments[2]);
 		document.getElementById('messages').innerHTML = out;
+	}
+	
+	this.invert = function(id) {
+		document.getElementById(id).style.display = (document.getElementById(id).style.display!='block') ? 'block' : 'none';
 	}
 	
 }

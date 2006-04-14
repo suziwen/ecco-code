@@ -17,16 +17,14 @@ ECCO = function() {
 	
 	this.set = function(mod) {
 		loaded[mod] = true;
-		if(loaded['fileman'] && loaded['console']) { // fazer aqui a verificacao de todos os xmls necessarios para iniciar
+		if(loaded['fileman'] && loaded['console'] && loaded['editor'] && loaded['ecco']) { // fazer aqui a verificacao de todos os xmls necessarios para iniciar
 			this.run();
 		}
 	}
 	
 	this.run = function() {
-		fileman = new Fileman();
-		fileman.update();
-	
+		f = new Fileman();
+		f.update();
 	}
 	
 }
-
