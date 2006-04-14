@@ -1,14 +1,12 @@
 
 Fileman = function() {
-	
 	var div = document.getElementById('fileman');
 	var obj = Object;
 	var out = '';
 	
 	this.update = function() {
-		ajax.get(cfg['docFileman'],
-				{ onEnd:'fileman.parse(xmlDoc.documentElement);fileman.write();', 
-				  onError:'content.error("fileman","fileNotFound",cfg["docFileman"])' })
+//	alert(1)
+		ajax.get(cfg['docFileman'],{ onEnd:'f.parse(xmlDoc.documentElement);f.write();', onError:'content.error("fileman","fileNotFound",cfg["docFileman"])' })
 	}
 	
 	this.write = function() {
@@ -23,7 +21,7 @@ Fileman = function() {
 				project = tree.getAttribute('name');
 			if(tree.tagName=='projects')
 				project = '';
-			out += '<a onclick="fileman.menu(this)" ondblclick="fileman.action(this)" class="'+tree.tagName+'">'+tree.getAttribute('name')+'</a>';
+			out += '<a onclick="f.menu(this,event)" ondblclick="f.action(this)" class="'+tree.tagName+'">'+tree.getAttribute('name')+'</a>';
 			out += '<div '+this.collapse(project,tree.getAttribute('name'))+'>';
 			var nodes = tree.childNodes.length;
 			for(var i=0; i<nodes; i++) 
@@ -31,7 +29,7 @@ Fileman = function() {
 			out += '</div>';
 		}
 		else {
-			out+='<a onclick="fileman.menu(this)" ondblclick="fileman.action(this)" class="'+tree.tagName+'">'+tree.getAttribute('name')+'</a>';
+			out+='<a onclick="f.menu(this)" ondblclick="f.action(this)" class="'+tree.tagName+'">'+tree.getAttribute('name')+'</a>';
 		}
 	}
 	
@@ -45,7 +43,7 @@ Fileman = function() {
 		else {
 			return 'class="closed" id="'+project+'-'+branchName+'"';
 		}
-	},
+	}
 	
 	this.action = function(obj) {
 		if(obj.className=='projects') 
@@ -65,9 +63,31 @@ Fileman = function() {
 		}
 	}
 	
+	this.position = function(e) {
+		var posX;
+		var posY;
+		if (typeof(event)!='undefined') {
+			posX = event.clientX + document.body.scrollLeft;
+			posY = event.clientY + document.body.scrollTop;
+		} 
+		else {
+		    posX = e.pageX;
+		    posY = e.pageY;
+		}
+		content.invert('fileman-menu')
+		document.getElementById('fileman-menu').style.top = posY+10 +'px';
+		document.getElementById('fileman-menu').style.left = posX +'px';
+		document.getElementById('fileman-menu').onmouseout = function() { 
+			setTimeout("content.invert('fileman-menu')",600) 
+			};
+	}
 	
-	this.menu = function(obj) {
-		this.action(obj)
+	this.menu = function(obj,e) {
+		if(obj.className=='projects') {
+			this.position(e);
+			}
+		else
+			this.action(obj)
 	}
 
 }
