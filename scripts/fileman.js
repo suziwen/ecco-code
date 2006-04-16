@@ -1,14 +1,15 @@
 
 Fileman = function() {
 	var div = document.getElementById('fileman');
+	var divMenu = document.getElementById('fileman-menu');
 	var obj = Object;
 	var out = '';
 	
 	this.update = function() {
-//	alert(1)
 		ajax.get(cfg['docFileman'],{ onEnd:'f.parse(xmlDoc.documentElement);f.write();', onError:'content.error("fileman","fileNotFound",cfg["docFileman"])' })
 	}
 	
+
 	this.write = function() {
 		div.innerHTML = out;	
 		out = '';
@@ -21,7 +22,7 @@ Fileman = function() {
 				project = tree.getAttribute('name');
 			if(tree.tagName=='projects')
 				project = '';
-			out += '<a onclick="f.menu(this,event)" ondblclick="f.action(this)" class="'+tree.tagName+'">'+tree.getAttribute('name')+'</a>';
+			out += '<a oncontextmenu="f.menu(this,event);return false;" onclick="f.action(this)" class="'+tree.tagName+'">'+tree.getAttribute('name')+'</a>';
 			out += '<div '+this.collapse(project,tree.getAttribute('name'))+'>';
 			var nodes = tree.childNodes.length;
 			for(var i=0; i<nodes; i++) 
@@ -29,7 +30,7 @@ Fileman = function() {
 			out += '</div>';
 		}
 		else {
-			out+='<a onclick="f.menu(this)" ondblclick="f.action(this)" class="'+tree.tagName+'">'+tree.getAttribute('name')+'</a>';
+			out+='<a oncontextmenu="f.menu(this,event);return false;" onclick="f.action(this)" class="'+tree.tagName+'">'+tree.getAttribute('name')+'</a>';
 		}
 	}
 	
@@ -53,17 +54,21 @@ Fileman = function() {
 		else if(obj.className=='directory') // ação sobre diretório especifico
 			obj.nextSibling.className = (obj.nextSibling.className!='closed') ? 'closed' : 'opened';
 		else {
-			var path = '';
-			var objw = obj;
-			while (objw.parentNode.previousSibling.className!='projects') {
-				path = objw.parentNode.previousSibling.innerHTML+'/' + path;
-				objw = objw.parentNode.previousSibling;
-			}
-			alert('ação sobre o arquivo: '+path+ obj.innerHTML) // ação sobre arquivos
+			alert('editar o arquivo: '+this.getPath(obj)) // ação sobre arquivos
 		}
 	}
 	
-	this.position = function(e) {
+	this.getPath = function(obj) {
+		var path = '';
+		var tmp = obj;
+		while (tmp.parentNode.previousSibling.className!='projects') {
+			path = tmp.parentNode.previousSibling.innerHTML+'/' + path;
+			tmp = tmp.parentNode.previousSibling;
+		}
+		return path+obj.innerHTML;
+	}
+	
+	this.setMenuPosition = function(e) {
 		var posX;
 		var posY;
 		if (typeof(event)!='undefined') {
@@ -75,19 +80,44 @@ Fileman = function() {
 		    posY = e.pageY;
 		}
 		content.invert('fileman-menu')
-		document.getElementById('fileman-menu').style.top = posY+10 +'px';
-		document.getElementById('fileman-menu').style.left = posX +'px';
-		document.getElementById('fileman-menu').onmouseout = function() { 
-			setTimeout("content.invert('fileman-menu')",600) 
-			};
+		timeoutId = 0;
+		divMenu.style.top = posY-5 +'px';
+		divMenu.style.left = posX-5 +'px';
 	}
 	
-	this.menu = function(obj,e) {
-		if(obj.className=='projects') {
-			this.position(e);
-			}
-		else
-			this.action(obj)
+	this.menu = function(o,e) {
+		divMenu.innerHTML = content.getMenuItems(o.className);
+		obj = o;
+		this.setMenuPosition(e);
+		divMenu.onmouseout = function() { 
+			timeoutId = setTimeout("content.invert('fileman-menu','none')",100) 
+		}
+		divMenu.onmouseover = function() { 
+			clearTimeout(timeoutId); 
+		}
+	}
+	
+	this.mail = function() {
+		alert('enviando por e-mail: '+ this.getPath(obj));
+	}
+	
+	this.rename = function() {
+		var param = [ {},{} ];
+		param[0]['name'] = 'renameFrom';
+		param[0]['value'] = this.getPath(obj);
+		param[1]['name'] = 'renameTo';
+		param[1]['value'] = "<form><input type=hidden name=from value='+this.getPath(obj)+'><input type=text name=to></form>";
+		content.confirmation('fileman','renameItem',param);
+//		alert('rename: '+ this.getPath(obj))
 	}
 
+	this.move = function() {
+		alert('movendo: '+ this.getPath(obj))
+	}
+
+	this.remove = function() {
+		alert('removendo: '+ this.getPath(obj))
+	}
+	
+	
 }

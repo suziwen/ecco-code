@@ -1,10 +1,12 @@
 cfg = { };
 
-cfg['language'] = 'ptbr'
-cfg['path'] = '/ecco'
+cfg['language'] = 'ptbr';
+cfg['path'] = '/ecco';
+cfg['user'] = 'feanndor@users.sourceforge.net';
 
-cfg['docFilemanContent'] = cfg['path']+'/content/fileman.'+cfg['language']+'.xml';
-cfg['docConsoleContent'] = cfg['path']+'/content/console2.'+cfg['language']+'.xml';
+// talvez juntar todas as mensagens dentro do ecco.xml ao inves de colocar separado
+cfg['docFilemanContent'] = cfg['path']+'/content/fileman5.'+cfg['language']+'.xml';
+cfg['docConsoleContent'] = cfg['path']+'/content/console.'+cfg['language']+'.xml';
 cfg['docEditorContent']  = cfg['path']+'/content/editor.'+cfg['language']+'.xml';
 cfg['docEccoContent']    = cfg['path']+'/content/ecco.'+cfg['language']+'.xml';
 
