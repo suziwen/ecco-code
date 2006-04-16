@@ -2,29 +2,38 @@
 <fileman>
 	<menu>
 		<projects>
-			<mail>Enviar por e-mail</mail>
+			<item action="f.mail()">Enviar por e-mail</item>
 		</projects>
 
 		<project>
-			<open>Expandir</open>
-			<rename>Renomear</rename>
-			<remove>Apagar</remove>
+			<item action="f.rename()">Renomear</item>
+			<item action="f.remove()">Apagar</item>
+			<item action="f.move()">Mover</item>			
+			<item action="f.mail()">Enviar por e-mail</item>
 		</project>
 		
 		<directory>
-			<open>Expandir</open>
-			<rename>Renomear</rename>
-			<remove>Apagar</remove>
+			<item action="f.rename()">Renomear</item>
+			<item action="f.remove()">Apagar</item>
+			<item action="f.move()">Mover</item>			
+			<item action="f.mail()">Enviar por e-mail</item>
 		</directory>
 		
 		<file>
-			<open>Abrir</open>
-			<rename>Renomear</rename>
-			<remove>Apagar</remove>
+			<item action="f.rename()">Renomear</item>
+			<item action="f.remove()">Apagar</item>
+			<item action="f.move()">Mover</item>			
+			<item action="f.mail()">Enviar por e-mail</item>
 		</file>
 	</menu>
 	
 	<messages>
+		<msg id="okButton">ok</msg>
+		<msg id="cancelButton">cancelar</msg>
+		<msg id="removeItem">Apagar [removeItem]?</msg>	
+		<msg id="moveItem">Mover [moveItem] para [moveTo]</msg>			
+		<msg id="renameItem">Renomear de [renameFrom] para [renameTo]</msg>					
+		<msg id="sendItem">Enviar [sendItem] por e-mail para [sendTo]</msg>							
 		<msg id="fileNotFound">Arquivo não encontrado: [fileNotFound]</msg>
 		<msg id="fileWriteError">Arquivo [fileWriteError] não encontrado</msg>
 	</messages>
