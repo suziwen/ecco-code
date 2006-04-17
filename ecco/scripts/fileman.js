@@ -102,11 +102,13 @@ Fileman = function() {
 	}
 	
 	this.rename = function() {
+		content.invert('fileman-menu','none');
 		var param = [ {},{} ];
 		param[0]['name'] = 'renameFrom';
 		param[0]['value'] = this.getPath(obj);
+		param[0]['value'] = param[0]['value'].substring(param[0]['value'].lastIndexOf('/')+1||0,param[0]['value'].length);
 		param[1]['name'] = 'renameTo';
-		param[1]['value'] = "<form><input type=hidden name=from value='+this.getPath(obj)+'><input type=text name=to></form>";
+		param[1]['value'] = '<form><input type="hidden" name="from" value="'+this.getPath(obj)+'"><input type="text" name="to" id="toHaveFocus"></form>';
 		content.confirmation('fileman','renameItem',param);
 //		alert('rename: '+ this.getPath(obj))
 	}
