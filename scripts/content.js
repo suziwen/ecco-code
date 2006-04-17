@@ -64,9 +64,10 @@ Content = function() {
 		}
 		out+='<button>'+this.getMessage(mod, 'cancelButton')+'</button>';
 		out+='<button>'+this.getMessage(mod, 'okButton')+'</button>';
-		alert(out)
+		//alert(out)
 		document.getElementById('confirmation').innerHTML = out;
 		this.invert('confirmation','block');
+		if(document.getElementById('toHaveFocus')) document.getElementById('toHaveFocus').focus();
 		
 	}
 	
