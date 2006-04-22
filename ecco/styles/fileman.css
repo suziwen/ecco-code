@@ -11,6 +11,6 @@
 #fileman .closed { display:none; }	
 #fileman .opened { display:block; }
 
-#fileman-menu { position:absolute;border-top:1px solid gray;border-right:2px solid gray;border-bottom:2px solid gray;border-left:1px solid gray;background-color:#eee;display:none; }
+#fileman-menu { position:absolute;border-top:1px solid gray;border-right:2px solid gray;border-bottom:2px solid gray;border-left:1px solid gray;background-color:#eee;display:none;-moz-border-radius:3px;border-radius:3px; }
 #fileman-menu a { display:block;cursor:pointer;cursor:hand;text-decoration:none;padding:1px 3px; }
 #fileman-menu a:hover { background-color:silver; }
