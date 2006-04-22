@@ -1,6 +1,7 @@
 
 Content = function() {
 
+	var timeoutId = 0;
 	var messages = {
 		'fileman' : Object,
 		'console' : Object
@@ -52,23 +53,47 @@ Content = function() {
 
 	
 	this.error = function(mod, id) {
-		var out = getMessage(mod, id);
+		var out = this.getMessage(mod, id);
 		if(arguments[2]) out = out.replace('\['+id+'\]',arguments[2]);
+		document.getElementById('messages').style.backgroundColor = '#ffa8a8';		
 		document.getElementById('messages').innerHTML = out;
+		clearTimeout(timeoutId);
+		timeoutId = setTimeout('content.clearMessages()',5000);
 	}
 	
-	this.confirmation = function(mod, id, param) {
+	this.showInfo = function(mod, id) {
 		var out = this.getMessage(mod, id);
+		if(arguments[2]) out = out.replace('\['+id+'\]',arguments[2]);
+		document.getElementById('messages').style.backgroundColor = 'gold';
+		document.getElementById('messages').innerHTML = out;
+		clearTimeout(timeoutId);
+		timeoutId = setTimeout('content.clearMessages()',5000);		
+	}
+
+	this.clearMessages = function() {
+		document.getElementById('messages').innerHTML = '';
+		document.getElementById('messages').style.backgroundColor = 'white';
+	}
+	
+	this.showConfirmation = function(mod, id, param) {
+		var out = '<h6>'+this.getMessage(mod, id)+'</h6>';
 		for(var i=0;i<param.length;i++) {
 			out = out.replace('\['+param[i]['name']+'\]',param[i]['value'])
 		}
-		out+='<button>'+this.getMessage(mod, 'cancelButton')+'</button>';
-		out+='<button>'+this.getMessage(mod, 'okButton')+'</button>';
-		//alert(out)
+		out+='<button id="cancel">'+this.getMessage(mod, 'cancelButton')+'</button>';
+		out+='<button id="ok">'+this.getMessage(mod, 'okButton')+'</button>';
 		document.getElementById('confirmation').innerHTML = out;
-		this.invert('confirmation','block');
+		document.getElementById('confirmation').style.left = document.body.clientWidth/2 - 200;
+		document.getElementById('confirmation').style.top = document.body.clientHeight/2 - 200;
+		document.getElementById('focusout').style.display='block';
+		content.display('confirmation','block');
 		if(document.getElementById('toHaveFocus')) document.getElementById('toHaveFocus').focus();
 		
+	}
+
+	this.hideConfirmation = function() {	
+		content.display('focusout','none');
+		content.display('confirmation','none');			
 	}
 	
 	this.getMenuItems = function(type) {
@@ -84,9 +109,11 @@ Content = function() {
 		
 	}
 	
-	this.invert = function(id) {
-		if(arguments[1]) document.getElementById(id).style.display = arguments[1];
-		else document.getElementById(id).style.display = (document.getElementById(id).style.display!='block') ? 'block' : 'none';
+	this.display = function(id) {
+		if(arguments[1] == 'invert')
+			document.getElementById(id).style.display = (document.getElementById(id).style.display!='block') ? 'block' : 'none';
+		else 
+			document.getElementById(id).style.display = arguments[1];
 	}
 	
 }

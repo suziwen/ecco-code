@@ -1,5 +1,4 @@
-
-
+// detectar resolucao do monitor ... minimo 800x600
 ECCO = function() {
 	
 	var loaded = {

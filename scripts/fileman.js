@@ -4,6 +4,7 @@ Fileman = function() {
 	var divMenu = document.getElementById('fileman-menu');
 	var obj = Object;
 	var out = '';
+	this.aux = '';
 	
 	this.update = function() {
 		ajax.get(cfg['docFileman'],{ onEnd:'f.parse(xmlDoc.documentElement);f.write();', onError:'content.error("fileman","fileNotFound",cfg["docFileman"])' })
@@ -54,18 +55,24 @@ Fileman = function() {
 		else if(obj.className=='directory') // ação sobre diretório especifico
 			obj.nextSibling.className = (obj.nextSibling.className!='closed') ? 'closed' : 'opened';
 		else {
-			alert('editar o arquivo: '+this.getPath(obj)) // ação sobre arquivos
+			alert('editar o arquivo: '+this.getFileInfo(obj,'full')) // ação sobre arquivos
 		}
 	}
 	
-	this.getPath = function(obj) {
-		var path = '';
-		var tmp = obj;
-		while (tmp.parentNode.previousSibling.className!='projects') {
-			path = tmp.parentNode.previousSibling.innerHTML+'/' + path;
-			tmp = tmp.parentNode.previousSibling;
+	this.getFileInfo = function(obj,info) {
+		if(info=='name') {
+			return obj.innerHTML;
 		}
-		return path+obj.innerHTML;
+		else if(info=='path'||info=='full') {
+			var path = '';
+			var tmp = obj;
+			while (tmp.parentNode.previousSibling.className!='projects') {
+				path = tmp.parentNode.previousSibling.innerHTML+'/' + path;
+				tmp = tmp.parentNode.previousSibling;
+			}
+			
+			return (info=='full') ? path+obj.innerHTML : path ;
+		}
 	}
 	
 	this.setMenuPosition = function(e) {
@@ -79,10 +86,17 @@ Fileman = function() {
 		    posX = e.pageX;
 		    posY = e.pageY;
 		}
-		content.invert('fileman-menu')
+		content.display('fileman-menu','invert')
 		timeoutId = 0;
 		divMenu.style.top = posY-5 +'px';
 		divMenu.style.left = posX-5 +'px';
+	}
+	
+	this.download = function() {
+		content.display('fileman-menu','none');
+		f.aux = this.getFileInfo(obj,'name');
+		content.showInfo("fileman","downloadItem",f.aux);
+		ajax.get('servlet/fileman-ok.xml',{ onEnd:'content.showInfo("fileman","downloadOK",f.aux);', onError:'content.error("fileman","downloadError",f.aux)' })	
 	}
 	
 	this.menu = function(o,e) {
@@ -90,7 +104,7 @@ Fileman = function() {
 		obj = o;
 		this.setMenuPosition(e);
 		divMenu.onmouseout = function() { 
-			timeoutId = setTimeout("content.invert('fileman-menu','none')",100) 
+			timeoutId = setTimeout("content.display('fileman-menu','none')",100) 
 		}
 		divMenu.onmouseover = function() { 
 			clearTimeout(timeoutId); 
@@ -98,27 +112,63 @@ Fileman = function() {
 	}
 	
 	this.mail = function() {
-		alert('enviando por e-mail: '+ this.getPath(obj));
+		var param = [ {},{} ];
+		param[0]['name'] = 'sendItem';
+		param[0]['value'] = this.getFileInfo(obj,'name');
+		param[1]['name'] = 'sendTo';
+		param[1]['value'] = '<form><input type="text" name="to" id="toHaveFocus"></form>';
+		this.aux = param[0]['value'];
+		content.showConfirmation('fileman','sendItem',param);
+		document.getElementById('cancel').onclick = content.hideConfirmation;
+		document.getElementById('ok').onclick = function() { 
+			ajax.get('servlet/fileman-ok.xml',{ onEnd:'content.hideConfirmation();content.showInfo("fileman","sendOK",f.aux);f.update()', onError:'content.hideConfirmation();content.error("fileman","sendError",f.aux)' })
+		}
 	}
 	
 	this.rename = function() {
-		content.invert('fileman-menu','none');
 		var param = [ {},{} ];
 		param[0]['name'] = 'renameFrom';
-		param[0]['value'] = this.getPath(obj);
-		param[0]['value'] = param[0]['value'].substring(param[0]['value'].lastIndexOf('/')+1||0,param[0]['value'].length);
+		param[0]['value'] = this.getFileInfo(obj,'name');
 		param[1]['name'] = 'renameTo';
-		param[1]['value'] = '<form><input type="hidden" name="from" value="'+this.getPath(obj)+'"><input type="text" name="to" id="toHaveFocus"></form>';
-		content.confirmation('fileman','renameItem',param);
-//		alert('rename: '+ this.getPath(obj))
-	}
+		param[1]['value'] = '<form><input type="text" name="to" id="toHaveFocus"></form>';
+		this.aux = param[0]['value'];
+		content.showConfirmation('fileman','renameItem',param);
+		document.getElementById('cancel').onclick = content.hideConfirmation;
+		document.getElementById('ok').onclick = function() { 
+		// from : full ; to : this.getPath(obj) + getElementById('toHaveFocus').value
+		// passar os parametros pra servlet aqui
+		// alert('rename: '+ this.getPath(obj))
+		// passar method para post aqui
+			ajax.get('servlet/fileman-ok.xml',{ onEnd:'content.hideConfirmation();content.showInfo("fileman","renameOK",f.aux);f.update()', onError:'content.hideConfirmation();content.error("fileman","renameError",f.aux)' })
+		}
 
+	}
+	
 	this.move = function() {
-		alert('movendo: '+ this.getPath(obj))
+		var param = [ {},{} ];
+		param[0]['name'] = 'moveFrom';
+		param[0]['value'] = this.getFileInfo(obj,'name');
+		param[1]['name'] = 'moveTo';
+		param[1]['value'] = '<form><select><option>Colocar aqui lista de diretorios</option></select></form>';
+		this.aux = param[0]['value'];
+		content.showConfirmation('fileman','moveItem',param);
+		document.getElementById('cancel').onclick = content.hideConfirmation;
+		document.getElementById('ok').onclick = function() { 
+			ajax.get('servlet/fileman-ok.xml',{ onEnd:'content.hideConfirmation();content.showInfo("fileman","moveOK",f.aux);f.update()', onError:'content.hideConfirmation();content.error("fileman","moveError",f.aux)' })
+		}
 	}
 
 	this.remove = function() {
-		alert('removendo: '+ this.getPath(obj))
+		var param = [ {} ];
+		param[0]['name'] = 'removeItem';
+		param[0]['value'] = this.getFileInfo(obj,'name');
+		this.aux = param[0]['value'];
+		content.showConfirmation('fileman','removeItem',param);
+		document.getElementById('cancel').onclick = content.hideConfirmation;
+		document.getElementById('ok').onclick = function() { 
+			ajax.get('servlet/fileman-ok.xml',{ onEnd:'content.hideConfirmation();content.showInfo("fileman","removeOK",f.aux);f.update()', onError:'content.hideConfirmation();content.error("fileman","removeError",f.aux)' })
+		}
+		
 	}
 	
 	

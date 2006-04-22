@@ -3,6 +3,7 @@
 	<menu>
 		<projects>
 			<item action="f.mail()">Enviar por e-mail</item>
+			<item action="f.download()">Download</item>talve
 		</projects>
 
 		<project>
@@ -10,6 +11,7 @@
 			<item action="f.remove()">Apagar</item>
 			<item action="f.move()">Mover</item>			
 			<item action="f.mail()">Enviar por e-mail</item>
+			<item action="f.download()">Download</item>
 		</project>
 		
 		<directory>
@@ -17,6 +19,7 @@
 			<item action="f.remove()">Apagar</item>
 			<item action="f.move()">Mover</item>			
 			<item action="f.mail()">Enviar por e-mail</item>
+			<item action="f.download()">Download</item>						
 		</directory>
 		
 		<file>
@@ -24,16 +27,28 @@
 			<item action="f.remove()">Apagar</item>
 			<item action="f.move()">Mover</item>			
 			<item action="f.mail()">Enviar por e-mail</item>
+			<item action="f.download()">Download</item>			
 		</file>
 	</menu>
 	
 	<messages>
 		<msg id="okButton">ok</msg>
 		<msg id="cancelButton">cancelar</msg>
-		<msg id="removeItem">Apagar [removeItem]?</msg>	
-		<msg id="moveItem">Mover [moveItem] para [moveTo]</msg>			
-		<msg id="renameItem">Renomear de [renameFrom] para [renameTo]</msg>					
-		<msg id="sendItem">Enviar [sendItem] por e-mail para [sendTo]</msg>							
+		<msg id="removeItem">Apagar "[removeItem]"?</msg>
+		<msg id="removeOK">"[removeOK]" apagado</msg>
+		<msg id="removeError">Erro ao apagar "[removeError]"</msg>
+		<msg id="moveItem">Mover "[moveFrom]" para [moveTo]</msg>
+		<msg id="moveOK">"[moveOK]" movido</msg>
+		<msg id="moveError">Erro ao mover "[moveError]"</msg>
+		<msg id="renameItem">Renomear "[renameFrom]" para: [renameTo]</msg>
+		<msg id="renameOK">"[renameOK]" renomeado</msg>		
+		<msg id="renameError">Erro ao renomear "[renameError]"</msg>				
+		<msg id="sendItem">Enviar "[sendItem]" por e-mail para [sendTo]</msg>
+		<msg id="sendOK">"[sendOK]" enviado por e-mail</msg>
+		<msg id="sendError">Erro ao enviar "[sendError]" por e-mail</msg>				
+		<msg id="downloadItem">Requisitando "[downloadItem]" ...</msg>
+		<msg id="downloadOK">"[downloadOK]" enviado</msg>
+		<msg id="downloadError">Erro no download de "[downloadError]"</msg>				
 		<msg id="fileNotFound">Arquivo não encontrado: [fileNotFound]</msg>
 		<msg id="fileWriteError">Arquivo [fileWriteError] não encontrado</msg>
 	</messages>
