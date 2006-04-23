@@ -2,7 +2,7 @@ AJAX = function(){
 	
 	var xmlDoc = Object;
 
-	this.get = function(url, options) {
+	AJAX.get = function(url, options) {
 		var parameters = options.parameters || false;
 		var method = options.method || "get";
 	  	var async = options.async || true;
@@ -11,15 +11,19 @@ AJAX = function(){
 	  	var onError = options.onError || false;
 		var request;
 		
-	  	if(window.XMLHttpRequest) 
+	  	if(window.XMLHttpRequest) {
 	  		request = new XMLHttpRequest();
-	  	else if(window.ActiveXObject) 
+		}
+	  	else if(window.ActiveXObject) {
 	  		request = new ActiveXObject("Microsoft.XMLHTTP");
+		}
 	  	else { 
 			alert(cfg['browser_error']); return false; 
 		}
 	
-	  	if(onStart) eval(onStart);
+	  	if(onStart) {
+			eval(onStart);
+		}
 	  
 	  	request.open(method, url+( parameters ? "?"+parameters : "" ), async);
 	  	request.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
@@ -27,14 +31,15 @@ AJAX = function(){
 		    if (request.readyState == 4) {
 				if (request.status == 200) {
 					xmlDoc = request.responseXML;
-		          	if(onEnd) 
+		          	if(onEnd) {
 		          		eval(onEnd);
+					}
 		        	return true;
 		        }
 				else {
-		        	//if(onEnd) eval(onEnd); //executar a funcao final mesmo com erro?
-		         	if(onError) 
+		         	if(onError) {
 		         		eval(onError);
+					}
 		          	return false;
 		        }
 			}

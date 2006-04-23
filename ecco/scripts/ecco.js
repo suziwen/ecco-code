@@ -1,17 +1,20 @@
 // detectar resolucao do monitor ... minimo 800x600
 ECCO = function() {
 	
-	var loaded = {
-		'ecco' : false,
-		'console' : false,
-		'fileman' : false,
-		'editor' : false
-	}
-	
+	var loaded = Array;
+		
 	this.initialize = function() {
-		ajax = new AJAX();
-		content = new Content();
-		content.initialize();
+	
+		loaded = {
+			'ecco' : false,
+			'console' : false,
+			'fileman' : false,
+			'editor' : false
+		}
+	
+		new AJAX();
+		new Content();
+		Content.initialize();
 	}
 	
 	this.set = function(mod) {
@@ -22,8 +25,8 @@ ECCO = function() {
 	}
 	
 	this.run = function() {
-		f = new Fileman();
-		f.update();
+		new Fileman();
+		Fileman.initialize();
 	}
 	
 }

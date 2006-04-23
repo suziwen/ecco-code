@@ -2,32 +2,32 @@
 <fileman>
 	<menu>
 		<projects>
-			<item action="f.mail()">Enviar por e-mail</item>
-			<item action="f.download()">Download</item>talve
+			<item action="Fileman.mail()">Enviar por e-mail</item>
+			<item action="Fileman.download()">Download</item>talve
 		</projects>
 
 		<project>
-			<item action="f.rename()">Renomear</item>
-			<item action="f.remove()">Apagar</item>
-			<item action="f.move()">Mover</item>			
-			<item action="f.mail()">Enviar por e-mail</item>
-			<item action="f.download()">Download</item>
+			<item action="Fileman.rename()">Renomear</item>
+			<item action="Fileman.remove()">Apagar</item>
+			<item action="Fileman.move()">Mover</item>			
+			<item action="Fileman.mail()">Enviar por e-mail</item>
+			<item action="Fileman.download()">Download</item>
 		</project>
 		
 		<directory>
-			<item action="f.rename()">Renomear</item>
-			<item action="f.remove()">Apagar</item>
-			<item action="f.move()">Mover</item>			
-			<item action="f.mail()">Enviar por e-mail</item>
-			<item action="f.download()">Download</item>						
+			<item action="Fileman.rename()">Renomear</item>
+			<item action="Fileman.remove()">Apagar</item>
+			<item action="Fileman.move()">Mover</item>			
+			<item action="Fileman.mail()">Enviar por e-mail</item>
+			<item action="Fileman.download()">Download</item>						
 		</directory>
 		
 		<file>
-			<item action="f.rename()">Renomear</item>
-			<item action="f.remove()">Apagar</item>
-			<item action="f.move()">Mover</item>			
-			<item action="f.mail()">Enviar por e-mail</item>
-			<item action="f.download()">Download</item>			
+			<item action="Fileman.rename()">Renomear</item>
+			<item action="Fileman.remove()">Apagar</item>
+			<item action="Fileman.move()">Mover</item>			
+			<item action="Fileman.mail()">Enviar por e-mail</item>
+			<item action="Fileman.download()">Download</item>			
 		</file>
 	</menu>
 	
@@ -49,7 +49,7 @@
 		<msg id="downloadItem">Requisitando "[downloadItem]" ...</msg>
 		<msg id="downloadOK">"[downloadOK]" enviado</msg>
 		<msg id="downloadError">Erro no download de "[downloadError]"</msg>				
-		<msg id="fileNotFound">Arquivo não encontrado: [fileNotFound]</msg>
+		<msg id="fileNotFoundError">Arquivo não encontrado: [fileNotFound]</msg>
 		<msg id="fileWriteError">Arquivo [fileWriteError] não encontrado</msg>
 	</messages>
 

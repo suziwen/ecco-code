@@ -1,43 +1,53 @@
 
 Fileman = function() {
-	var div = document.getElementById('fileman');
-	var divMenu = document.getElementById('fileman-menu');
+
+	var divMain = Object;
+	var divMenu = Object;
 	var obj = Object;
-	var out = '';
-	this.aux = '';
+	var out = String;
+	Fileman.aux = String;
 	
-	this.update = function() {
-		ajax.get(cfg['docFileman'],{ onEnd:'f.parse(xmlDoc.documentElement);f.write();', onError:'content.error("fileman","fileNotFound",cfg["docFileman"])' })
+	Fileman.initialize = function() {
+		divMain = document.getElementById('fileman');
+		divMenu = document.getElementById('fileman-menu');
+		obj = null;
+		out = '';
+		Fileman.aux = '';
+		this.update();
+	}
+	
+	Fileman.update = function() {
+		AJAX.get(cfg['docFileman'],{ onEnd:'Fileman.parse(xmlDoc.documentElement);Fileman.write();', onError:'Content.showMessage("fileman","fileNotFoundError",cfg["docFileman"])' })
 	}
 	
 
-	this.write = function() {
-		div.innerHTML = out;	
+	Fileman.write = function() {
+		divMain.innerHTML = out;	
 		out = '';
 	}
 	
-	this.parse = function(tree) {
+	Fileman.parse = function(tree) {
 		if(tree.nodeType!=1) { /* Workaround for firefox CR/NL. Remove this chars between XML tags */ }
 		else if(tree.hasChildNodes()) {
 			if(tree.tagName=='project')
 				project = tree.getAttribute('name');
 			if(tree.tagName=='projects')
 				project = '';
-			out += '<a oncontextmenu="f.menu(this,event);return false;" onclick="f.action(this)" class="'+tree.tagName+'">'+tree.getAttribute('name')+'</a>';
-			out += '<div '+this.collapse(project,tree.getAttribute('name'))+'>';
+			out += '<a oncontextmenu="Fileman.menu(this,event);return false;" onclick="Fileman.action(this)" class="'+tree.tagName+'">'+tree.getAttribute('name')+'</a>';
+			out += '<div '+Fileman.collapse(project,tree.getAttribute('name'))+'>';
 			var nodes = tree.childNodes.length;
 			for(var i=0; i<nodes; i++) 
 				this.parse(tree.childNodes[i]);
 			out += '</div>';
 		}
 		else {
-			out+='<a oncontextmenu="f.menu(this,event);return false;" onclick="f.action(this)" class="'+tree.tagName+'">'+tree.getAttribute('name')+'</a>';
+			out+='<a oncontextmenu="Fileman.menu(this,event);return false;" onclick="Fileman.action(this)" class="'+tree.tagName+'">'+tree.getAttribute('name')+'</a>';
 		}
 	}
 	
-	this.collapse = function(project, branchName) {
+	Fileman.collapse = function(project, branchName) {
 		if(project == '') 
-			return 'class="opened" id="projects"'; // all projects always open
+			return 'class="opened" id="projects"'; // "all projects" always open
 		else if(document.getElementById(project+'-'+branchName)) {
 			obj = document.getElementById(project+'-'+branchName);
 			return 'class="'+obj.className+'" id="'+obj.id+'"';
@@ -47,7 +57,7 @@ Fileman = function() {
 		}
 	}
 	
-	this.action = function(obj) {
+	Fileman.action = function(obj) {
 		if(obj.className=='projects') 
 			alert('ação sobre todos os projetos');
 		else if(obj.className=='project') // ação sobre projeto especifico
@@ -55,11 +65,11 @@ Fileman = function() {
 		else if(obj.className=='directory') // ação sobre diretório especifico
 			obj.nextSibling.className = (obj.nextSibling.className!='closed') ? 'closed' : 'opened';
 		else {
-			alert('editar o arquivo: '+this.getFileInfo(obj,'full')) // ação sobre arquivos
+			alert('editar o arquivo: '+Fileman.getFileInfo(obj,'full')) // ação sobre arquivos
 		}
 	}
 	
-	this.getFileInfo = function(obj,info) {
+	Fileman.getFileInfo = function(obj,info) {
 		if(info=='name') {
 			return obj.innerHTML;
 		}
@@ -75,7 +85,7 @@ Fileman = function() {
 		}
 	}
 	
-	this.setMenuPosition = function(e) {
+	Fileman.setMenuPosition = function(e) {
 		var posX;
 		var posY;
 		if (typeof(event)!='undefined') {
@@ -86,90 +96,89 @@ Fileman = function() {
 		    posX = e.pageX;
 		    posY = e.pageY;
 		}
-		content.display('fileman-menu','invert')
+		Content.display('fileman-menu','invert')
 		timeoutId = 0;
 		divMenu.style.top = posY-5 +'px';
 		divMenu.style.left = posX-5 +'px';
 	}
-	
-	this.download = function() {
-		content.display('fileman-menu','none');
-		f.aux = this.getFileInfo(obj,'name');
-		content.showInfo("fileman","downloadItem",f.aux);
-		ajax.get('servlet/fileman-ok.xml',{ onEnd:'content.showInfo("fileman","downloadOK",f.aux);', onError:'content.error("fileman","downloadError",f.aux)' })	
-	}
-	
-	this.menu = function(o,e) {
-		divMenu.innerHTML = content.getMenuItems(o.className);
+
+	Fileman.menu = function(o,e) {
+		divMenu.innerHTML = Content.getMenuItems(o.className);
 		obj = o;
 		this.setMenuPosition(e);
 		divMenu.onmouseout = function() { 
-			timeoutId = setTimeout("content.display('fileman-menu','none')",100) 
+			timeoutId = setTimeout("Content.display('fileman-menu','none')",100) 
 		}
 		divMenu.onmouseover = function() { 
 			clearTimeout(timeoutId); 
 		}
 	}
 	
-	this.mail = function() {
+	Fileman.download = function() {
+		Content.display('fileman-menu','none');
+		this.aux = this.getFileInfo(obj,'name');
+		Content.showMessage("fileman","downloadItem",Fileman.aux);
+		AJAX.get('servlet/fileman-ok.xml',{ onEnd:'Content.showMessage("fileman","downloadOK",Fileman.aux);', onError:'Content.showMessage("fileman","downloadError",Fileman.aux)' })	
+	}
+
+	Fileman.mail = function() {
 		var param = [ {},{} ];
 		param[0]['name'] = 'sendItem';
 		param[0]['value'] = this.getFileInfo(obj,'name');
 		param[1]['name'] = 'sendTo';
 		param[1]['value'] = '<form><input type="text" name="to" id="toHaveFocus"></form>';
 		this.aux = param[0]['value'];
-		content.showConfirmation('fileman','sendItem',param);
-		document.getElementById('cancel').onclick = content.hideConfirmation;
+		Content.showConfirmation('fileman','sendItem',param);
+		document.getElementById('cancel').onclick = Content.hideConfirmation;
 		document.getElementById('ok').onclick = function() { 
-			ajax.get('servlet/fileman-ok.xml',{ onEnd:'content.hideConfirmation();content.showInfo("fileman","sendOK",f.aux);f.update()', onError:'content.hideConfirmation();content.error("fileman","sendError",f.aux)' })
+			AJAX.get('servlet/fileman-ok.xml',{ onEnd:'Content.hideConfirmation();Content.showMessage("fileman","sendOK",Fileman.aux);Fileman.update()', onError:'Content.hideConfirmation();Content.showMessage("fileman","sendError",Fileman.aux)' })
 		}
 	}
 	
-	this.rename = function() {
+	Fileman.rename = function() {
 		var param = [ {},{} ];
 		param[0]['name'] = 'renameFrom';
 		param[0]['value'] = this.getFileInfo(obj,'name');
 		param[1]['name'] = 'renameTo';
 		param[1]['value'] = '<form><input type="text" name="to" id="toHaveFocus"></form>';
 		this.aux = param[0]['value'];
-		content.showConfirmation('fileman','renameItem',param);
-		document.getElementById('cancel').onclick = content.hideConfirmation;
+		Content.showConfirmation('fileman','renameItem',param);
+		document.getElementById('cancel').onclick = Content.hideConfirmation;
 		document.getElementById('ok').onclick = function() { 
 		// from : full ; to : this.getPath(obj) + getElementById('toHaveFocus').value
 		// passar os parametros pra servlet aqui
 		// alert('rename: '+ this.getPath(obj))
 		// passar method para post aqui
-			ajax.get('servlet/fileman-ok.xml',{ onEnd:'content.hideConfirmation();content.showInfo("fileman","renameOK",f.aux);f.update()', onError:'content.hideConfirmation();content.error("fileman","renameError",f.aux)' })
+			AJAX.get('servlet/fileman-ok.xml',{ onEnd:'Content.hideConfirmation();Content.showMessage("fileman","renameOK",Fileman.aux);Fileman.update()', onError:'Content.hideConfirmation();Content.showMessage("fileman","renameError",Fileman.aux)' })
 		}
 
 	}
 	
-	this.move = function() {
+	Fileman.move = function() {
 		var param = [ {},{} ];
 		param[0]['name'] = 'moveFrom';
 		param[0]['value'] = this.getFileInfo(obj,'name');
 		param[1]['name'] = 'moveTo';
 		param[1]['value'] = '<form><select><option>Colocar aqui lista de diretorios</option></select></form>';
 		this.aux = param[0]['value'];
-		content.showConfirmation('fileman','moveItem',param);
-		document.getElementById('cancel').onclick = content.hideConfirmation;
+		Content.showConfirmation('fileman','moveItem',param);
+		document.getElementById('cancel').onclick = Content.hideConfirmation;
 		document.getElementById('ok').onclick = function() { 
-			ajax.get('servlet/fileman-ok.xml',{ onEnd:'content.hideConfirmation();content.showInfo("fileman","moveOK",f.aux);f.update()', onError:'content.hideConfirmation();content.error("fileman","moveError",f.aux)' })
+			AJAX.get('servlet/fileman-ok.xml',{ onEnd:'Content.hideConfirmation();Content.showMessage("fileman","moveOK",Fileman.aux);Fileman.update()', onError:'Content.hideConfirmation();Content.showMessage("fileman","moveError",Fileman.aux)' })
 		}
 	}
 
-	this.remove = function() {
+	Fileman.remove = function() {
 		var param = [ {} ];
 		param[0]['name'] = 'removeItem';
 		param[0]['value'] = this.getFileInfo(obj,'name');
 		this.aux = param[0]['value'];
-		content.showConfirmation('fileman','removeItem',param);
-		document.getElementById('cancel').onclick = content.hideConfirmation;
+		Content.showConfirmation('fileman','removeItem',param);
+		document.getElementById('cancel').onclick = Content.hideConfirmation;
 		document.getElementById('ok').onclick = function() { 
-			ajax.get('servlet/fileman-ok.xml',{ onEnd:'content.hideConfirmation();content.showInfo("fileman","removeOK",f.aux);f.update()', onError:'content.hideConfirmation();content.error("fileman","removeError",f.aux)' })
+			AJAX.get('servlet/fileman-ok.xml',{ onEnd:'Content.hideConfirmation();Content.showMessage("fileman","removeOK",Fileman.aux);Fileman.update()', onError:'Content.hideConfirmation();Content.showMessage("fileman","removeError",Fileman.aux)' })
 		}
 		
 	}
-	
 	
 }
