@@ -1,43 +1,51 @@
 
 Content = function() {
 
-	var timeoutId = 0;
-	var messages = {
-		'fileman' : Object,
-		'console' : Object
-	}
+	var divConfirmation = Object;
+	var divMessages = Object;
+	var timeoutId = Number;
+	var messages = Array;
 	
 	// get all static xml content for menus and error messages
-	this.initialize = function() {
+	Content.initialize = function() {
+		divConfirmation = document.getElementById('confirmation');
+		divMessages = document.getElementById('messages');
+		timeoutId = 0;
+		messages = {
+			'fileman' : Object,
+			'console' : Object
+		}
+
+	
 		// talvez juntar todas as mensagens dentro do ecco.xml ao inves de colocar separado
-		ajax.get(cfg['docFilemanContent'],
+		AJAX.get(cfg['docFilemanContent'],
 				{ async:false, 
-				  onEnd:'content.set("fileman", xmlDoc);', 
+				  onEnd:'Content.set("fileman", xmlDoc);', 
   			      onError:'alert(cfg["msgFilemanError"])' })
 				
-		ajax.get(cfg['docConsoleContent'],
+		AJAX.get(cfg['docConsoleContent'],
 				{ async:false, 
-				  onEnd:'content.set("console", xmlDoc);', 
+				  onEnd:'Content.set("console", xmlDoc);', 
 				  onError:'alert(cfg["msgConsoleError"])' })
 
-		ajax.get(cfg['docEditorContent'],
+		AJAX.get(cfg['docEditorContent'],
 				{ async:false, 
-				  onEnd:'content.set("editor", xmlDoc);', 
+				  onEnd:'Content.set("editor", xmlDoc);', 
 				  onError:'alert(cfg["msgEditorError"])' })
 				  
-		ajax.get(cfg['docEccoContent'],
+		AJAX.get(cfg['docEccoContent'],
 				{ async:false, 
-				  onEnd:'content.set("ecco", xmlDoc);', 
+				  onEnd:'Content.set("ecco", xmlDoc);', 
 				  onError:'alert(cfg["msgEccoError"])' })		
 	}
 		
 
-	this.set = function(mod, xmlDoc) {
+	Content.set = function(mod, xmlDoc) {
 		messages[mod] = xmlDoc;
 		ecco.set(mod);
 	}
 
-	this.getMessage = function(mod, id) {
+	Content.getMessage = function(mod, id) {
 		var out = '';
 		var obj = messages[mod];
 		obj = obj.documentElement.getElementsByTagName('messages')[0];
@@ -52,51 +60,41 @@ Content = function() {
 	}
 
 	
-	this.error = function(mod, id) {
+	Content.showMessage = function(mod, id, type) {
 		var out = this.getMessage(mod, id);
 		if(arguments[2]) out = out.replace('\['+id+'\]',arguments[2]);
-		document.getElementById('messages').style.backgroundColor = '#ffa8a8';		
-		document.getElementById('messages').innerHTML = out;
+		divMessages.style.backgroundColor = (id.indexOf('Error')!=-1) ? '#ffa8a8' : 'gold';
+		divMessages.innerHTML = out;
 		clearTimeout(timeoutId);
-		timeoutId = setTimeout('content.clearMessages()',5000);
+		timeoutId = setTimeout('Content.clearMessage()',5000);
+	}
+	Content.clearMessage = function() {
+		divMessages.innerHTML = '';
+		divMessages.style.backgroundColor = 'white';
 	}
 	
-	this.showInfo = function(mod, id) {
-		var out = this.getMessage(mod, id);
-		if(arguments[2]) out = out.replace('\['+id+'\]',arguments[2]);
-		document.getElementById('messages').style.backgroundColor = 'gold';
-		document.getElementById('messages').innerHTML = out;
-		clearTimeout(timeoutId);
-		timeoutId = setTimeout('content.clearMessages()',5000);		
-	}
-
-	this.clearMessages = function() {
-		document.getElementById('messages').innerHTML = '';
-		document.getElementById('messages').style.backgroundColor = 'white';
-	}
-	
-	this.showConfirmation = function(mod, id, param) {
+	Content.showConfirmation = function(mod, id, param) {
 		var out = '<h6>'+this.getMessage(mod, id)+'</h6>';
 		for(var i=0;i<param.length;i++) {
 			out = out.replace('\['+param[i]['name']+'\]',param[i]['value'])
 		}
 		out+='<button id="cancel">'+this.getMessage(mod, 'cancelButton')+'</button>';
 		out+='<button id="ok">'+this.getMessage(mod, 'okButton')+'</button>';
-		document.getElementById('confirmation').innerHTML = out;
-		document.getElementById('confirmation').style.left = document.body.clientWidth/2 - 200;
-		document.getElementById('confirmation').style.top = document.body.clientHeight/2 - 200;
+		divConfirmation.innerHTML = out;
+		divConfirmation.style.left = document.body.clientWidth/2 - 200;
+		divConfirmation.style.top = document.body.clientHeight/2 - 200;
 		document.getElementById('focusout').style.display='block';
-		content.display('confirmation','block');
+		Content.display('confirmation','block');
 		if(document.getElementById('toHaveFocus')) document.getElementById('toHaveFocus').focus();
 		
 	}
 
-	this.hideConfirmation = function() {	
-		content.display('focusout','none');
-		content.display('confirmation','none');			
+	Content.hideConfirmation = function() {	
+		Content.display('focusout','none');
+		Content.display('confirmation','none');			
 	}
 	
-	this.getMenuItems = function(type) {
+	Content.getMenuItems = function(type) {
 		var out = '';
 		var obj = messages['fileman'];
 		obj = obj.documentElement.getElementsByTagName('menu')[0];
@@ -109,7 +107,7 @@ Content = function() {
 		
 	}
 	
-	this.display = function(id) {
+	Content.display = function(id) {
 		if(arguments[1] == 'invert')
 			document.getElementById(id).style.display = (document.getElementById(id).style.display!='block') ? 'block' : 'none';
 		else 
