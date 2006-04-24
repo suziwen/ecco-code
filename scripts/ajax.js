@@ -1,8 +1,9 @@
-AJAX = function(){
+AJAX = function() {
 	
+	AJAX = this;
 	var xmlDoc = Object;
 
-	AJAX.get = function(url, options) {
+	this.get = function(url, options) {
 		var parameters = options.parameters || false;
 		var method = options.method || "get";
 	  	var async = options.async || true;
