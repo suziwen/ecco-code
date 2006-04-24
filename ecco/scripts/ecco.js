@@ -31,3 +31,8 @@ ECCO = function() {
 	
 }
 
+// funcao global
+$ = function(id) {
+	if(!arguments[1]) return document.getElementById(id);
+	else document.getElementById(id).style[arguments[1]] = arguments[2];
+}
