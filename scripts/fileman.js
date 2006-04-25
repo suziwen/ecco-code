@@ -183,6 +183,15 @@ Fileman = function() {
 		}
 	}
 
+	this.newProject = function() {
+	}
+
+	this.newDirectory = function() {
+	}
+
+	this.newFile = function() {
+	}
+
 	this.remove = function() {
 		var param = [ {} ];
 		param[0]['name'] = 'removeItem';

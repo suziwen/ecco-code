@@ -2,11 +2,14 @@
 <fileman>
 	<menu>
 		<projects>
+			<item action="Fileman.newProject()">Novo projeto</item>
 			<item action="Fileman.mail()">Enviar por e-mail</item>
 			<item action="Fileman.download()">Download</item>talve
 		</projects>
 
 		<project>
+			<item action="Fileman.newDirectory()">Novo diretório</item>		
+			<item action="Fileman.newFile()">Novo arquivo</item>					
 			<item action="Fileman.rename()">Renomear</item>
 			<item action="Fileman.remove()">Apagar</item>
 			<item action="Fileman.move()">Mover</item>			
@@ -15,6 +18,8 @@
 		</project>
 		
 		<directory>
+			<item action="Fileman.newDirectory()">Novo diretório</item>		
+			<item action="Fileman.newFile()">Novo arquivo</item>					
 			<item action="Fileman.rename()">Renomear</item>
 			<item action="Fileman.remove()">Apagar</item>
 			<item action="Fileman.move()">Mover</item>			
