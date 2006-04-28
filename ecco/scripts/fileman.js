@@ -166,12 +166,32 @@ Fileman = function() {
 
 	}
 	
+	this.getDirectoryList = function(obj) {
+		var out = '';
+		var fullPath = '';
+		var allItems = divMain.getElementsByTagName('a');
+		var thisFile = this.getFileInfo(obj,'full');
+		// re = new RegExp("^"+a) 
+		//if(b.match(re)) alert(1);
+		
+		for(var i=1;i<allItems.length;i++)	{
+			if (allItems[i].className == 'directory' || allItems[i].className == 'project' ) {
+				fullPath = this.getFileInfo(allItems[i],'full')
+				if(fullPath != thisFile) { // colocar aqui regular expression para evitar move impossivel tipo um diretorio pra dentro de um diretorio dentro do primeiro diretorio e tb mover para o local atual
+					out += '<option value="'+fullPath+'">/'+fullPath+'/</option>';
+				}
+			}
+		}
+		return out;
+	}	
+	
+	
 	this.move = function() {
 		var param = [ {},{} ];
 		param[0]['name'] = 'moveFrom';
-		param[0]['value'] = this.getFileInfo(obj,'name');
+		param[0]['value'] = this.getFileInfo(obj,'full');
 		param[1]['name'] = 'moveTo';
-		param[1]['value'] = '<form><select><option>Colocar aqui lista de diretorios</option></select></form>';
+		param[1]['value'] = '<form><select>'+this.getDirectoryList(obj)+'</select></form>';
 		this.aux = param[0]['value'];
 		Content.showConfirmation('fileman','moveItem',param);
 		$('cancel').onclick = Content.hideConfirmation;
