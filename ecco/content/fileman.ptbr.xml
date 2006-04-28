@@ -4,7 +4,7 @@
 		<projects>
 			<item action="Fileman.newProject()">Novo projeto</item>
 			<item action="Fileman.mail()">Enviar por e-mail</item>
-			<item action="Fileman.download()">Download</item>talve
+			<item action="Fileman.download()">Download</item>
 		</projects>
 
 		<project>
