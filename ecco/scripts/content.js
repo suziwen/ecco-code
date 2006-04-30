@@ -65,7 +65,7 @@ Content = function() {
 	}
 
 	
-	this.showMessage = function(mod, id, type) {
+	this.showMessage = function(mod, id) {
 		var out = this.getMessage(mod, id);
 		this.hideConfirmation()
 		if(arguments[2]) out = out.replace('\['+id+'\]',arguments[2]);
@@ -92,7 +92,7 @@ Content = function() {
 		divConfirmation.style.top = document.body.clientHeight/2 - 200;
 		$('focusout').style.display='block';
 		$('confirmation','display','block');
-		if($('toHaveFocus')) $('toHaveFocus').focus();
+		if($('action-input')) $('action-input').focus();
 		
 	}
 
