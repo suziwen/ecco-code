@@ -15,8 +15,8 @@ a { font-size:14px;color:blue; }
 a:hover { text-decoration:none;color:darkblue; }
 
 #container { width:760px;border:2px solid #ccc;background-color:white;-moz-border-radius: 8px; border-radius: 8px; margin-left: auto;margin-right: auto; }
-#head { background-color:gray;margin:20px;color:#eee;padding:10px 10px;-moz-border-radius: 8px; border-radius: 8px;border:1px solid silver; }
-h1 { padding:0;margin:0; }
+#head { background-color:gray;margin:20px;color:#eee;padding:10px 10px;-moz-border-radius: 8px; border-radius: 8px;border:1px solid silver;font-family:Garamond; }
+h1 { padding:0;margin:0;font-size:45px }
 h2 { font-size:20px;padding:0;margin:0; }
 
 p { text-align:left;margin:20px 30px; }
@@ -30,6 +30,11 @@ ul { text-align:left; margin:0 47px;}
 #devel-team { margin:0; }
 
 #sflogo { margin:25px 0 15px 0 }
+
+table { margin-left:28px;margin-top:16px;margin-bottom:10px; }
+td { padding-right:41px; }
+.legenda { font-size:11px; }
+
 /*]]>*/
 </style>
 </head>
@@ -46,8 +51,17 @@ ul { text-align:left; margin:0 47px;}
 		</p>
 
 		<div id="status">
-			<strong>Development Status:</strong> <a href="http://sourceforge.net/projects/ecco"><em>Planning</em></a>
+			<strong>Development Status:</strong> <a href="http://sourceforge.net/projects/ecco"><em>Planning</em>, <em>Pre-Alpha</em></a>
 		</div>
+
+
+		<div id="diagram-head">Some really early filemanager screenshots (in PT-BR):</div>
+		<table><tr>
+				<td><a href="images/ss-i-fileman-main.gif"><img src="./images/ss-t-fileman-main.gif" border="0" /></a><br><div class="legenda">file manager main screen</div></td>
+				<td><a href="images/ss-i-fileman-rename-menu.gif"><img src="./images/ss-t-fileman-rename-menu.gif" border="0" /></a><div class="legenda">file manager menu</div></td>
+				<td><a href="images/ss-i-fileman-rename-dialog.gif"><img src="./images/ss-t-fileman-rename-dialog.gif" border="0" /></a><div class="legenda">file manager dialog</div></td>
+		</tr></table>
+		
 
 		<div id="diagram-head">Client-Server diagram:</div>
 		<div id="diagram"><img src="./images/ecco-diagram.gif" /></div>
