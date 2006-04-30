@@ -6,10 +6,10 @@ ECCO = function() {
 	this.initialize = function() {
 	
 		loaded = {
-			'ecco' : false,
+			'ecco'    : false,
 			'console' : false,
 			'fileman' : false,
-			'editor' : false
+			'editor'  : false
 		}
 	
 		new AJAX();
