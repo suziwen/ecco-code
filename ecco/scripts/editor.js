@@ -20,7 +20,7 @@ Editor = function() {
 			}
 		}
 		openFiles[fileCount] = fullName;
-		var divText = document.createElement('div');
+		var divText = document.createElement('textarea');
 		var fileName = this.formatFileName(fullName);
 		var divData = document.createTextNode($(fileName).innerHTML);
 		divText.id = 'text'+fileCount;
@@ -51,7 +51,7 @@ Editor = function() {
 	}
 	
 	this.updateTabs = function() {
-		var out = '<table><tr id="tab-list">';
+		var out = '<table cellpadding=0 cellspacing=0 border=0><tr id="tab-list">';
 		for(var i=0;i<openFiles.length;i++) {
 			if(openFiles[i]) {
 				out += '<td id="tab'+i+'"><a href="javascript:void(0)" onclick="Editor.focus('+i+')">'+this.formatFileName(openFiles[i])+'</a>';
@@ -65,7 +65,7 @@ Editor = function() {
 	this.focus = function(id) {
 		this.blur(currentFile);
 		currentFile = id;
-		$('tab'+currentFile,'backgroundColor','gold');
+		$('tab'+currentFile,'backgroundColor','silver');
 		$('text'+currentFile,'display','block');
 	}
 	
@@ -76,7 +76,7 @@ Editor = function() {
 	this.blur = function(id) {
 		if(openFiles[id]) {
 			$('text'+id,'display','none');
-			$('tab'+id,'backgroundColor','silver');
+			$('tab'+id,'backgroundColor','#ddd');
 			}
 	}
 	
