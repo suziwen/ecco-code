@@ -11,4 +11,10 @@
 		</save>
 	</menu>
 
+	<messages>
+		<msg id="fileOpening">Carregando [fileOpening]... </msg>	
+		<msg id="fileOpenError">Erro ao abrir arquivo: [fileOpenError]</msg>
+		<msg id="fileNotFoundError">Arquivo nao encontrado: [fileNotFoundError]</msg>
+	</messages>
+	
 </editor>

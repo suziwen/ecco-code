@@ -11,13 +11,14 @@
 	<script type="text/javascript" src="scripts/content.js"></script>	
 	<script type="text/javascript" src="scripts/ecco.js"></script>
 	<script type="text/javascript" src="scripts/editor.js"></script>
+	<script type="text/javascript" src="scripts/fileman.js"></script>	
 	<script type="text/javascript">
 	
 	onload = function() {
-//		ecco = new ECCO();
-//		ecco.initialize();
-		new Editor();
-		Editor.initialize();
+		ecco = new ECCO();
+		ecco.initialize();
+//		new Editor();
+//		Editor.initialize();
 		}
 
 	</script>
@@ -27,15 +28,16 @@
 	#editor #tab-list td { background-color:#ddd;padding:3px;border-right:1px solid white;white-space:nowrap; }
 	#editor #text { background-color:silver;padding:5px;height:400px; }
 	#editor textarea { width:100%;height:400px; }
+	#editor #text .open { display:none; }
 	</style>
 </head>
 
 <body>
 
-<a href=javascript:void(0) onclick="Editor.open('/ecco/teste1')">abrir1</a>
-<a href=javascript:void(0) onclick="Editor.open('/ecco/teste2')">abrir2</a>
-<a href=javascript:void(0) onclick="Editor.open('/ecco/teste3')">abrir3</a>
-<a href=javascript:void(0) onclick="Editor.open('/ecco/teste4')">abrir4</a>
+<a href=javascript:void(0) onclick="Editor.open('projeto1/teste1.java')">abrir1</a>
+<a href=javascript:void(0) onclick="Editor.open('projeto1/teste2.java')">abrir2</a>
+<a href=javascript:void(0) onclick="Editor.open('projeto1/teste3.java')">abrir3</a>
+<a href=javascript:void(0) onclick="Editor.open('projeto1/teste4.java')">abrir4</a>
 
 
 <div id="focusout"></div>
@@ -45,7 +47,9 @@
 <div id="editor">
 	<div id="tabs"></div>
 	<div id="text"></div>
+	<div id="tools"><button>Salvar</button><button>Compilar</button><button>Compilar e Executar</button></div>
 </div>
+
 
 
 <div id="teste1" style='display:none;'>11111111111111</div>

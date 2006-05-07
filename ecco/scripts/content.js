@@ -14,7 +14,8 @@ Content = function() {
 		timeoutId = 0;
 		messages = {
 			'fileman' : Object,
-			'console' : Object
+			'console' : Object,
+			'editor'  : Object
 		}
 
 	
