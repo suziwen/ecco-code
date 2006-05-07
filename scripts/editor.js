@@ -13,6 +13,27 @@ Editor = function() {
 	}
 	
 	this.open = function(fullName) {
+		AJAX.get(cfg['docEditor'], { 
+			parameters:'action=open&file='+fullName,
+//			onStart:'Content.showMessage("editor","fileOpening","'+fullName+'")',
+			onEnd:'Editor.parse(xmlDoc.documentElement,"'+fullName+'");', //Content.clearMessage()
+			onError:'Content.showMessage("editor","fileNotFoundError",cfg["docEditor"])' 
+			})
+	}
+	
+	this.parse = function(obj,fullName) {
+		var text = '';
+		text = obj.firstChild.nodeValue;
+		if(text == 'error') {
+			Content.showMessage("editor","fileOpenError",fullName);
+		}
+		else {
+			this.edit(text, fullName);
+		}
+	}
+	
+	this.edit = function(text, fullName) {
+
 		for(var i=0;i<openFiles.length;i++) { // nao abre arquivos ja abertos
 			if(fullName == openFiles[i]) {
 				this.focus(i);
@@ -21,15 +42,17 @@ Editor = function() {
 		}
 		openFiles[fileCount] = fullName;
 		var divText = document.createElement('textarea');
-		var fileName = this.formatFileName(fullName);
-		var divData = document.createTextNode($(fileName).innerHTML);
 		divText.id = 'text'+fileCount;
+		divText.className = 'open';
+		var fileName = this.formatFileName(fullName);
+		var divData = document.createTextNode(text);
 		divText.appendChild(divData);
 		$('text').appendChild(divText);
 		this.updateTabs();
 		this.focus(fileCount);
 		fileCount++
 	}
+	
 	
 	this.close = function(id) {
   		$('text').removeChild($('text'+id));
@@ -39,6 +62,7 @@ Editor = function() {
 		while (!openFiles[tmp] && tmp < openFiles.length) { // tenta encontrar a proxima aba com texto
 			tmp++;
 		}
+
 		if(!openFiles[tmp]) { // se nao achou aba com texto, olha para as abas anteriores
 			tmp = id;
 			while (!openFiles[tmp] && tmp >= 0) {
