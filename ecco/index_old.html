@@ -1,0 +1,111 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="pt-BR" lang="pt-BR">
+<head>
+<meta http-equiv="Content-type" content="text/html;charset=UTF-8" />
+<meta http-equiv="Content-Language" content="pt-br" />
+<meta name="description" content="Editor e Compilador de Código Online" />
+<meta name="keywords" content="editor, compilador, educacional, programação" />
+<link rel="SHORTCUT ICON" href="/images/favicon.ico" />
+<!-- script type="text/javascript" src="/includes/scripts.js"></script -->
+<!-- link rel="stylesheet" href="/includes/styles.css" /-->
+<title>ECCO - Editor e Compilador de Código Online</title>
+<style>
+body { background: #efebde; font-size: 1.25ex; font-family: verdana, arial, sans-serif; margin: 1px; color:#000; }
+html>body { background: #efebde; font: x-small verdana, arial, sans-serif; margin: 1px; color:#000;padding:0; }
+html,body {	height: 99.7%;overflow:hidden}
+
+a { text-decoration:none;color:black;}
+a:hover { text-decoration:underline;}
+a:visited { color:black; }
+h1,h2,h3,h4,h5 { margin:0;padding:0;font-weight:normal; }
+ul { margin:0 0 0 0; padding:0; list-style-type:none; }
+form { display:inline; }
+
+#header { border:0px solid black;height:10%}
+#header #h-content { height:96%;margin:0.2em;border:1px solid #adaa9c; }
+
+#container { width:100%;height:70%;border:0;padding:0;margin:0; }
+#filemanager { border:0px solid black; width:19em;vertical-align:top;height:100% }
+#filemanager #f-outter {position:relative; }
+#filemanager #f-content { height:99%;margin:0.2em;border:1px solid #adaa9c; }
+#editor { border:0px solid black;vertical-align:top;height:100%; }
+#editor #e-content { height:99%;margin:0.1em;border:1px solid #adaa9c;margin:0.2em; }
+#editor #e-content #text-area { height:91%;border:1px solid #adaa9c;background-color:white;margin:1em;overflow:auto; }
+#console { border:0px solid black;height:29.7%;position:relative;}
+#console #c-content { height:60%;margin:0.5em;border:1px solid #adaa9c; }
+#console #c-content #c-screen { background-color:black;height:91.1%;font-family:courier;color:#eee }
+#console #c-content #c-tab { margin:0.2em 1em 0 1em; }
+
+
+.min-max { position:absolute;top:0.4em;right:1.1em; }
+</style>
+
+<script type="">
+function minMaxFM(obj) {
+	if(document.getElementById('f-content').style.display != 'none') {
+		document.getElementById('filemanager').style.width = '1.8em';
+		document.getElementById('f-content').style.display = 'none'
+		obj.innerHTML = '&raquo';
+		}
+	else {
+		document.getElementById('filemanager').style.width = '19em';
+		document.getElementById('f-content').style.display = 'block'
+		obj.innerHTML = 'X';
+	}
+}
+
+function minMaxC(obj) {
+	if(document.getElementById('c-screen').style.display != 'none') {
+		document.getElementById('console').style.height = '3em';
+		document.getElementById('container').style.height = '86%';
+		document.getElementById('c-screen').style.display = 'none'
+		obj.innerHTML = '&raquo';
+		}
+	else {
+		document.getElementById('console').style.height = '29.8%';
+		document.getElementById('container').style.height = '70%';		
+		document.getElementById('c-screen').style.display = 'block'
+		obj.innerHTML = 'X';
+	}
+}
+
+</script>
+
+</head>
+
+<body>
+<div id="header">
+	<div id="h-content">
+	Header
+	</div>
+</div>
+<table cellspacing="0" cellpadding=0 id="container" summary="lala"><tr>
+	<td id="filemanager"><div id="f-outter"><a href="javascript:void(0)" class="min-max" onclick="minMaxFM(this)">X</a></div>
+		<div id="f-content">
+			<div id="f-tab">gerenciador de arquivos</div>
+			<div id="f-screen"></div>
+
+	</div></td>
+	<td id="editor">
+		<div id="e-content">
+			editor
+			<div id="text-area">
+			sdfsdfsd
+			fsdf
+			</div>
+		</div>
+	</td>
+</tr></table>
+<div id="console">
+		<a href="javascript:void(0)" class="min-max" onclick="minMaxC(this)">X</a>
+		<div id="c-content">
+			<div id="c-tab">console</div>
+			<div id="c-screen">
+			~#
+			</div>
+
+		</div>
+</div>
+
+</body>
+</html>

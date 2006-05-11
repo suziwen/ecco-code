@@ -1,0 +1,5 @@
+#editor #tabs { overflow-x:auto;width:100%;}
+#editor #tab-list td { background-color:#ddd;padding:3px;border-right:1px solid white;white-space:nowrap; }
+#editor #text { background-color:silver;padding:5px;height:400px; }
+#editor textarea { width:100%;height:400px; }
+#editor #text .open { display:none; }
