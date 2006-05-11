@@ -27,8 +27,8 @@ ECCO = function() {
 	this.run = function() {
 		new Fileman();
 		Fileman.initialize();
-//		new Editor();
-//		Editor.initialize();
+		new Editor();
+		Editor.initialize();
 
 	}
 	
