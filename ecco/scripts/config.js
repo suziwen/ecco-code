@@ -4,7 +4,7 @@ cfg = { };
 
 cfg['language'] = 'ptbr';
 cfg['path'] = '/ecco';
-cfg['user'] = 'feanndor';
+cfg['user'] = 'feanndor'; // nome de usuario por enquanto estatico
 
 // talvez juntar todas as mensagens dentro do ecco.xml ao inves de colocar separado
 cfg['docFilemanContent'] = cfg['path']+'/content/fileman.'+cfg['language']+'.xml';
@@ -12,9 +12,9 @@ cfg['docConsoleContent'] = cfg['path']+'/content/console.'+cfg['language']+'.xml
 cfg['docEditorContent']  = cfg['path']+'/content/editor.'+cfg['language']+'.xml';
 cfg['docEccoContent']    = cfg['path']+'/content/ecco.'+cfg['language']+'.xml';
 
-cfg['docFileman'] = cfg['path']+'/servlet/fileman.xml'; // trocar aqui pela servlet 
-cfg['docConsole'] = cfg['path']+'/servlet/console.xml';
+cfg['docFileman'] = '/servlet/FileManager'; // trocar aqui pela servlet 
 cfg['docEditor'] = '/servlet/Editor';
+cfg['docConsole'] = cfg['path']+'/servlet/console-output.xml';
 
 cfg['msgBrowserError'] = 'Este browser não contém suporte para funções utilizadas pelo ECCO.'
 cfg['msgFilemanError'] = 'Erro ao carregar o arquivo: '+cfg['docFilemanContent'];

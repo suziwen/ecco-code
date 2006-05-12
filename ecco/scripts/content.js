@@ -48,7 +48,7 @@ Content = function() {
 
 	this.set = function(mod, xmlDoc) {
 		messages[mod] = xmlDoc;
-		ecco.set(mod);
+		ECCO.set(mod);
 	}
 
 	this.getMessage = function(mod, id) {
