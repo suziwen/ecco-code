@@ -10,6 +10,7 @@
 		<project>
 			<item action="Fileman.newDirectory()">Novo diretório</item>		
 			<item action="Fileman.newFile()">Novo arquivo</item>					
+			<item action="Fileman.upload()">Upload de arquivo</item>
 			<item action="Fileman.rename()">Renomear</item>
 			<item action="Fileman.remove()">Apagar</item>
 			<item action="Fileman.move()">Mover</item>			
@@ -20,6 +21,7 @@
 		<directory>
 			<item action="Fileman.newDirectory()">Novo diretório</item>		
 			<item action="Fileman.newFile()">Novo arquivo</item>					
+			<item action="Fileman.upload()">Upload de arquivo</item>			
 			<item action="Fileman.rename()">Renomear</item>
 			<item action="Fileman.remove()">Apagar</item>
 			<item action="Fileman.move()">Mover</item>			

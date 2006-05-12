@@ -19,6 +19,7 @@ Fileman = function() {
 	
 	this.update = function() {
 		AJAX.get(cfg['docFileman'], { 
+			parameters: 'action=list',
 			onEnd:'Fileman.parse(xmlDoc.documentElement);Fileman.write();', 
 			onError:'Content.showMessage("fileman","fileNotFoundError",cfg["docFileman"])' 
 			})
@@ -68,7 +69,8 @@ Fileman = function() {
 		else if(obj.className=='directory') // ação sobre diretório especifico
 			obj.nextSibling.className = (obj.nextSibling.className!='closed') ? 'closed' : 'opened';
 		else {
-			alert('editar o arquivo: '+this.getFileInfo(obj,'full')) // ação sobre arquivos
+			Editor.open(this.getFileInfo(obj,'full'));
+			//alert('editar o arquivo: '+this.getFileInfo(obj,'full')) // ação sobre arquivos
 		}
 	}
 	
@@ -230,12 +232,19 @@ Fileman = function() {
 	}
 
 	this.newProject = function() {
+		alert('Novo projeto');		
 	}
 
 	this.newDirectory = function() {
+		alert('Novo diretorio');
 	}
 
 	this.newFile = function() {
+		alert('Novo arquivo');
+	}
+	
+	this.upload = function() {
+		alert('Upload de arquivos neste diretório');
 	}
 
 	this.remove = function() {
