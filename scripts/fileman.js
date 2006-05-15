@@ -6,14 +6,12 @@ Fileman = function() {
 	var divMenu = Object;
 	var obj = Object;
 	var out = String;
-	this.aux = String;
 	
 	this.initialize = function() {
 		divMain = $('fileman');
 		divMenu = $('fileman-menu');
 		obj = null;
 		out = '';
-		this.aux = '';
 		this.update();
 	}
 	
@@ -22,26 +20,29 @@ Fileman = function() {
 			parameters: 'action=list',
 			onEnd:'Fileman.parse(xmlDoc.documentElement);Fileman.write();', 
 			onError:'Content.showMessage("fileman","fileNotFoundError",cfg["docFileman"])' 
-			})
+			});
 	}
 	
 	this.write = function() {
-		divMain.innerHTML = out;	
+		divMain.innerHTML = out;
 		out = '';
 	}
 	
 	this.parse = function(tree) {
 		if(tree.nodeType!=1) { /* Workaround for firefox CR/NL. Remove this chars between XML tags */ }
-		else if(tree.hasChildNodes()) {
-			if(tree.tagName=='project')
+		else if(tree.tagName!='file') {
+			if(tree.tagName=='project') {
 				project = tree.getAttribute('name');
-			if(tree.tagName=='projects')
+			}
+			if(tree.tagName=='projects') {
 				project = '';
+			}
 			out += '<a oncontextmenu="Fileman.menu(this,event);return false;" onclick="Fileman.action(this)" class="'+tree.tagName+'">'+tree.getAttribute('name')+'</a>';
 			out += '<div '+this.collapse(project,tree.getAttribute('name'))+'>';
 			var nodes = tree.childNodes.length;
-			for(var i=0; i<nodes; i++) 
+			for(var i=0; i<nodes; i++) {
 				this.parse(tree.childNodes[i]);
+			}
 			out += '</div>';
 		}
 		else {
@@ -50,8 +51,9 @@ Fileman = function() {
 	}
 	
 	this.collapse = function(project, branchName) {
-		if(project == '') 
+		if(project == '')  {
 			return 'class="opened" id="projects"'; // "all projects" always open
+		}
 		else if($(project+'-'+branchName)) {
 			obj = $(project+'-'+branchName);
 			return 'class="'+obj.className+'" id="'+obj.id+'"';
@@ -68,10 +70,8 @@ Fileman = function() {
 			obj.nextSibling.className = (obj.nextSibling.className!='closed') ? 'closed' : 'opened';
 		else if(obj.className=='directory') // ação sobre diretório especifico
 			obj.nextSibling.className = (obj.nextSibling.className!='closed') ? 'closed' : 'opened';
-		else {
+		else 
 			Editor.open(this.getFileInfo(obj,'full'));
-			//alert('editar o arquivo: '+this.getFileInfo(obj,'full')) // ação sobre arquivos
-		}
 	}
 	
 	this.getFileInfo = function(obj,info) {
@@ -119,32 +119,24 @@ Fileman = function() {
 		}
 	}
 	
-	this.menuAction = function(obj,update,mod,idok,iderror,params) {
+	this.menuAction = function(obj,update,action,name) {
 		var info = obj.documentElement.firstChild.nodeValue;
 		if(info == 'ok') {
-			Content.showMessage(mod,idok,params);
+			Content.showMessage('fileman',action+'OK',name);
 			if(update) {
 				Fileman.update();
 				}
 		}
 		else { // info = 'error'
-			Content.showMessage(mod,iderror,params);
+			Content.showMessage('fileman',action+'Error',name);
 		}
 	}
 	
 	this.download = function() {
-		$('fileman-menu','display','none');
-		this.aux = this.getFileInfo(obj,'name');
-		Content.showMessage("fileman","downloadItem",this.aux);
+		Content.showMessage("fileman","downloadItem",'xxx');
 		var action = 'download';
 		var item = Fileman.getFileInfo(obj,'full');			
 		alert('action='+action+'&item='+item);
-		/*
-		AJAX.get('servlet/fileman-ok.xml',{ 
-				parameters:'action='+action+'&item='+item,
-				onEnd:'Content.showMessage("fileman","downloadOK",Fileman.aux);', 
-				onError:'Content.showMessage("fileman","downloadError",Fileman.aux)' 
-				})*/
 	}
 
 	this.mail = function() {
@@ -152,19 +144,15 @@ Fileman = function() {
 		param[0]['name'] = 'sendItem';
 		param[0]['value'] = this.getFileInfo(obj,'name');
 		param[1]['name'] = 'sendTo';
-		param[1]['value'] = '<br /><input type="text" name="to" id="action-input">';
-		this.aux = param[0]['value'];
+		param[1]['value'] = '<br /><input id="action-input">';
 		Content.showConfirmation('fileman','sendItem',param);
 		$('cancel').onclick = Content.hideConfirmation;
 		$('ok').onclick = function() { 
-			var action = 'mail';
+			var action = 'send';
 			var to = $('action-input').value;
-			alert('action='+action+'&to='+to);
-			AJAX.get('servlet/fileman-ok.xml',{ 
-					parameters:'action='+action+'&to='+to,
-					onEnd:'Fileman.menuAction(xmlDoc,false,"fileman","sendOK","sendError",Fileman.aux);', 					
-					onError:'Content.showMessage("fileman","sendError",Fileman.aux)' 
-					})
+			var item = Fileman.getFileInfo(obj,'full');
+			param = 'action='+action+'&item='+item+'&to='+to;
+			Fileman.execute(true,action,param,item);
 		}
 	}
 	
@@ -173,22 +161,105 @@ Fileman = function() {
 		param[0]['name'] = 'renameFrom';
 		param[0]['value'] = this.getFileInfo(obj,'name');
 		param[1]['name'] = 'renameTo';
-		param[1]['value'] = '<br /><input type="text" name="to" id="action-input">';
-		this.aux = param[0]['value'];
+		param[1]['value'] = '<br /><input id="action-input">';
 		Content.showConfirmation('fileman','renameItem',param);
 		$('cancel').onclick = Content.hideConfirmation;
 		$('ok').onclick = function() { 
 			var action = 'rename';
+			var item = param[0]['value'];
 			var from = Fileman.getFileInfo(obj,'full');
 			var to = Fileman.getFileInfo(obj,'path') + $('action-input').value;
-//			alert('action='+action+'&from='+from+'&to='+to)
-			AJAX.get('servlet/fileman-ok.xml',{ 
-					parameters:'action='+action+'&from='+from+'&to='+to,
-					onEnd:'Fileman.menuAction(xmlDoc,true,"fileman","renameOK","renameError",Fileman.aux);', 
-					onError:'Content.showMessage("fileman","renameError",Fileman.aux)'
-					})
+			param = 'action='+action+'&from='+from+'&to='+to;
+			Fileman.execute(true,action,param,item);
 		}
 
+	}
+	
+	this.move = function() {
+		var param = [ {},{} ];
+		param[0]['name'] = 'moveFrom';
+		param[0]['value'] = this.getFileInfo(obj,'full');
+		param[1]['name'] = 'moveTo';
+		param[1]['value'] = '<br /><select id="action-input">'+this.getDirectoryList(obj)+'</select>';
+		Content.showConfirmation('fileman','moveItem',param);
+		$('cancel').onclick = Content.hideConfirmation;
+		$('ok').onclick = function() { 
+			var action = 'move';
+			var item = param[0]['value'];
+			var from = item;
+			var to = $('action-input')[$('action-input').selectedIndex].value;
+			param = 'action='+action+'&from='+from+'&to='+to;
+			Fileman.execute(true,action,param,item);
+		}
+	}
+
+	this.newProject = function() {
+		var param = [ {},{} ];
+		param[0]['name'] = 'newProjectItem';
+		param[0]['value'] = '<br /><input id="action-input">';
+		Content.showConfirmation('fileman','newProjectItem',param);
+		$('cancel').onclick = Content.hideConfirmation;
+		$('ok').onclick = function() { 
+			var action = 'newProject';
+			var item = $('action-input').value;
+			param = 'action='+action+'&item='+item;
+			Fileman.execute(true,action,param,item);
+		}
+	}
+
+	this.newDirectory = function() {
+		var param = [ {},{} ];
+		param[0]['name'] = 'newDirectoryItem';
+		param[0]['value'] = '<br /><input id="action-input">';
+		Content.showConfirmation('fileman','newDirectoryItem',param);
+		$('cancel').onclick = Content.hideConfirmation;
+		$('ok').onclick = function() { 
+			var action = 'newDirectory';
+			var item = $('action-input').value;
+			param = 'action='+action+'&item='+Fileman.getFileInfo(obj,'full')+'/'+item;
+			Fileman.execute(true,action,param,item);
+		}
+	}
+	
+	this.newFile = function() {
+		var param = [ {},{} ];
+		param[0]['name'] = 'newFileItem';
+		param[0]['value'] = '<br /><input id="action-input">';
+		Content.showConfirmation('fileman','newFileItem',param);
+		$('cancel').onclick = Content.hideConfirmation;
+		$('ok').onclick = function() { 
+			var action = 'newFile';
+			var item = $('action-input').value;
+			param = 'action='+action+'&item='+Fileman.getFileInfo(obj,'full')+'/'+item;
+			Fileman.execute(true,action,param,item);
+		}
+	}
+	
+	this.upload = function() {
+		alert('Upload de arquivos neste diretório');
+	}
+
+	this.remove = function() {
+		var param = [ {} ];
+		param[0]['name'] = 'removeItem';
+		param[0]['value'] = this.getFileInfo(obj,'name');
+		Content.showConfirmation('fileman','removeItem',param);
+		$('cancel').onclick = Content.hideConfirmation;
+		$('ok').onclick = function() {
+			var action = 'remove';
+			var item = Fileman.getFileInfo(obj,'full');
+			param = 'action='+action+'&item='+item;
+			Fileman.execute(true,action,param,item);
+		}
+	}
+
+	this.execute = function(update,action,param,item) {
+		alert(param)
+		AJAX.get('servlet/fileman-ok.xml',{ 
+				parameters:param,
+				onEnd:'Fileman.menuAction(xmlDoc,"'+update+'","'+action+'","'+item+'");', 
+				onError:'Content.showMessage("fileman","'+action+'Error","'+item+'")'
+				});
 	}
 	
 	this.getDirectoryList = function(obj) {
@@ -208,60 +279,5 @@ Fileman = function() {
 		}
 		return out;
 	}	
-	
-	
-	this.move = function() {
-		var param = [ {},{} ];
-		param[0]['name'] = 'moveFrom';
-		param[0]['value'] = this.getFileInfo(obj,'full');
-		param[1]['name'] = 'moveTo';
-		param[1]['value'] = '<br /><select id="action-input">'+this.getDirectoryList(obj)+'</select>';
-		this.aux = param[0]['value'];
-		Content.showConfirmation('fileman','moveItem',param);
-		$('cancel').onclick = Content.hideConfirmation;
-		$('ok').onclick = function() { 
-			var action = 'move';
-			var from = Fileman.getFileInfo(obj,'full');
-			var to = $('action-input')[$('action-input').selectedIndex].value;
-			AJAX.get('servlet/fileman-ok.xml',{ 
-					parameters:'action='+action+'&from='+from+'&to='+to,
-					onEnd:'Fileman.menuAction(xmlDoc,true,"fileman","moveOK","moveError",Fileman.aux);', 					
-					onError:'Content.showMessage("fileman","moveError",Fileman.aux)' 
-					})
-		}
-	}
 
-	this.newProject = function() {
-		alert('Novo projeto');		
-	}
-
-	this.newDirectory = function() {
-		alert('Novo diretorio');
-	}
-
-	this.newFile = function() {
-		alert('Novo arquivo');
-	}
-	
-	this.upload = function() {
-		alert('Upload de arquivos neste diretório');
-	}
-
-	this.remove = function() {
-		var param = [ {} ];
-		param[0]['name'] = 'removeItem';
-		param[0]['value'] = this.getFileInfo(obj,'name');
-		this.aux = param[0]['value'];
-		Content.showConfirmation('fileman','removeItem',param);
-		$('cancel').onclick = Content.hideConfirmation;
-		$('ok').onclick = function() {
-			var action = 'remove';		
-			var item = Fileman.getFileInfo(obj,'full');
-			AJAX.get('servlet/fileman-ok.xml',{ 
-					parameters:'action='+action+'&item='+item,			
-					onEnd:'Fileman.menuAction(xmlDoc,true,"fileman","removeOK","removeError",Fileman.aux);', 										
-					onError:'Content.showMessage("fileman","removeError",Fileman.aux)' 
-					})
-		}
-	}
 }
