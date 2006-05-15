@@ -9,7 +9,7 @@
 
 		<project>
 			<item action="Fileman.newDirectory()">Novo diretório</item>		
-			<item action="Fileman.newFile()">Novo arquivo</item>					
+			<item action="Fileman.newFile()">Novo arquivo</item>
 			<item action="Fileman.upload()">Upload de arquivo</item>
 			<item action="Fileman.rename()">Renomear</item>
 			<item action="Fileman.remove()">Apagar</item>
@@ -19,8 +19,8 @@
 		</project>
 		
 		<directory>
-			<item action="Fileman.newDirectory()">Novo diretório</item>		
 			<item action="Fileman.newFile()">Novo arquivo</item>					
+			<item action="Fileman.newDirectory()">Novo diretório</item>		
 			<item action="Fileman.upload()">Upload de arquivo</item>			
 			<item action="Fileman.rename()">Renomear</item>
 			<item action="Fileman.remove()">Apagar</item>
@@ -41,6 +41,15 @@
 	<messages>
 		<msg id="okButton">ok</msg>
 		<msg id="cancelButton">cancelar</msg>
+		<msg id="newProjectItem">Nome do novo projeto: [newProjectItem]</msg>
+		<msg id="newProjectOK">Projeto "[newProjectOK]" criado</msg>
+		<msg id="newProjectError">Erro ao criar projeto "[newProjectError]"</msg>		
+		<msg id="newDirectoryItem">Nome do novo diretorio: [newDirectoryItem]</msg>
+		<msg id="newDirectoryOK">Diretorio "[newDirectoryOK]" criado</msg>
+		<msg id="newDirectoryError">Erro ao criar diretorio "[newDirectoryError]"</msg>		
+		<msg id="newFileItem">Nome do novo arquivo: [newFileItem]</msg>
+		<msg id="newFileOK">Arquivo "[newFileOK]" criado</msg>
+		<msg id="newFileError">Erro ao criar arquivo "[newFileError]"</msg>		
 		<msg id="removeItem">Apagar "[removeItem]"?</msg>
 		<msg id="removeOK">"[removeOK]" apagado</msg>
 		<msg id="removeError">Erro ao apagar "[removeError]"</msg>
