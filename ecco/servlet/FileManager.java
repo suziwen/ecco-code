@@ -12,9 +12,11 @@ import javax.servlet.http.HttpServletResponse;
 public class FileManager extends HttpServlet {
 
 	private static final long serialVersionUID = 1L;
-
-	static File dir = new File("c:\\Work\\Faculdade\\TCC\\httpsrv\\htdocs\\ecco\\users\\feanndor");
-
+	
+	private static String login = "feanndor"; // aqui eh uma variavel de sessao, por enquanto estatica
+	private static String usersPath = System.getProperty("user.dir")+File.separator+"htdocs"+File.separator+"ecco"+File.separator+"users"+File.separator;
+	private static File dir = new File(usersPath+login+File.separator);
+	
 	static boolean existDirectories = false;
 	static int isDirectory = 0;
 
@@ -89,9 +91,9 @@ public class FileManager extends HttpServlet {
 		res.setContentType("text/xml");
 		PrintWriter out = res.getWriter();
 		out.write("<?xml version=\"1.0\" encoding=\"iso-8859-1\"?>");	
-		String param = req.getParameter("action");
-		if(param != null){
-			if(param.equals("list")){
+		String action = req.getParameter("action");
+		if(action != null){
+			if(action.equals("list")){
 				out.write("<projects name=\"Projetos\">");
 				listProjects(dir, out);
 				out.write("</projects>");
@@ -101,3 +103,4 @@ public class FileManager extends HttpServlet {
 		}
 	}
 }
+

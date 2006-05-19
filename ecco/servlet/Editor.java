@@ -6,6 +6,7 @@
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.io.OutputStreamWriter;
 import java.io.PrintWriter;
@@ -19,8 +20,8 @@ public class Editor extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	PrintWriter out = null;
 	HttpServletResponse response = null;
-	public String login = "feanndor"; // aqui eh uma variavel de sessao, por enquanto estatica
-	public String pathComplement = "htdocs"+File.separator+"ecco"+File.separator+"users";
+	private static String login = "feanndor"; // aqui eh uma variavel de sessao, por enquanto estatica
+ 	private static String usersPath = System.getProperty("user.dir")+File.separator+"htdocs"+File.separator+"ecco"+File.separator+"users"+File.separator;
 	
     public void main(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
     	out = getOutStream(response);
@@ -36,6 +37,11 @@ public class Editor extends HttpServlet {
     		String file = request.getParameter("file");
           	this.open(file);
     	}
+    	else if(action.equals("save")) {
+    		String file = request.getParameter("file");
+    		String content = request.getParameter("content");
+          	this.save(file, content);
+    	}
     	else {
     		this.error();
     	}
@@ -44,11 +50,25 @@ public class Editor extends HttpServlet {
 	
     }
 
+    public void save(String file, String content) {
+    	try {
+    			File f = new File(usersPath+login+File.separator+file);
+    			File outputFile = f;
+    			FileWriter fout = new FileWriter(outputFile);
+    			fout.write(content);
+    	        fout.close();
+    			out.write("<info>ok</info>");
+    	    } 
+    	 catch (IOException e) {
+    		 	this.error();
+    	    }
+    }
+    
+    
     public void open(String file) {
-	 	String serverPath = System.getProperty("user.dir");
 	 	
     	try {
-    			File f = new File(serverPath+File.separator+pathComplement+File.separator+login+File.separator+file);
+    			File f = new File(usersPath+login+File.separator+file);
     		    // verificar aqui se é arquivo binario e dar erro
     	        BufferedReader in = new BufferedReader(new FileReader(f));
     	        String str;
@@ -61,7 +81,7 @@ public class Editor extends HttpServlet {
     	        in.close();
     	    } 
     	 catch (IOException e) {
-    		 this.error();
+    		 	this.error();
     	    }
     }
 
@@ -91,3 +111,4 @@ public class Editor extends HttpServlet {
 
     
 }
+
