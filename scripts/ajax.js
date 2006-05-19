@@ -19,14 +19,15 @@ AJAX = function() {
 	  		request = new ActiveXObject('Microsoft.XMLHTTP');
 		}
 	  	else { 
-			alert(cfg['browser_error']); return false; 
+			alert(cfg['browser_error']); 
+			return false; 
 		}
 	
 	  	if(onStart) {
 			eval(onStart);
 		}
-	  
-	  	request.open(method, url+( parameters ? '?'+parameters : '' ), async);
+		
+	  	request.open(method, url + (method=='get'&&parameters ? '?'+parameters : ''), async);
 	  	request.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
 	  	request.onreadystatechange = function() {
 		    if (request.readyState == 4) {
@@ -45,6 +46,7 @@ AJAX = function() {
 		        }
 			}
 	  	};
-	  	request.send(null);
+	  	request.send(method=='post' ? parameters : null);
 	}
 }
+

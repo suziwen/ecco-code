@@ -37,7 +37,7 @@ Editor = function() {
 		for(var i=0;i<openFiles.length;i++) { // nao abre arquivos ja abertos
 			if(fullName == openFiles[i]) {
 				this.focus(i);
-//				return;
+				return;
 			}
 		}
 		openFiles[fileCount] = fullName;
@@ -105,7 +105,14 @@ Editor = function() {
 	}
 	
 	this.save = function() {
-	
+		AJAX.get(cfg['docEditor'], { 
+			parameters:'action=save&file='+openFiles[currentFile]+'&content='+$('text'+currentFile).value,
+			method:'post',
+//			onStart:'Content.showMessage("editor","fileOpening","'+fullName+'")',
+			onEnd:'alert(xmlDoc.documentElement.firstChild.nodeValue);', //Content.clearMessage()
+			onError:'Content.showMessage("editor","fileNotFoundError",cfg["docEditor"])' 
+			})
 	
 	}
 }
+

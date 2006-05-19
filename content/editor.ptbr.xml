@@ -1,14 +1,13 @@
 <editor>
 
 	<menu>
-		<compile>
-		</compile>
-		
-		<execute>
-		</execute>
-		
-		<save>
-		</save>
+		<item id="undo">undo</item>
+		<item id="redo">redo</item>
+		<item id="search">procurar</item>
+		<item id="options">opções</item>
+		<item id="compile">Compilar</item>
+		<item id="execute">Executar</item>
+		<item id="save">Salvar</item>
 	</menu>
 
 	<messages>
