@@ -3,5 +3,7 @@
 	<menu>
 		<item id="clear">Limpar</item>
 	</menu>
-	
+	<messages>
+		<msg id="fileNotFoundError">Arquivo não encontrado: [fileNotFoundError]</msg>
+	</messages>
 </console>

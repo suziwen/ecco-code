@@ -1,5 +1,6 @@
-#editor #tabs { overflow-x:auto;width:100%;}
+#editor { vertical-align:top;height:65%; }
+#editor #tabs { overflow-x:auto;width:100%;height:25px;}
 #editor #tab-list td { background-color:#ddd;padding:3px;border-right:1px solid white;white-space:nowrap; }
-#editor #text { background-color:silver;padding:5px;height:400px; }
-#editor textarea { width:100%;height:400px; }
+#editor #text { background-color:silver;padding:5px;height:88%; }
+#editor textarea { width:100%;height:100%; }
 #editor #text .open { display:none; }
