@@ -6,8 +6,10 @@ Console = function() {
 	this.execute = function() {
 	
 		var command = document.getElementById('command').value; // pega o comando que foi digitado no form
+		alert(command);
 			
-		AJAX.get('servlet/console-output.xml', { // TROCAR AQUI PELA SERVLET QUE RETORNA O XML
+		//AJAX.get('servlet/console-output.xml', { // TROCAR AQUI PELA SERVLET QUE RETORNA O XML
+		AJAX.get('/servlet/Console', {
 				parameters:'command='+command,
 				onEnd:'Console.parse(xmlDoc.documentElement);', 
 				onError:'alert("Nao encontrou o xml/servlet")' 

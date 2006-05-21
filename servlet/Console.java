@@ -35,18 +35,19 @@ public class Console extends HttpServlet {
             out = response.getWriter();
         }
 
-       	response.setContentType("text/html");
+       	//response.setContentType("text/html");
+        response.setContentType("text/xml");
 
-        if(request.getParameter("comando") != null){
+        if(request.getParameter("command") != null){
         	/*String resp = "";        	
         	String [] command = new String[1];*/
-        	String strCommand = request.getParameter("comando");
+        	String strCommand = request.getParameter("command");
         	String resp = "";        	
         	String [] command = strCommand.split("\\s");
         	
         	resp = sc.exec(command);
         	
-        	String html = "<html>" +
+        	/*String html = "<html>" +
         			"<head><title> Testa Command </title></html>" +
         			"<body>";
 	        resp = resp.replaceAll("\n", "<br>");
@@ -54,11 +55,23 @@ public class Console extends HttpServlet {
 	        html = html + resp;
 	        
 	        html = html + "</body>" +
-        		"</head>";
+        		"</head>";*/
         	
-        	out.write(html);
+        	resp = resp.replaceAll("\n", "<br>");
+        	String xml = "<?xml version=\"1.0\" encoding=\"ISO-8859-1\"?>";
+        	xml = xml + "<out><![CDATA[\n";
+        	xml = xml + resp;     	
+        	xml = xml + "]]></out>";
+        	
+        	out.write(xml);
+        	//out.write(html);
         }else {
-			out.write("É necessário pelo menos um parâmetro para processar!!");
+        	String xml = "<?xml version=\"1.0\" encoding=\"ISO-8859-1\"?>";
+        	xml = xml + "<out><![CDATA[\n";
+        	xml = xml + "É necessário pelo menos um parâmetro para processar!!";     	
+        	xml = xml + "]]></out>";
+        	out.write(xml);
+			//out.write("É necessário pelo menos um parâmetro para processar!!");
 		}
         out.flush();
     }
