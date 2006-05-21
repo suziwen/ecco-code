@@ -13,19 +13,20 @@
 		}
 
 	</script>
-	<style>
-	body { background-color: #eee; }
-	#output { width:100%;height:30%;background-color:white; }
+	<style type="text/css">
+	body { background-color: #eee;  }
+	#console { background-color:black;color:white;font-family:fixedsys; }
+	#console #output { width:100%;height:30%;background-color:white;border:0;background-color:black;color:white; }
+	#console #command { border:0;font-family:fixedsys;width:90%;background-color:black;color:white; }
 	</style>
 </head>
 
 <body>
 
 <div id="console">
-	<!--textarea id="output"></textarea-->
-	<div id="output"></div>
+	<textarea id="output"></textarea>
 	<div id="input"><form onsubmit="Console.execute();return false;">
-		comando:<input type="text" id="command" size="100"></form>
+		shell>> <input type="text" id="command" ></form>
 	</div>
 </div>
 

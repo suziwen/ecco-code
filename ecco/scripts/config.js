@@ -12,9 +12,9 @@ cfg['docConsoleContent'] = cfg['path']+'/content/console.'+cfg['language']+'.xml
 cfg['docEditorContent']  = cfg['path']+'/content/editor.'+cfg['language']+'.xml';
 cfg['docEccoContent']    = cfg['path']+'/content/ecco.'+cfg['language']+'.xml';
 
-cfg['docFileman'] = '/servlet/FileManager'; // trocar aqui pela servlet 
+cfg['docFileman'] = '/servlet/FileManager';
 cfg['docEditor'] = '/servlet/Editor';
-cfg['docConsole'] = cfg['path']+'/servlet/console-output.xml';
+cfg['docConsole'] = '/servlet/Konsole';
 
 cfg['msgBrowserError'] = 'Este browser não contém suporte para funções utilizadas pelo ECCO.'
 cfg['msgFilemanError'] = 'Erro ao carregar o arquivo: '+cfg['docFilemanContent'];

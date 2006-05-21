@@ -65,7 +65,7 @@
 		<msg id="downloadItem">Requisitando "[downloadItem]" ...</msg>
 		<msg id="downloadOK">"[downloadOK]" enviado</msg>
 		<msg id="downloadError">Erro no download de "[downloadError]"</msg>				
-		<msg id="fileNotFoundError">Arquivo não encontrado: [fileNotFound]</msg>
+		<msg id="fileNotFoundError">Arquivo não encontrado: [fileNotFoundError]</msg>
 		<msg id="fileWriteError">Arquivo [fileWriteError] não encontrado</msg>
 	</messages>
 

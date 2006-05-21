@@ -1,27 +1,30 @@
 
 Console = function() {
-	Console = this; // provê acesso estático a esta classe para a classe AJAX
+	Console = this;
+	var out = String;
 	
-	// metodo que executa os comandos vindos da interface
+	this.initialize = function() {
+		out = '';
+		$('output').readOnly = true;
+	}
+	
 	this.execute = function() {
 	
-		var command = document.getElementById('command').value; // pega o comando que foi digitado no form
-		alert(command);
-			
-		//AJAX.get('servlet/console-output.xml', { // TROCAR AQUI PELA SERVLET QUE RETORNA O XML
-		AJAX.get('/servlet/Console', {
-				parameters:'command='+command,
+		var command = $('command').value; 
+
+		AJAX.get(cfg['docConsole'], {
+				parameters:'action=execute&command='+command,
 				onEnd:'Console.parse(xmlDoc.documentElement);', 
-				onError:'alert("Nao encontrou o xml/servlet")' 
+				onError:'Content.showMessage("console","fileNotFoundError",cfg["docConsole"])' 
 				})
+				
+		$('command').value = '';
 	}
 
-	
-	// metodo que parseia o xml vindo do servidor e envia de volta para a interface
-	// o xml que vem do servidor não pode ter espaço nem quebra de linha entre o header e a tag como mostrado abaixo
-	// <?xml version="1.0" encoding="iso-8859-1"?>((((aqui nao pode ter espaco ou quebra))))<out> .....
 	this.parse = function(obj) { 
-		var out = obj.firstChild.nodeValue;
-		document.getElementById('output').innerHTML = out;
+		// trocar aqui por append de DOM e tirar o innerHTML
+		out += obj.firstChild.nodeValue;
+		$('output').innerHTML = out;
+		$('output').scrollTop = $('output').scrollHeight;
 	}
 }
