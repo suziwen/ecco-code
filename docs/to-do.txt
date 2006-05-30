@@ -1,24 +1,13 @@
 
 =[DEFINICOES A SEREM FEITAS]===========================
--definir o formato dos XMLs
-	-xml de output de comandos do console
-	-xml de listagem de projetos/diretorios/arquivos
-		-definir formato de xml quando nada mudou
 -definir forma de login
 	-session?
-	-cada novo request manda user/pass?
 	-cookie?
 	-senha guardada dentro do proprio diretorio do usuario? /.config/passwd
 	-definir o que fazer no logout (sair)
--userModLinux
+-userModeLinux
 	-definir como acessar os arquivos dentro dele.
 	-definir como criar novos usuarios e seu diretorio dentro dele
--filemanager
-	-definir os comandos possiveis para projeto/diretorio/arquivo
--console
-	-definir os comandos permitidos
--editor
-	-por enquanto usar um simples apenas abrir/editar/salvar/fechar arquivos
 
 
 =[GERENCIADOR DE ARQUIVOS]=============================
@@ -68,3 +57,15 @@
 ----http://www.w3.org/TR/2002/REC-xhtml1-20020801/#guidelines
 
 
+=[FEITO]===============================================
+-definir o formato dos XMLs
+	-xml de output de comandos do console
+	-xml de listagem de projetos/diretorios/arquivos
+		-definir formato de xml quando nada mudou
+-filemanager
+	-definir os comandos possiveis para projeto/diretorio/arquivo
+-console
+	-definir os comandos permitidos
+-editor
+	-por enquanto usar um simples apenas abrir/editar/salvar/fechar arquivos
+		
