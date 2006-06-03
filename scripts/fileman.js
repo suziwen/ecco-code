@@ -254,8 +254,8 @@ Fileman = function() {
 	}
 
 	this.execute = function(update,action,param,item) {
-		alert(param)
-		AJAX.get('servlet/fileman-ok.xml',{ 
+		//alert(param)
+		AJAX.get(cfg['docFileman'],{ 
 				parameters:param,
 				onEnd:'Fileman.menuAction(xmlDoc,"'+update+'","'+action+'","'+item+'");', 
 				onError:'Content.showMessage("fileman","'+action+'Error","'+item+'")'
