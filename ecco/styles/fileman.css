@@ -1,18 +1,18 @@
-#fileman { width:200px;overflow:auto;height:95%; }
+#fileman { width:200px;overflow:auto;height:95%;padding:0 10px; }
 
-#fileman a { display:block; cursor:pointer; cursor:hand; font-family:arial; text-decoration:none; font-size:12px; }
+#fileman a { display:block; cursor:pointer; cursor:hand; font-family:arial; text-decoration:none; font-size:12px;color:black; }
 #fileman a:hover { text-decoration:underline; }
 #fileman div { margin-left:20px;}
 #fileman a.ainline { display:inline; }
 
 #fileman .projects { font-weight:bold; }
-#fileman .project { display:block;font-weight:bold;color:blue; }
-#fileman .directory { font-weight:bold;color:blue;  }
+#fileman .project { display:block;font-weight:bold;color:#585858; }
+#fileman .directory { font-weight:bold;color:gray;  }
 #fileman .file {  }
 
 #fileman .closed { display:none; }	
 #fileman .opened { display:block; }
 
-#fileman-menu { position:absolute;border-top:1px solid gray;border-right:2px solid gray;border-bottom:2px solid gray;border-left:1px solid gray;background-color:#eee;display:none;-moz-border-radius:3px;border-radius:3px; }
-#fileman-menu a { display:block;cursor:pointer;cursor:hand;text-decoration:none;padding:1px 3px; }
+#fileman-menu { position:absolute;border-top:1px solid gray;border-right:2px solid gray;border-bottom:2px solid gray;border-left:1px solid gray;background-color:#ddd;display:none;-moz-border-radius:3px;border-radius:3px; }
+#fileman-menu a { display:block;cursor:pointer;cursor:hand;text-decoration:none;padding:1px 3px;color:black }
 #fileman-menu a:hover { background-color:silver; }

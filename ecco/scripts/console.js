@@ -23,8 +23,9 @@ Console = function() {
 
 	this.parse = function(obj) { 
 		// trocar aqui por append de DOM e tirar o innerHTML
-		out += obj.firstChild.nodeValue;
-		$('output').innerHTML = out;
+//		out += 
+		$('output').innerHTML += obj.firstChild.nodeValue;
 		$('output').scrollTop = $('output').scrollHeight;
+		Fileman.update()
 	}
 }
