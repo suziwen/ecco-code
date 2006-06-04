@@ -79,7 +79,7 @@ Editor = function() {
 		for(var i=0;i<openFiles.length;i++) {
 			if(openFiles[i]) {
 				out += '<td id="tab'+i+'"><a href="javascript:void(0)" onclick="Editor.focus('+i+')">'+this.formatFileName(openFiles[i])+'</a>';
-				out += ' <a href="javascript:void(0)" onclick="Editor.close('+i+')">x</a></td>';
+				out += ' <a href="javascript:void(0)" onclick="Editor.close('+i+')" class="close">X</a></td>';
 			}
 		}
 		out += '</tr></table>';
@@ -109,7 +109,7 @@ Editor = function() {
 			parameters:'action=save&file='+openFiles[currentFile]+'&content='+$('text'+currentFile).value,
 			method:'post',
 //			onStart:'Content.showMessage("editor","fileOpening","'+fullName+'")',
-			onEnd:'alert(xmlDoc.documentElement.firstChild.nodeValue);', //Content.clearMessage()
+			onEnd:'Content.showMessage("editor","fileSaveOK","'+openFiles[currentFile]+'")', //Content.clearMessage()
 			onError:'Content.showMessage("editor","fileNotFoundError",cfg["docEditor"])' 
 			})
 	

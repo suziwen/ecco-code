@@ -1,6 +1,9 @@
-#editor { vertical-align:top;height:65%; }
-#editor #tabs { overflow-x:auto;width:100%;height:25px;}
-#editor #tab-list td { background-color:#ddd;padding:3px;border-right:1px solid white;white-space:nowrap; }
-#editor #text { background-color:silver;padding:5px;height:88%; }
-#editor textarea { width:100%;height:100%; }
+#editor a { text-decoration:none;color:black;font-weight:bold;font:bold 12px arial }
+#editor { vertical-align:top;height:70%; }
+#editor #tabs { overflow-x:auto;width:100%;height:25px;background-color:#f3f3f3;}
+#editor #tab-list td { background-color:#ddd;padding:3px 6px;border-right:1px solid white;white-space:nowrap; }
+#editor #tabs .close { color:white; }
+#editor #text { background-color:silver;padding:8px 8px 8px 8px;height:84%; }
+#editor textarea { width:100%;height:100%;background-color:white;border:1px solid black }
 #editor #text .open { display:none; }
+#editor button { margin-top:5px; }

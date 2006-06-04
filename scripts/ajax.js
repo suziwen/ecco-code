@@ -46,7 +46,8 @@ AJAX = function() {
 		        }
 			}
 	  	};
-	  	request.send(method=='post' ? parameters : null);
+
+	  	request.send(method=='post' ? parameters.replace(/\+/g,'%2B') : null);
 	}
 }
 

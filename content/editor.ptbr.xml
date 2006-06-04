@@ -4,16 +4,16 @@
 		<item id="undo">undo</item>
 		<item id="redo">redo</item>
 		<item id="search">procurar</item>
-		<item id="options">opÃ§Ãµes</item>
+		<item id="options">opções</item>
 		<item id="compile">Compilar</item>
 		<item id="execute">Executar</item>
 		<item id="save">Salvar</item>
 	</menu>
 
 	<messages>
-		<msg id="fileOpening">Carregando [fileOpening]... </msg>	
 		<msg id="fileOpenError">Erro ao abrir arquivo: [fileOpenError]</msg>
 		<msg id="fileNotFoundError">Arquivo nao encontrado: [fileNotFoundError]</msg>
+		<msg id="fileSaveOK">Arquivo salvo: [fileSaveOK]</msg>		
 	</messages>
 	
 </editor>

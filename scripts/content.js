@@ -71,14 +71,16 @@ Content = function() {
 		this.hideConfirmation()
 		if(arguments[2]) out = out.replace('\['+id+'\]',arguments[2]);
 		divMessages.style.backgroundColor = (id.indexOf('Error')!=-1) ? '#ffa8a8' : 'gold';
+		divMessages.style.border = '1px solid silver';
 		divMessages.innerHTML = out;
 		clearTimeout(timeoutId);
-		timeoutId = setTimeout('Content.clearMessage()',5000);
+		timeoutId = setTimeout('Content.clearMessage()',10000);
 	}
 	
 	this.clearMessage = function() {
 		divMessages.innerHTML = '';
-		divMessages.style.backgroundColor = 'white';
+		divMessages.style.backgroundColor = 'transparent';
+		divMessages.style.border = '0';
 	}
 	
 	this.showConfirmation = function(mod, id, param) {
