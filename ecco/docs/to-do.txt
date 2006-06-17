@@ -1,35 +1,13 @@
+=[TODO]================================================
+-gravar historico de comandos e abrí-lo quando o usuario voltar
+-auto complete para comandos do console
+-colorir arquivos no console
+-usuario ao sair e voltar retorna com as tabs que ele deixou abertas
 
 =[DEFINICOES A SEREM FEITAS]===========================
--definir forma de login
-	-session?
-	-cookie?
-	-senha guardada dentro do proprio diretorio do usuario? /.config/passwd
-	-definir o que fazer no logout (sair)
 -userModeLinux
 	-definir como acessar os arquivos dentro dele.
 	-definir como criar novos usuarios e seu diretorio dentro dele
-
-
-=[GERENCIADOR DE ARQUIVOS]=============================
--Sistema de arquivo para navegar no projeto
--Download de código fonte e binário
--Enviar código fonte ou binário por e-mail
--Salvar projeto online
--Criar renomear e mover arquivos e diretórios
--Identificar o tipo de arquivo automaticamente através da extensão
-
-=[CONSOLE]=============================================
--Mostrar erros de compilação
--Executar comandos limitados (ls, rm, rmdir, mkdir, cd, pwd, mv, cp) 
--Possibilidade de compilar Java pelo console
--verificar o uso da cpu (loop infinito, etc)
-
-=[EDITOR]==============================================
--Interface para compilar e executar arquivos em Java (via console ou JavaWebStart)
--Undo/Redo
--Auto Save
--Syntax Highlighting
--Identificar a linguagem automaticamente através da extensão do arquivo (Arquivos não identificados abrirão como texto comum e terão algumas ações desabilitadas como compilar)
 
 
 =[LINKS]===============================================
