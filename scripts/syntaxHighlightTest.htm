@@ -4,7 +4,7 @@
 <head>
 	<title>Untitled</title>
 	<style>
-	body { font-family:"courier new";font-size:12px; }
+	body { font-family:"courier new";font-size:12px;margin-left:20px; }
 	b {}
 	b.rsvd {color:#7F0055;}
 	b.comm, b.comm b.rsvd, b.comm b.strs {color:#3F7F5F;}
@@ -14,16 +14,27 @@
 function init() {
 	document.designMode = "On";
 	document.addEventListener('keypress', keyHandler, true);
+	addText();
 }
 
 function addText() {
 	document.execCommand("inserthtml", false, '&#127;');
 	x = document.body.innerHTML;
+	alert(x);
+	x = x.replace(/<b .*?>|<\/b>/g,'');
+//	x = x.replace(/</g,'&lt;$1');
+	x = x.replace(/([\"'].*?[\"'])/g,'<b class=\'strs\'>$1</b>');
 	x = x.replace(/(public|class |import|private|static|final|new |extends|long |return|boolean |void|try|if|for|catch|int |else)([^<])/g,'<b class="rsvd">$1</b>$2');
 	x = x.replace(/\/\/(.*?)<br>/g,'<b class="comm">//$1</b><br>');
 	x = x.replace(/\/\*(.*?)\*\//g,'<b class="comm">/*$1*/</b>');
-//	x = x.replace(/(\".*?\")([^>]|<)/g,'<b class="strs">$1</b>$2');	
+//	x = x.replace(/(\".*?\")([^>]|<)/g,'<b class="strs">$1</b>$2');
 	document.body.innerHTML = x;
+}
+
+function showContent() {
+	x = document.body.innerHTML;
+	x = x.replace(/<b .*?>|<\/b>/g,'');
+	alert(x);
 }
 
 function keyHandler (evt) {
@@ -124,7 +135,7 @@ public class FileManager extends HttpServlet {
 		try {
 			if (dir.isDirectory()) {
 				File[] files = dir.listFiles();
-				for (int i = 0; i < files.length; i++) {
+				for (int i = 0; i< files.length; i++) {
 					if (files[i].isDirectory()) {
 						existDirectories = true;
 						isDirectory++;
@@ -294,5 +305,4 @@ public class FileManager extends HttpServlet {
 
 </pre>
 </body>
-
 </html>
