@@ -9,44 +9,41 @@
 	b {color:#7F0055;} /* reserved words */
 	i, i b, i s {color:#3F7F5F;} /* comments */
 	s {color:#2A00FF;} /* strings */
-	</style>
 
+	P {margin:0;padding:0;border:0;outline:0;}
+	</style>
+</head>
 <script>
 
-//	document.onkeypress = alert;
-	document.designMode = "On";
-function init() {
-	document.designMode = "On"
-	alert(document.designMode)
-//	addText();
-}
-
 function addText() {
-	document.execCommand("inserthtml", false, '&#127;');
-	x = document.body.innerHTML;
+	var range = document.selection.createRange();
+	range.text = "";
+	x = document.getElementById('edt').innerHTML;
+//	x = x.replace(/<P>&nbsp;<\/P>/g,'');
 	x = x.replace(/<[bis]>|<\/[bis]>/g,'');
 	x = x.replace(/([\"\'].*?[\"\'])/g,'<s>$1</s>'); // strings
 	x = x.replace(/(public|class|import|private|static|final|new|extends|long|return|continue|null|false|true|throws|boolean|void|try|if|for|switch|catch|int|else)([ \"\'\{\(;])/g,'<b>$1</b>$2');
 	x = x.replace(/\/\/(.*?)<br>/g,'<i>//$1</i><br>');
 	x = x.replace(/\/\*(.*?)\*\//g,'<i>/*$1*/</i>');
-	document.body.innerHTML = x;
+	document.getElementById('edt').innerHTML = x;
 }
 
-function txtSave() {
-	x = document.body.innerHTML;
-	x = x.replace(/<b .*?>|<\/b>/g,'');
-	alert(x);
+function showContent() {
+	alert(document.getElementById('edt').innerHTML);
 }
 
 function keyHandler (evt) {
-	theKey = (evt.which || evt.charCode || evt.keyCode);
-  	if(theKey==32||theKey==13) { 
-		addText();
-	  	findString('')
-	}
+	evt = (evt) ? evt : (window.event) ? event : null;
+  	if (evt) {
+    	var charCode = (evt.charCode) ? evt.charCode : ((evt.keyCode) ? evt.keyCode : ((evt.which) ? evt.which : 0));
+	    if (charCode == 13||charCode == 32) {
+			addText();
+		  	findString('');
+		}
+	}    
 }
- 
-var TRange=null
+
+var TRange=null  
 function findString (str) {
 	var strFound;
 	if (navigator.appName=="Netscape") { // FF
@@ -70,10 +67,20 @@ function findString (str) {
 	}
 }
 
-</script>
-</head>
+/*
+	theKey = (evt.which || evt.charCode || evt.keyCode);
+  	if(theKey==32||theKey==13) { 
+		addText();
+	  	findString('')
+	}*/
 
-<body onload="init()" designmode=on><pre>
+
+document.onkeypress = keyHandler;
+</script>
+<body>
+
+<div>
+<div style="width:100%;height:100%;border:1px solid black" contenteditable="true" id="edt">
 import java.io.File;
 import java.io.FileFilter;
 import java.io.IOException;
@@ -132,9 +139,8 @@ public class FileManager extends HttpServlet {
 	}
 }
 
-
-
-
-</pre>
+</div>
+</div>
 </body>
 </html>
+
