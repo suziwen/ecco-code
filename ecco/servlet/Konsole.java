@@ -17,8 +17,15 @@ public class Konsole extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	static PrintWriter  out = null;
 	HttpServletResponse response = null;
+	CommandParser cmdParser;
+	String serverHome;
 //	private static String login = "feanndor"; // aqui eh uma variavel de sessao, por enquanto estatica
 //  private static String usersPath = System.getProperty("user.dir")+File.separator+"htdocs"+File.separator+"ecco"+File.separator+"users"+File.separator;
+	
+	public Konsole(){
+		//cmdParser = new CommandParser();
+		serverHome = System.getProperty("user.dir") + "/htdocs";
+	}
 	
     public void main(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
     	out = getOutStream(response);
@@ -32,7 +39,16 @@ public class Konsole extends HttpServlet {
     	}
     	else if(action.equals("execute")) {
     		String command = request.getParameter("command");
-          	this.execute(command);
+    		String currentDir = request.getParameter("currentpath");
+    		String lastDir = request.getParameter("lastpath");
+    		if(!currentDir.startsWith(serverHome))
+    			currentDir = serverHome + currentDir;
+    		String homeDir = request.getParameter("userpath");
+    		if(!homeDir.startsWith(serverHome))
+    			homeDir = serverHome + homeDir;
+    		if(!lastDir.startsWith(serverHome))
+    			lastDir = serverHome + lastDir;
+          	this.execute(command, currentDir, homeDir, lastDir);
     	}
     	else {
     		error();
@@ -42,20 +58,16 @@ public class Konsole extends HttpServlet {
 	
     }
 
-    public void execute(String command) {
+    public void execute(String command, String currentDir, String homeDir, String lastDir) {
+    	String messages = "";
     	try {
-    		Process application;
+    		/*Process application;
     		String OS = System.getProperty("os.name").toLowerCase();
     		
     		if (OS.indexOf("windows") > -1) {
     			command = "cmd.exe /C "+command;
     		}
-        	/*String[] cmd = { "cmd.exe", "/C", command };
-        		application = Runtime.getRuntime().exec(cmd);
-    		} 
-    		else {
-    			application = Runtime.getRuntime().exec(command);
-    		}*/
+        	
     		application = Runtime.getRuntime().exec(command);
 
     		StringBuffer inBuffer = new StringBuffer();
@@ -67,7 +79,16 @@ public class Konsole extends HttpServlet {
     		new InputStreamHandler(errBuffer, errStream );
        	 	try { application.waitFor(); }
         	catch (InterruptedException e) { error(); }
-        	out.write("<out><![CDATA["+inBuffer+errBuffer+"]]></out>");
+        	out.write("<out><![CDATA["+inBuffer+errBuffer+"]]></out>");*/
+    		try {
+    			cmdParser = new CommandParser(homeDir, lastDir);
+    			//cmdParser.setHomeDirandDefaults(homeDir);
+    			messages = cmdParser.exec(command, currentDir);
+    		}catch (InterruptedException e){
+    			error(); 
+    		}
+        	out.write("<out><![CDATA["+messages+"]]><currentpath><![CDATA["+cmdParser.getCurrentPath()+"]]></currentpath>" +
+        				"<lastpath><![CDATA["+cmdParser.getLastPath()+"]]></lastpath></out>");
     	}
     	catch (Exception e) {
     		String s = e.getMessage();
