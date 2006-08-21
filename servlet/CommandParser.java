@@ -80,14 +80,18 @@ public class CommandParser {
 		if(!parse(command))
 			return "ERRO: Comando malformado \n";
 		
+		this.currentDir = currentDir;
 		return exec(parsedCommand, currentDir);
 	}
 	
 	public String parseCd(String strCd, String currentDir){
 		String tmpCurDir = "";
-		File dir = new File(currentDir +"/"+ strCd);
 		
-		strCd = dir.exists() && dir.isDirectory()? currentDir +"/"+ strCd: strCd;
+		if(strCd != null){
+			File dir = new File(currentDir +"/"+ strCd);
+			
+			strCd = dir.exists() && dir.isDirectory()? currentDir +"/"+ strCd: strCd;
+		}
 		
 		if(strCd == null || strCd.equals("~")){
 			lastDir = currentDir;
