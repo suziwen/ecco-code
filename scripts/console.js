@@ -23,7 +23,7 @@ Console = function() {
 		
 		//alert(userPathEncoded);
 
-		alert(lastpath);
+		//alert(lastpath);
 		AJAX.get(cfg['docConsole'], {
 				parameters:'action=execute&command='+command+'&currentpath='+currentPathEncoded+'&userpath='+userPathEncoded+'&lastpath='+lastPathEncoded,
 				onEnd:'Console.parse(xmlDoc.documentElement);', 
@@ -43,7 +43,7 @@ Console = function() {
 		//alert(currentPathNode);
 		currentpath = currentPathNode.firstChild.nodeValue;
 		lastpath = lastPathNode.firstChild.nodeValue;
-		alert(lastpath);
+		//alert(obj.firstChild.nodeValue);
 		$('output').innerHTML += obj.firstChild.nodeValue;
 		$('output').scrollTop = $('output').scrollHeight;
 		Fileman.update()

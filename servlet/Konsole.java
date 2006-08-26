@@ -86,6 +86,11 @@ public class Konsole extends HttpServlet {
     			messages = cmdParser.exec(command, currentDir);
     		}catch (InterruptedException e){
     			error(); 
+    		}catch(IOException e){
+    			out.write("<out><![CDATA[ERROR:Command not found:"+command+"\n]]><currentpath><![CDATA["+cmdParser.getCurrentPath()+"]]></currentpath>" +
+        				"<lastpath><![CDATA["+cmdParser.getLastPath()+"]]></lastpath></out>");
+    			out.flush();
+    	    	out.close();
     		}
         	out.write("<out><![CDATA["+messages+"]]><currentpath><![CDATA["+cmdParser.getCurrentPath()+"]]></currentpath>" +
         				"<lastpath><![CDATA["+cmdParser.getLastPath()+"]]></lastpath></out>");
