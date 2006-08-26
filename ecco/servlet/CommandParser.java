@@ -84,14 +84,19 @@ public class CommandParser {
 		return exec(parsedCommand, currentDir);
 	}
 	
+	/**
+	 * @param strCd
+	 * @param currentDir
+	 * @return
+	 */
 	public String parseCd(String strCd, String currentDir){
 		String tmpCurDir = "";
 		
-		if(strCd != null){
+		/* if(strCd != null && !strCd.equals("..")){
 			File dir = new File(currentDir +"/"+ strCd);
 			
 			strCd = dir.exists() && dir.isDirectory()? currentDir +"/"+ strCd: strCd;
-		}
+		} */
 		
 		if(strCd == null || strCd.equals("~")){
 			lastDir = currentDir;
@@ -104,7 +109,13 @@ public class CommandParser {
 			String auxDir = lastDir;
 			lastDir = currentDir;
 			tmpCurDir = auxDir;
+		}else if(strCd.equals("/")){
+			return "O que fazer neste caso? Voltar pro home do user ou ir pra raiz?\n";
 		}else{
+			File dir = new File(currentDir +"/"+ strCd);
+			
+			strCd = dir.exists() && dir.isDirectory()? currentDir +"/"+ strCd: strCd;
+			
 			lastDir = currentDir;
 			tmpCurDir = strCd;
 		}
