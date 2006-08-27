@@ -13,12 +13,13 @@ Editor = function() {
 	}
 	
 	this.open = function(fullName) {
-		AJAX.get(cfg['docEditor'], { 
+		this.edit('a',fullName);
+/*		AJAX.get(cfg['docEditor'], { 
 			parameters:'action=open&file='+fullName,
 //			onStart:'Content.showMessage("editor","fileOpening","'+fullName+'")',
 			onEnd:'Editor.parse(xmlDoc.documentElement,"'+fullName+'");', //Content.clearMessage()
 			onError:'Content.showMessage("editor","fileNotFoundError",cfg["docEditor"])' 
-			})
+			}) */
 	}
 	
 	this.parse = function(obj,fullName) {
@@ -41,18 +42,30 @@ Editor = function() {
 			}
 		}
 		openFiles[fileCount] = fullName;
-		var divText = document.createElement('textarea');
+		var divIFrame = document.createElement('iframe');
+		divIFrame.id = 'text'+fileCount;
+		divIFrame.className = 'open';
+		divIFrame.src = cfg['docEditor']+'?action=open&editor=rich&file='+fullName;
+		var fileName = this.formatFileName(fullName);
+//		var divData = document.createTextNode(text);
+//		divText.appendChild(divData);
+		$('text').appendChild(divIFrame);
+
+/*		var divText = document.createElement('textarea');
 		divText.id = 'text'+fileCount;
 		divText.className = 'open';
 		var fileName = this.formatFileName(fullName);
 		var divData = document.createTextNode(text);
 		divText.appendChild(divData);
-		$('text').appendChild(divText);
+		$('text').appendChild(divText); */
 		this.updateTabs();
 		this.focus(fileCount);
 		fileCount++
 	}
 	
+	this.getExtension = function(fullName) {
+		// pegar a extensao do arquivo.
+	}
 	
 	this.close = function(id) {
   		$('text').removeChild($('text'+id));
@@ -105,8 +118,28 @@ Editor = function() {
 	}
 	
 	this.save = function() {
+
+		IFrameObj = $('text'+currentFile)
+
+		if (IFrameObj.contentDocument) // For NS6
+		    IFrameDoc = IFrameObj.contentDocument; 
+		else if (IFrameObj.contentWindow) // For IE5.5 and IE6
+		    IFrameDoc = IFrameObj.contentWindow.document;
+		else if (IFrameObj.document) // For IE5
+		    IFrameDoc = IFrameObj.document;
+		else  return true;
+
+		textDoc = IFrameDoc.body.innerHTML;
+		textDoc = textDoc.replace(/<br>/gi,'\r\n');
+		textDoc = textDoc.replace(/<\/p>/gi,'\r');		
+		textDoc = textDoc.replace(/<p>/gi,'\n');
+		textDoc = textDoc.replace(/&nbsp;/gi,'');		
+		textDoc = textDoc.replace(/<.*?>/g,'');
+		textDoc = textDoc.replace(/&lt;/g,'<');
+		textDoc = textDoc.replace(/&gt;/g,'>');
+
 		AJAX.get(cfg['docEditor'], { 
-			parameters:'action=save&file='+openFiles[currentFile]+'&content='+$('text'+currentFile).value,
+			parameters:'action=save&file='+openFiles[currentFile]+'&content='+textDoc,
 			method:'post',
 //			onStart:'Content.showMessage("editor","fileOpening","'+fullName+'")',
 			onEnd:'Content.showMessage("editor","fileSaveOK","'+openFiles[currentFile]+'")', //Content.clearMessage()
@@ -115,4 +148,5 @@ Editor = function() {
 	
 	}
 }
+
 
