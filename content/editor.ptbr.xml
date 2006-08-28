@@ -16,4 +16,10 @@
 		<msg id="fileSaveOK">Arquivo salvo: [fileSaveOK]</msg>		
 	</messages>
 	
+	<filetypes>
+		<item extensions="java">Java</item>
+		<item extensions="html|htm|shl|xml">HTML/XML</item>
+		<item extensions="txt">Texto</item>				
+	</filetypes>
+	
 </editor>
