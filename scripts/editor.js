@@ -24,24 +24,21 @@ Editor = function() {
 
 		if(arguments[0]) {
 			for(i=0;i<arguments[0].length;i++) {
-				$(arguments[0][i]).disabled = false;
+				if(arguments[0][i]!='') $(arguments[0][i]).disabled = false;
 			}
 		}
 	}
 	
 	this.open = function(fullName) {
-	
+
 		for(var i=0;i<files.length;i++) { // nao abre arquivos ja abertos
-			if(fullName == files[i].name) {
+			if(fullName == files[i].name && files[i].open) {
 				this.focus(i);
 				return;
 			}
 		}
-	
-		var extension = this.getFileExtension(fullName);
-		var type = Content.getFileType(extension);
-		files[fileCount] =  { name:'',type:'',changed:'',actions:'',open:'',fname:'' };
-		this.edit(fullName,type);
+
+		this.edit(fullName);
 	}
 	
 	this.getFileExtension = function(fullName) {
@@ -63,11 +60,15 @@ Editor = function() {
 		alert('TODO: editor options');
 	}
 	
-	this.edit = function(fullName,type) {
+	this.edit = function(fullName) {
+		var extension = this.getFileExtension(fullName);
+		var fileInfo = Content.getFileInfo(extension);
+
+		files[fileCount] =  { name:'',type:'',changed:'',actions:'',open:'',fname:'' };
 		files[fileCount].name = fullName;
-		files[fileCount].type = type;
+		files[fileCount].type = fileInfo[0];
 		files[fileCount].changed = false;
-		files[fileCount].actions = ['save','compile','execute']; // this should come from Content.xxx() for each file different actions
+		files[fileCount].actions = fileInfo[1]; // this should come from Content.xxx() for each file different actions
 		files[fileCount].open = true;
 		files[fileCount].fname = this.formatFileName(fullName);
 		
@@ -76,8 +77,8 @@ Editor = function() {
 		var divIFrame = document.createElement('iframe');
 		divIFrame.id = 'text'+fileCount;
 		divIFrame.className = 'open';
-		divIFrame.src = (type=='binary') ? cfg['path']+'/users/'+cfg['user']+'/'+fullName : cfg['docEditor']+'?action=open&type='+type+'&file='+fullName ;
-
+		divIFrame.src = (files[fileCount].type=='binary') ? cfg['path']+'/users/'+cfg['user']+'/'+fullName : cfg['docEditor']+'?action=open&type='+files[fileCount].type+'&file='+fullName ;
+		
 		$('text').appendChild(divIFrame);
 		this.updateTabs();
 		this.focus(fileCount);
@@ -89,17 +90,20 @@ Editor = function() {
 	}
 	
 	this.close = function(id) {
+//		if(files[id].changed != this.getText().length) {confirm('texto mudou');}
+
   		$('text').removeChild($('text'+id));
 		$('tab-list').removeChild($('tab'+id));
 		files[id].open = false;
 		var tmp = id;
-		while (!files[tmp].open && tmp < files.length) { // tenta encontrar a proxima aba com texto
+		
+		while (!files[tmp].open && tmp < files.length-1) { // tenta encontrar a proxima aba com texto
 			tmp++;
 		}
 
 		if(!files[tmp].open) { // se nao achou aba com texto, olha para as abas anteriores
 			tmp = id;
-			while (!files[tmp].open && tmp >= 0) {
+			while (!files[tmp].open && tmp > 0) {
 				tmp--;
 			}
 		}
@@ -138,8 +142,7 @@ Editor = function() {
 			}
 	}
 	
-	this.save = function() {
-
+	this.getText = function() {
 		IFrameObj = $('text'+currentFile)
 
 		if (IFrameObj.contentDocument) // For NS6
@@ -149,8 +152,12 @@ Editor = function() {
 		else if (IFrameObj.document) // For IE5
 		    IFrameDoc = IFrameObj.document;
 		else  return true;
-
-		text = IFrameDoc.body.innerHTML;
+		
+		return IFrameDoc.body.innerHTML;
+	}
+	
+	this.save = function() {
+		text = getText();
 		text = text.replace(/<br>/gi,'\n');
 		text = text.replace(/<\/p>/gi,'\r');		
 		text = text.replace(/<p>/gi,'\n');
@@ -159,6 +166,8 @@ Editor = function() {
 		text = text.replace(/&lt;/g,'<');
 		text = text.replace(/&gt;/g,'>');
 //		text = text.replace(/\n+/,'');
+
+		// files[currentFile].changed = text.length;
 		
 		AJAX.get(cfg['docEditor'], { 
 			parameters:'action=save&file='+files[currentFile].name+'&content='+text,

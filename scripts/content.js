@@ -104,17 +104,17 @@ Content = function() {
 		$('confirmation','display','none');			
 	}
 
-	this.getFileType = function(extension) {
+	this.getFileInfo = function(extension) {
 		var obj = messages['editor'];
-		obj = obj.documentElement.getElementsByTagName('filetypes')[0];
+		obj = obj.documentElement.getElementsByTagName('files')[0];
 		obj = obj.getElementsByTagName('item');
 		
 		for(var i=0; i<obj.length; i++) {
 			if(obj[i].getAttribute('extensions').indexOf(extension+'|')!=-1) {
-				return obj[i].getAttribute('openas');
+				return [ obj[i].getAttribute('type'), obj[i].getAttribute('actions').split('|') ];
 			}
 		}
-		return 'text';
+		return [ 'text', ['save'] ];
 	}
 	
 	this.showTools = function() {
