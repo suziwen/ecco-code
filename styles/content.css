@@ -1,7 +1,9 @@
 #messages { 
 	text-align:center;overflow:hidden;
-	font-weight:bold;font-family:verdana;font-size:10px;
-	-moz-border-radius:4px;border-radius:4px; 	
+	font-weight:bold;font-family:verdana;font-size:11px;
+	-moz-border-radius:4px;border-radius:4px;
+	padding:1px 0;
+	margin:-15px 180px 0 180px;
 }
 #confirmation { 
 	position:absolute;top:300px;left:100px;

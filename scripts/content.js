@@ -103,6 +103,36 @@ Content = function() {
 		$('focusout','display','none');
 		$('confirmation','display','none');			
 	}
+
+	this.getFileType = function(extension) {
+		var obj = messages['editor'];
+		obj = obj.documentElement.getElementsByTagName('filetypes')[0];
+		obj = obj.getElementsByTagName('item');
+		
+		for(var i=0; i<obj.length; i++) {
+			if(obj[i].getAttribute('extensions').indexOf(extension+'|')!=-1) {
+				return obj[i].getAttribute('openas');
+			}
+		}
+		return 'text';
+	}
+	
+	this.showTools = function() {
+		var out = '';
+		var obj = messages['editor'];
+		var tools = [];
+		obj = obj.documentElement.getElementsByTagName('tools')[0];
+		obj = obj.getElementsByTagName('item');
+		for(var i=0; i<obj.length; i++) {
+			id = obj[i].getAttribute('id');
+			value = obj[i].firstChild.nodeValue;
+			tools[i] = id;
+			out += '<button id="'+id+'" onclick="Editor.'+id+'()"><img src="images/'+id+'.gif" align="top" /> '+value+'</button>';
+		}
+		$('tools').innerHTML = out;
+		return tools;
+		
+	}
 	
 	this.getMenuItems = function(type) {
 		var out = '';

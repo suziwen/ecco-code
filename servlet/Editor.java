@@ -28,23 +28,23 @@ public class Editor extends HttpServlet {
     	out = getOutStream(response);
     	String action = request.getParameter("action");
 
-    	response.setContentType("text/html");
-        //out.write("<?xml version=\"1.0\" encoding=\"ISO-8859-1\"?>\n"); 
-   	
     	if(action == null) {
     		this.error();
     	}
     	else if(action.equals("open")) {
+        	response.setContentType("text/html");
     		String file = request.getParameter("file");
-    		String editor = request.getParameter("editor");
+    		String editor = request.getParameter("type");
           	this.open(file, editor);
     	}
     	else if(action.equals("save")) {
+        	response.setContentType("text/xml");
     		String file = request.getParameter("file");
     		String content = request.getParameter("content");
           	this.save(file, content);
     	}
     	else {
+    		response.setContentType("text/xml");
     		this.error();
     	}
 
@@ -53,6 +53,7 @@ public class Editor extends HttpServlet {
     }
 
     public void save(String file, String content) {
+    	out.write("<?xml version=\"1.0\" encoding=\"ISO-8859-1\"?>\n");
     	try {
     			File f = new File(usersPath+login+File.separator+file);
     			File outputFile = f;
@@ -67,22 +68,34 @@ public class Editor extends HttpServlet {
     }
     
     
-    public void open(String file, String editor) {
-	 	
+    public void open(String file, String type) {
     	try {
     			File f = new File(usersPath+login+File.separator+file);
     		    // verificar aqui se é arquivo binario e dar erro
     	        BufferedReader in = new BufferedReader(new FileReader(f));
     	        String str;
-			
-				if(editor.equals("rich")) { // rich editor
-					out.write("<!DOCTYPE html PUBLIC \"-//W3C//DTD XHTML 1.0 Strict//EN\" \"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd\"><html><head><link type=\"text/css\" rel=\"stylesheet\" href=\"/ecco/styles/rtsh-java.css\" /><script type=\"text/javascript\" src=\"/ecco/scripts/rtsh.js\"></script><script type=\"text/javascript\">RTSH.language = 'java';</script></head>");
+
+    	        out.write("<!DOCTYPE html PUBLIC \"-//W3C//DTD XHTML 1.0 Strict//EN\" \"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd\"><html><head>");
+				
+    	        if(type.equals("text")) {
+					out.write("<link type=\"text/css\" rel=\"stylesheet\" href=\"/ecco/styles/rtsh-text.css\" />" +
+							"<script>onload = function() { document.designMode = 'on'; }</script>" +
+							"</head>");
+					out.write("<body contenteditable='true' id='edt'><PRE>");
+	    	        while ((str = in.readLine()) != null) {
+	    	        	out.write(str+"\r\n");
+	    	        }
+				
+				} else {
+					out.write("<link type=\"text/css\" rel=\"stylesheet\" href=\"/ecco/styles/rtsh-"+type+".css\" />" +
+							"<script type=\"text/javascript\" src=\"/ecco/scripts/rtsh.js\"></script>" +
+							"<script type=\"text/javascript\">RTSH.language = '"+type+"';</script>" +
+							"</head>");
 					out.write("<body contenteditable='true' id='edt'><PRE>");
 				    Pattern lt = Pattern.compile("<");
 				    Pattern gt = Pattern.compile(">");
 				    Matcher m1;
 				    Matcher m2;
-				    //Matcher gtm = gt.matcher("&gt;");
 				    
 	    	        while ((str = in.readLine()) != null) {
 	    	        	m1 = lt.matcher(str);
@@ -91,19 +104,13 @@ public class Editor extends HttpServlet {
 					    str = m2.replaceAll("&gt;");
 	    	        	out.write(str+"\r\n");
 	    	        }
-					out.write("</PRE></body></html>");
 				}
-				else { // simple textarea editor
-	    			out.write("<text><![CDATA[");
-	    	        while ((str = in.readLine()) != null) {
-	    	            out.write(str+"\r\n");
-	    	        }
-	    	        out.write("]]></text>");
-				}
+
+    	        out.write("</PRE></body></html>");
     	        in.close();
     	    } 
     	 catch (IOException e) {
-    		 	this.error();
+    		 	out.write("<html>error</html>");
     	    }
     }
 

@@ -1,5 +1,5 @@
 /*
-Real Time Syntax Highlighting JS - RTSHJS v0.68
+Real Time Syntax Highlighting JS - RTSHJS v0.71
 
 You can use and modify this code as you want. 
 Just keep my credits somewhere around. Thanks.
@@ -64,7 +64,7 @@ RTSH = {
 		}
 	},
 
-	syntaxHighlight : function() { // TODO: try to remove special char before adding another
+	syntaxHighlight : function() {
 		if(browser.ff) { // FF
 //			document.execCommand("inserthtml", false, '#');
 			if(!arguments[0]) {
@@ -72,36 +72,63 @@ RTSH = {
 				window.getSelection().getRangeAt(0).insertNode(o);
 			}
 			x = document.getElementById('edt').innerHTML;
-			x = x.replace(/<[bis]>|<\/[bis]>/g,'');
-			x = x.replace(/<\/?span.*?>/g,'');
-			x = x.replace(/<\/?pre>/g,'');
+			x = x.replace(/<br>/g,'\n');
+			x = x.replace(/<.*?>|<\/.*?>/g,'');
+			x = x.replace(/\n/g,'<br>');			
 		}
 		else if(browser.ie) { // IE
 			if(!arguments[0]) document.selection.createRange().text = str;
 			x = document.getElementById('edt').innerHTML;
-			x = x.replace(/<\/?STRONG>|<\/?EM>|<\/?FONT.*?>/g,'');
+			x = x.replace(/<P>/g,'\n');
+			x = x.replace(/<\/P>/g,'\r');
+			x = x.replace(/<\/?.*?>/g,'');
 			x = '<P>'+x;
-			x = x.replace(/<\/?PRE>/ig,'');
-			x = x.replace(/<P><P>/,'<P>'); 
-			x = x.replace(/<\/?[bis]>/ig,'');
 			x = x.replace(/\n/g,'<P>');
-			x = x.replace(/\r/g,'</P>');
-			x = x.replace(/<P><\/P>/g,'<P>&nbsp;</P>');
+			x = x.replace(/\r/g,'<\/P>');			
+			x = x.replace(/<P><\/P>/g,'<P>&nbsp;<\/P>');			
 			}
 
 		for(i=0;i<languages[this.language].length;i++) x = x.replace(languages[this.language][i],languages[this.language][i+1]);
-
-		document.getElementById('edt').innerHTML = '<PRE>'+x+'</PRE>';
+		
+		document.getElementById('edt').innerHTML = '<PRE>'+x+'</PRE>';		
+	},
+	
+	plainText : function() { // return syntax highlighted code to original code
+		code = document.getElementsByTagName('body')[0].innerHTML;
+		code = code.replace(/<br>/gi,'\n');
+		code = code.replace(/<\/p>/gi,'\r');		
+		code = code.replace(/<p>/gi,'\n');
+		code = code.replace(/&nbsp;/gi,'');		
+		code = code.replace(/<.*?>/g,'');
+		code = code.replace(/&lt;/g,'<');
+		code = code.replace(/&gt;/g,'>');
+		code = code.replace(/\n+/,'');
+		return code;
 	}
+	
 }
 
 // language specific regular expressions
+// TODO: distribute languages in specific files.js
 languages = { 
 	java : [
 	/([\"\'].*?[\"\'])/g,'<s>$1</s>', // strings
-	/(public|class|import|protected|private|static|final|new|extends|float|long|return|continue|null|false|true|throws|boolean|void|try|if|for|switch|catch|int|else)([ \"\'\{\(;·&<])/g,'<b>$1</b>$2', // reserved words	
+	/(abstract|continue|for|new|switch|assert|default|goto|package|synchronized|boolean|do|if|private|this|break|double|implements|protected|throw|byte|else|import|public|throws|case|enum|instanceof|return|transient|catch|extends|int|short|try|char|final|interface|static|void|class|finally|long|strictfp|volatile|const|float|native|super|while)([ \.\"\'\{\(;·&<])/g,'<b>$1</b>$2', // reserved words
 	/\/\/(.*?)(<br>|<\/P>)/g,'<i>//$1</i>$2', // comments 
 	/\/\*(.*?)\*\//g,'<i>/*$1*/</i>' // comments
+],
+	php : [
+	/(&lt;[^!\?]*?&gt;)/g,'<b>$1</b>', // all tags
+	/(&lt;style;*?&gt;)(.*?)(&lt;\/style&gt;)/g,'<em>$1</em><em>$2</em><em>$3</em>', // style tags
+	/(&lt;script;*?&gt;)(.*?)(&lt;\/script&gt;)/g,'<u>$1</u><u>$2</u><u>$3</u>', // script tags
+	/([\"\'].*?[\"\'])/g,'<s>$1</s>', // strings
+	/(&lt;\?.*?\?&gt;)/g,'<strong>$1</strong>', // php tags	
+	/(&lt;\?php|\?&gt;)/g,'<cite>$1</cite>', // php tags		
+	/(\$.*?)([ \)\(\[\{\+\-\*\/&!\|%=;])/g,'<var>$1</var>$2',
+	/(and|or|xor|__FILE__|exception|__LINE__|array|as|break|case|class|const|continue|declare|default|die|do|echo|else|elseif|empty|enddeclare|endfor|endforeach|endif|endswitch|endwhile|eval|exit|extends|for|foreach|function|global|if|include|include_once|isset|list|new|print|require|require_once|return|static|switch|unset|use|var|while|__FUNCTION__|__CLASS__|__METHOD__|final|php_user_filter|interface|implements|extends|public|private|protected|abstract|clone|try|catch|throw|this)([ \.\"\'\{\(;·&<])/g,'<ins>$1</ins>$2', // reserved words
+	/\/\/(.*?)(<br>|<P>)/g,'<i>//$1</i>$2', // comments 
+	/\/\*(.*?)\*\//g,'<i>/*$1*/</i>', // comments
+	/(&lt;!--.*?--&gt.)/g,'<i>$1</i>' // comments 
 ],
 	html : [
 	/(&lt;[^!]*?&gt;)/g,'<b>$1</b>', // all tags
@@ -110,7 +137,6 @@ languages = {
 	/=(["'].*?["'])/g,'=<s>$1</s>', // atributes
 	/(&lt;!--.*?--&gt.)/g,'<i>$1</i>' // comments 
 ] }
-
 
 onload = function() {
 	RTSH.initialize();
