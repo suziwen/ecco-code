@@ -157,7 +157,7 @@ Editor = function() {
 	}
 	
 	this.save = function() {
-		text = getText();
+		text = this.getText();
 		text = text.replace(/<br>/gi,'\n');
 		text = text.replace(/<\/p>/gi,'\r');		
 		text = text.replace(/<p>/gi,'\n');
