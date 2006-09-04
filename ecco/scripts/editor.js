@@ -2,27 +2,53 @@
 Editor = function() {
 	
 	Editor = this;
-	var openFiles = Array;
+	var files = Array;
 	var fileCount = Number;
 	var currentFile = Number;
+	var tools = Array;
 	
 	this.initialize = function() {
-		openFiles = [];
+		files = [];
 		fileCount = 0;
 		currentFile = 0;
+		tools = Content.showTools();
+		this.updateTools();
+	}
+	
+	this.updateTools = function() {
+		for(i=0;i<tools.length;i++) {
+			if(tools[i] != 'options') {
+				$(tools[i]).disabled = true;
+			}
+		}
+
+		if(arguments[0]) {
+			for(i=0;i<arguments[0].length;i++) {
+				$(arguments[0][i]).disabled = false;
+			}
+		}
 	}
 	
 	this.open = function(fullName) {
-		this.edit('a',fullName);
-/*		AJAX.get(cfg['docEditor'], { 
-			parameters:'action=open&file='+fullName,
-//			onStart:'Content.showMessage("editor","fileOpening","'+fullName+'")',
-			onEnd:'Editor.parse(xmlDoc.documentElement,"'+fullName+'");', //Content.clearMessage()
-			onError:'Content.showMessage("editor","fileNotFoundError",cfg["docEditor"])' 
-			}) */
+	
+		for(var i=0;i<files.length;i++) { // nao abre arquivos ja abertos
+			if(fullName == files[i].name) {
+				this.focus(i);
+				return;
+			}
+		}
+	
+		var extension = this.getFileExtension(fullName);
+		var type = Content.getFileType(extension);
+		files[fileCount] =  { name:'',type:'',changed:'',actions:'',open:'',fname:'' };
+		this.edit(fullName,type);
 	}
 	
-	this.parse = function(obj,fullName) {
+	this.getFileExtension = function(fullName) {
+		return fullName.substring(fullName.lastIndexOf('.')+1,fullName.length);
+	}
+	
+	this.parse = function(obj,fullName) { // remove this. Its not being used
 		var text = '';
 		text = obj.firstChild.nodeValue;
 		if(text == 'error') {
@@ -33,31 +59,26 @@ Editor = function() {
 		}
 	}
 	
-	this.edit = function(text, fullName) {
-
-		for(var i=0;i<openFiles.length;i++) { // nao abre arquivos ja abertos
-			if(fullName == openFiles[i]) {
-				this.focus(i);
-				return;
-			}
-		}
-		openFiles[fileCount] = fullName;
+	this.options = function() {
+		alert('TODO: editor options');
+	}
+	
+	this.edit = function(fullName,type) {
+		files[fileCount].name = fullName;
+		files[fileCount].type = type;
+		files[fileCount].changed = false;
+		files[fileCount].actions = ['save','compile','execute']; // this should come from Content.xxx() for each file different actions
+		files[fileCount].open = true;
+		files[fileCount].fname = this.formatFileName(fullName);
+		
+		this.updateTools(files[fileCount].actions);
+		
 		var divIFrame = document.createElement('iframe');
 		divIFrame.id = 'text'+fileCount;
 		divIFrame.className = 'open';
-		divIFrame.src = cfg['docEditor']+'?action=open&editor=rich&file='+fullName;
-		var fileName = this.formatFileName(fullName);
-//		var divData = document.createTextNode(text);
-//		divText.appendChild(divData);
-		$('text').appendChild(divIFrame);
+		divIFrame.src = (type=='binary') ? cfg['path']+'/users/'+cfg['user']+'/'+fullName : cfg['docEditor']+'?action=open&type='+type+'&file='+fullName ;
 
-/*		var divText = document.createElement('textarea');
-		divText.id = 'text'+fileCount;
-		divText.className = 'open';
-		var fileName = this.formatFileName(fullName);
-		var divData = document.createTextNode(text);
-		divText.appendChild(divData);
-		$('text').appendChild(divText); */
+		$('text').appendChild(divIFrame);
 		this.updateTabs();
 		this.focus(fileCount);
 		fileCount++
@@ -70,28 +91,28 @@ Editor = function() {
 	this.close = function(id) {
   		$('text').removeChild($('text'+id));
 		$('tab-list').removeChild($('tab'+id));
-		openFiles[id] = false;
+		files[id].open = false;
 		var tmp = id;
-		while (!openFiles[tmp] && tmp < openFiles.length) { // tenta encontrar a proxima aba com texto
+		while (!files[tmp].open && tmp < files.length) { // tenta encontrar a proxima aba com texto
 			tmp++;
 		}
 
-		if(!openFiles[tmp]) { // se nao achou aba com texto, olha para as abas anteriores
+		if(!files[tmp].open) { // se nao achou aba com texto, olha para as abas anteriores
 			tmp = id;
-			while (!openFiles[tmp] && tmp >= 0) {
+			while (!files[tmp].open && tmp >= 0) {
 				tmp--;
 			}
 		}
-		if(!openFiles[currentFile] && openFiles[tmp]) {
+		if(!files[currentFile].open && files[tmp].open) {
 			this.focus(tmp);
 		}
 	}
 	
 	this.updateTabs = function() {
 		var out = '<table cellpadding=0 cellspacing=0 border=0><tr id="tab-list">';
-		for(var i=0;i<openFiles.length;i++) {
-			if(openFiles[i]) {
-				out += '<td id="tab'+i+'"><a href="javascript:void(0)" onclick="Editor.focus('+i+')">'+this.formatFileName(openFiles[i])+'</a>';
+		for(var i=0;i<files.length;i++) {
+			if(files[i].open) {
+				out += '<td id="tab'+i+'"><a href="javascript:void(0)" onclick="Editor.focus('+i+')">'+files[i].fname+'</a>';
 				out += ' <a href="javascript:void(0)" onclick="Editor.close('+i+')" class="close">X</a></td>';
 			}
 		}
@@ -111,7 +132,7 @@ Editor = function() {
 	}
 	
 	this.blur = function(id) {
-		if(openFiles[id]) {
+		if(files[id].open) {
 			$('text'+id,'display','none');
 			$('tab'+id,'backgroundColor','#ddd');
 			}
@@ -129,20 +150,21 @@ Editor = function() {
 		    IFrameDoc = IFrameObj.document;
 		else  return true;
 
-		textDoc = IFrameDoc.body.innerHTML;
-		textDoc = textDoc.replace(/<br>/gi,'\r\n');
-		textDoc = textDoc.replace(/<\/p>/gi,'\r');		
-		textDoc = textDoc.replace(/<p>/gi,'\n');
-		textDoc = textDoc.replace(/&nbsp;/gi,'');		
-		textDoc = textDoc.replace(/<.*?>/g,'');
-		textDoc = textDoc.replace(/&lt;/g,'<');
-		textDoc = textDoc.replace(/&gt;/g,'>');
-
+		text = IFrameDoc.body.innerHTML;
+		text = text.replace(/<br>/gi,'\n');
+		text = text.replace(/<\/p>/gi,'\r');		
+		text = text.replace(/<p>/gi,'\n');
+		text = text.replace(/&nbsp;/gi,'');		
+		text = text.replace(/<.*?>/g,'');
+		text = text.replace(/&lt;/g,'<');
+		text = text.replace(/&gt;/g,'>');
+//		text = text.replace(/\n+/,'');
+		
 		AJAX.get(cfg['docEditor'], { 
-			parameters:'action=save&file='+openFiles[currentFile]+'&content='+textDoc,
+			parameters:'action=save&file='+files[currentFile].name+'&content='+text,
 			method:'post',
 //			onStart:'Content.showMessage("editor","fileOpening","'+fullName+'")',
-			onEnd:'Content.showMessage("editor","fileSaveOK","'+openFiles[currentFile]+'")', //Content.clearMessage()
+			onEnd:'Content.showMessage("editor","fileSaveOK","'+files[currentFile].name+'")', //Content.clearMessage()
 			onError:'Content.showMessage("editor","fileNotFoundError",cfg["docEditor"])' 
 			})
 	
