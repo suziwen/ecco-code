@@ -6,7 +6,7 @@ Editor = function() {
 	var fileCount = Number;
 	var currentFile = Number;
 	var tools = Array;
-	
+
 	this.initialize = function() {
 		files = [];
 		fileCount = 0;
@@ -14,21 +14,25 @@ Editor = function() {
 		tools = Content.showTools();
 		this.updateTools();
 	}
-	
+
 	this.updateTools = function() {
 		for(i=0;i<tools.length;i++) {
 			if(tools[i] != 'options') {
 				$(tools[i]).disabled = true;
+				$(tools[i]).style.padding = '1px';
 			}
 		}
 
 		if(arguments[0]) {
 			for(i=0;i<arguments[0].length;i++) {
-				if(arguments[0][i]!='') $(arguments[0][i]).disabled = false;
+				if(arguments[0][i]!='') {
+					$(arguments[0][i]).disabled = false;
+					$(tools[i]).style.padding = '0';
+				}
 			}
 		}
 	}
-	
+
 	this.open = function(fullName) {
 
 		for(var i=0;i<files.length;i++) { // nao abre arquivos ja abertos
@@ -125,6 +129,7 @@ Editor = function() {
 	}
 	
 	this.focus = function(id) {
+		this.updateTools(files[id].actions);	
 		this.blur(currentFile);
 		currentFile = id;
 		$('tab'+currentFile,'backgroundColor','silver');
