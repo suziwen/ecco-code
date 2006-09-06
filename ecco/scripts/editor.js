@@ -64,6 +64,12 @@ Editor = function() {
 		alert('TODO: editor options');
 	}
 	
+	this.isChanged = function(id) {
+//		txt = ;
+		clearTimeout(toid);
+		files[id].changed = this.getText().length;
+	}
+	
 	this.edit = function(fullName) {
 		var extension = this.getFileExtension(fullName);
 		var fileInfo = Content.getFileInfo(extension);
@@ -71,7 +77,7 @@ Editor = function() {
 		files[fileCount] =  { name:'',type:'',changed:'',actions:'',open:'',fname:'' };
 		files[fileCount].name = fullName;
 		files[fileCount].type = fileInfo[0];
-		files[fileCount].changed = false;
+		files[fileCount].changed = 0;
 		files[fileCount].actions = fileInfo[1]; // this should come from Content.xxx() for each file different actions
 		files[fileCount].open = true;
 		files[fileCount].fname = this.formatFileName(fullName);
@@ -82,19 +88,20 @@ Editor = function() {
 		divIFrame.id = 'text'+fileCount;
 		divIFrame.className = 'open';
 		divIFrame.src = (files[fileCount].type=='binary') ? cfg['path']+'/users/'+cfg['user']+'/'+fullName : cfg['docEditor']+'?action=open&type='+files[fileCount].type+'&file='+fullName ;
-		
+
 		$('text').appendChild(divIFrame);
+		
+		toid = setTimeout("Editor.isChanged("+fileCount+")",1000);
 		this.updateTabs();
 		this.focus(fileCount);
 		fileCount++
 	}
 	
-	this.getExtension = function(fullName) {
-		// pegar a extensao do arquivo.
-	}
-	
 	this.close = function(id) {
-//		if(files[id].changed != this.getText().length) {confirm('texto mudou');}
+		if(files[id].changed != this.getText().length && files[id].changed != 0) {
+			alert(files[id].changed +"!="+ this.getText().length);
+			if ( confirm('Close file without saving?') == false ) return
+			}
 
   		$('text').removeChild($('text'+id));
 		$('tab-list').removeChild($('tab'+id));
