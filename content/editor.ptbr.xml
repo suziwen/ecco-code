@@ -13,12 +13,12 @@
 		<msg id="fileSaveOK">Arquivo salvo: [fileSaveOK]</msg>		
 	</messages>
 	
-	<filetypes>
-		<item extensions="java|" openas="java" actions="save|execute|compile">Java</item>
-		<item extensions="html|htm|shl|xml|" openas="html" actions="save">HTML/XML</item>
-		<item extensions="php|" openas="php" actions="save">PHP</item>		
-		<item extensions="txt|bat|sh|nfo|" openas="text" actions="save">Texto</item>
-		<item extensions="exe|gif|jpg|jpeg|mov|png|doc|pdf|mp3|swf|fla|mpg|mpeg|qt|avi|" openas="binary" actions="">Binary</item>
-	</filetypes>
+	<files>
+		<item extensions="java|" type="java" type="save|execute|compile">Java</item>
+		<item extensions="html|htm|shl|xml|" type="html" actions="save">HTML/XML</item>
+		<item extensions="php|" type="php" type="save">PHP</item>		
+		<item extensions="txt|bat|sh|nfo|" type="text" actions="save">Texto</item>
+		<item extensions="exe|gif|jpg|jpeg|mov|png|doc|pdf|mp3|swf|fla|mpg|mpeg|qt|avi|" type="binary" actions="">Binary</item>
+	</files>
 	
 </editor>
