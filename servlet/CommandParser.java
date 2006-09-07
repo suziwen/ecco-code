@@ -91,6 +91,9 @@ public class CommandParser {
 	 */
 	public String parseCd(String strCd, String currentDir){
 		String tmpCurDir = "";
+		File dir = null;
+		String parentDir = "";
+		String msg = "";
 		
 		/* if(strCd != null && !strCd.equals("..")){
 			File dir = new File(currentDir +"/"+ strCd);
@@ -103,16 +106,18 @@ public class CommandParser {
 			tmpCurDir = homeDir;
 		}else if(strCd.equals("-")){
 			tmpCurDir = lastDir;
-		}else if(strCd.equals("..")){
-			//dir = new File(strCd);
-			//currentDir = dir.exists() && dir.isDirectory()? dir.getPath(): currentDir;
-			String auxDir = lastDir;
 			lastDir = currentDir;
-			tmpCurDir = auxDir;
+		}else if(strCd.equals("..")){
+			dir = new File(currentDir);
+			parentDir = dir.exists() && dir.isDirectory()? dir.getParent(): currentDir;
+			
+			lastDir = currentDir;
+			tmpCurDir = parentDir;
 		}else if(strCd.equals("/")){
-			return "O que fazer neste caso? Voltar pro home do user ou ir pra raiz?\n";
+			lastDir = currentDir;
+			tmpCurDir = homeDir;
 		}else{
-			File dir = new File(currentDir +"/"+ strCd);
+			dir = new File(currentDir +"/"+ strCd);
 			
 			strCd = dir.exists() && dir.isDirectory()? currentDir +"/"+ strCd: strCd;
 			
@@ -120,9 +125,15 @@ public class CommandParser {
 			tmpCurDir = strCd;
 		}
 		
+		// TODO: Verificar se o cara esta no seu dir e caso tenha saido, devolvê-lo a ele
+		//if(!tmpCurDir.startsWith(this.homeDir)){
+		//	tmpCurDir = this.homeDir;
+		//}
+		
+		
 		this.currentDir = tmpCurDir;
 			
-		return ""; // TODO: verificar necessidade de retornar algo aqui
+		return msg; // TODO: verificar necessidade de retornar algo aqui
 	}
 	
 	public void setHomeDir(String homeDir){
