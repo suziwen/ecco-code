@@ -91,6 +91,7 @@ public class Konsole extends HttpServlet {
         				"<lastpath><![CDATA["+cmdParser.getLastPath()+"]]></lastpath></out>");
     			out.flush();
     	    	out.close();
+    	    	return;
     		}
         	out.write("<out><![CDATA["+messages+"]]><currentpath><![CDATA["+cmdParser.getCurrentPath()+"]]></currentpath>" +
         				"<lastpath><![CDATA["+cmdParser.getLastPath()+"]]></lastpath></out>");

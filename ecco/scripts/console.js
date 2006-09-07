@@ -7,10 +7,12 @@ Console = function() {
 	var lastpath = String;
 	var commandHistory = HistoryQueue;
 	var ouputHistory = HistoryQueue;
+	var utils = Utils;
 	//var browser;
 	
 	this.initialize = function() {
 		out = '';
+		utils = new Utils();
 		$('output').readOnly = true;
 		userpath = cfg['path'] + '/users/'  + cfg['user'];
 		currentpath = userpath;
@@ -20,7 +22,7 @@ Console = function() {
 		commandHistory.initialize(10);
 		
 		outputHistory = new HistoryQueue();
-		outputHistory.initialize(10);
+		outputHistory.initialize(15);
 		
 		$('command').onkeydown = this.keyHandler;
 		/*browser = { ie:false, ff:false };
@@ -34,6 +36,7 @@ Console = function() {
 		else if(browser.ie) { // IE
 			document.onkeydown = this.keyHandler;
 		}*/
+		
 	}
 	
 	this.execute = function() {
@@ -41,6 +44,18 @@ Console = function() {
 		var command = $('command').value;
 		// Guardando no hist?rico
 		commandHistory.push(command);
+		
+		// Guardando chamada do comando pra exibir na tela
+		outputHistory.push("shell>> "+command+"\n");
+		
+		// Tratando os comandos cls e clear
+		if(utils.trim(command) == 'cls' || utils.trim(command) == 'clear'){
+			outputHistory.clear();
+			$('output').innerHTML = outputHistory.getAllInOne();
+			$('command').value = '';
+			return;
+		}
+		
 		var currentPathEncoded = currentpath.replace(/\//g, '%2F');
 		var userPathEncoded = userpath.replace(/\//g, '%2F');
 		var lastPathEncoded = lastpath.replace(/\//g, '%2F');
@@ -64,12 +79,17 @@ Console = function() {
 		
 		var currentPathNode = obj.getElementsByTagName('currentpath')[0];
 		var lastPathNode = obj.getElementsByTagName('lastpath')[0];
-		//alert(currentPathNode);
+		
 		currentpath = currentPathNode.firstChild.nodeValue;
 		lastpath = lastPathNode.firstChild.nodeValue;
-		//alert(obj.firstChild.nodeValue);
+		
+		//alert(currentPathNode);
+		//alert(lastpath);
+		//windows.alert(obj.firstChild.nodeValue);
 		//$('output').innerHTML += obj.firstChild.nodeValue;
 		outputHistory.push(obj.firstChild.nodeValue);
+		//var $teste = outputHistory.getAllInOne();
+		//alert($teste);
 		$('output').innerHTML = outputHistory.getAllInOne();
 		$('output').scrollTop = $('output').scrollHeight;
 		Fileman.update()
@@ -89,6 +109,7 @@ Console = function() {
 			
 		}
 	}
+	
 }
 
 
@@ -99,11 +120,20 @@ HistoryQueue = function(){
 	var first = Number;
 	var last = Number;
 	var qSize = Number;
+	var currentLast = Boolean;
 
 	//HistoryQueue = this;
 	
 	this.initialize = function(size){
 		qSize = size + 1;
+		queue = new Array(qSize);
+		currentIndex = 0;
+		first = 0;
+		last = 0;
+		currentLast = false;
+	}
+	
+	this.clear = function(){
 		queue = new Array(qSize);
 		currentIndex = 0;
 		first = 0;
@@ -127,6 +157,7 @@ HistoryQueue = function(){
 		if(first == last) first = (first + 1) % qSize;
 		queue[last] = item;
 		currentIndex = last;
+		currentLast = true;
 		
 		//alert(queue);
 	}
@@ -149,6 +180,10 @@ HistoryQueue = function(){
 	this.getLast = function(){
 		var result = "";
 		if(last != first){
+			if(currentLast == true){
+				currentLast = false;
+				return this.getCurrent();
+			}
 			if(currentIndex != ((first+1) % qSize))
 				currentIndex--;
 			if(currentIndex < 0) currentIndex = qSize - 1;
@@ -175,11 +210,37 @@ HistoryQueue = function(){
 				//alert(currentIndex+":"+auxAll);
 				
 				all += typeof(auxAll) != "undefined"? auxAll:"";
-			}while(auxAll != "")
+			//}while(auxAll != "")
+			}while(currentIndex != (last+1))
 		}
 		
 		currentIndex = tmpCurrentIndex;
 		
 		return all;
+	}
+}
+
+
+// Classe de fun??es de utilidade
+Utils = function(){
+	// Funcionalidade para as strings
+	// Removes leading whitespaces
+	this.ltrim = function(value) {
+		var re = /\s*((\S+\s*)*)/;
+		return value.replace(re, "$1");
+		
+	}
+	
+	// Removes ending whitespaces
+	this.rtrim = function(value){
+
+		var re = /((\s*\S+)*)\s*/;
+		return value.replace(re, "$1");
+		
+	}
+	
+	// Removes leading and ending whitespaces
+	this.trim = function(value) {
+		return this.ltrim(this.rtrim(value));
 	}
 }
