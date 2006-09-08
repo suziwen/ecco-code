@@ -1,18 +1,16 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
 <editor>
-
 	<tools>
 		<item id="save">Salvar</item>
 		<item id="compile">Compilar</item>
 		<item id="execute">Executar</item>
-		<item id="options">Op&amp;ccedil;&amp;otilde;es</item>
+		<item id="options">Opções</item>
 	</tools>
-
 	<messages>
 		<msg id="fileOpenError">Erro ao abrir arquivo: [fileOpenError]</msg>
 		<msg id="fileNotFoundError">Arquivo nao encontrado: [fileNotFoundError]</msg>
 		<msg id="fileSaveOK">Arquivo salvo: [fileSaveOK]</msg>		
 	</messages>
-	
 	<files>
 		<item extensions="java|" type="java" actions="save|execute|compile">Java</item>
 		<item extensions="html|htm|shl|xml|" type="html" actions="save">HTML/XML</item>
@@ -20,5 +18,4 @@
 		<item extensions="txt|bat|sh|nfo|" type="text" actions="save">Texto</item>
 		<item extensions="exe|gif|jpg|jpeg|mov|png|doc|pdf|mp3|swf|fla|mpg|mpeg|qt|avi|" type="binary" actions="">Binario</item>
 	</files>
-	
 </editor>
