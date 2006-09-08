@@ -2,42 +2,38 @@
 <fileman>
 	<menu>
 		<projects>
-			<item action="Fileman.newProject()">Novo projeto</item>
-			<item action="Fileman.mail()">Enviar por e-mail</item>
-			<item action="Fileman.download()">Download</item>
+			<item id="newProject">Novo projeto</item>
+			<item id="mail">Enviar por e-mail</item>
+			<item id="download">Download</item>
 		</projects>
-
 		<project>
-			<item action="Fileman.newDirectory()">Novo diretório</item>		
-			<item action="Fileman.newFile()">Novo arquivo</item>
-			<item action="Fileman.upload()">Upload de arquivo</item>
-			<item action="Fileman.rename()">Renomear</item>
-			<item action="Fileman.remove()">Apagar</item>
-			<item action="Fileman.move()">Mover</item>			
-			<item action="Fileman.mail()">Enviar por e-mail</item>
-			<item action="Fileman.download()">Download</item>
+			<item id="newDirectory">Novo diretório</item>
+			<item id="newFile">Novo arquivo</item>
+			<item id="upload">Upload de arquivo</item>
+			<item id="rename">Renomear</item>
+			<item id="remove">Apagar</item>
+			<item id="move">Mover</item>
+			<item id="mail">Enviar por e-mail</item>
+			<item id="download">Download</item>
 		</project>
-		
 		<directory>
-			<item action="Fileman.newFile()">Novo arquivo</item>					
-			<item action="Fileman.newDirectory()">Novo diretório</item>		
-			<item action="Fileman.upload()">Upload de arquivo</item>			
-			<item action="Fileman.rename()">Renomear</item>
-			<item action="Fileman.remove()">Apagar</item>
-			<item action="Fileman.move()">Mover</item>			
-			<item action="Fileman.mail()">Enviar por e-mail</item>
-			<item action="Fileman.download()">Download</item>						
+			<item id="newFile">Novo arquivo</item>
+			<item id="newDirectory">Novo diretório</item>
+			<item id="upload">Upload de arquivo</item>
+			<item id="rename">Renomear</item>
+			<item id="remove">Apagar</item>
+			<item id="move">Mover</item>
+			<item id="mail">Enviar por e-mail</item>
+			<item id="download">Download</item>						
 		</directory>
-		
 		<file>
-			<item action="Fileman.rename()">Renomear</item>
-			<item action="Fileman.remove()">Apagar</item>
-			<item action="Fileman.move()">Mover</item>			
-			<item action="Fileman.mail()">Enviar por e-mail</item>
-			<item action="Fileman.download()">Download</item>			
+			<item id="rename">Renomear</item>
+			<item id="remove">Apagar</item>
+			<item id="move">Mover</item>
+			<item id="mail">Enviar por e-mail</item>
+			<item id="download">Download</item>			
 		</file>
 	</menu>
-	
 	<messages>
 		<msg id="okButton">ok</msg>
 		<msg id="cancelButton">cancelar</msg>
@@ -68,5 +64,4 @@
 		<msg id="fileNotFoundError">Arquivo não encontrado: [fileNotFoundError]</msg>
 		<msg id="fileWriteError">Arquivo [fileWriteError] não encontrado</msg>
 	</messages>
-
 </fileman>
