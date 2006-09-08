@@ -6,12 +6,14 @@ public class CommandParser {
 	private String homeDir;
 	private String lastDir;
 	private String currentDir;
+	private String fileSep;
 	
 	public CommandParser(String homeDir){
 		parsedCommand = null;
 		this.homeDir = homeDir;
 		this.lastDir = homeDir;
 		this.currentDir = homeDir;
+		this.fileSep = System.getProperty("file.separator");
 	}
 	
 	public CommandParser(String homeDir, String lastDir){
@@ -19,6 +21,7 @@ public class CommandParser {
 		this.homeDir = homeDir;
 		this.lastDir = lastDir;
 		this.currentDir = homeDir;
+		this.fileSep = System.getProperty("file.separator");
 	}
 	
 	public CommandParser(){
@@ -45,6 +48,7 @@ public class CommandParser {
 			
 			String strCd = command[i].trim().toLowerCase();
 			if(strCd.length() > 1 && strCd.substring(0,2).equals("cd")){
+				strCd = command[i].trim();
 				result += strCd.length() > 2? parseCd(strCd.substring(2).trim(), currentDir): parseCd(null, currentDir);
 				continue;
 			}
@@ -113,22 +117,33 @@ public class CommandParser {
 			
 			lastDir = currentDir;
 			tmpCurDir = parentDir;
-		}else if(strCd.equals("/")){
+		}else if(strCd.equals(fileSep)){
 			lastDir = currentDir;
 			tmpCurDir = homeDir;
 		}else{
-			dir = new File(currentDir +"/"+ strCd);
+			msg = "";
+			dir = new File(currentDir +fileSep+ strCd);
 			
-			strCd = dir.exists() && dir.isDirectory()? currentDir +"/"+ strCd: strCd;
+			if(!dir.exists()){
+				msg = "ERROR: Directory not found\n";
+			}else if(!dir.isDirectory()){	
+				msg = "ERROR: It is not a dyrectory\n";
+			}
+			
+			if(msg.startsWith("ERROR")){
+				return msg;
+			}else{
+				strCd = currentDir +fileSep+ strCd;
+			}
 			
 			lastDir = currentDir;
 			tmpCurDir = strCd;
 		}
 		
 		// TODO: Verificar se o cara esta no seu dir e caso tenha saido, devolvê-lo a ele
-		//if(!tmpCurDir.startsWith(this.homeDir)){
-		//	tmpCurDir = this.homeDir;
-		//}
+		if(!tmpCurDir.startsWith(this.homeDir)){
+			tmpCurDir = currentDir;
+		}
 		
 		
 		this.currentDir = tmpCurDir;
