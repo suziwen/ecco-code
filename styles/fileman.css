@@ -2,17 +2,25 @@
 
 #fileman a { display:block; cursor:pointer; cursor:hand; font-family:arial; text-decoration:none; font-size:12px;color:black; }
 #fileman a:hover { text-decoration:underline; }
-#fileman div { margin-left:20px;}
+#fileman div { margin-left:10px;}
 #fileman a.ainline { display:inline; }
 
 #fileman .projects { font-weight:bold; }
-#fileman .project { display:block;font-weight:bold;color:#585858; }
-#fileman .directory { font-weight:bold;color:gray;  }
-#fileman .file {  }
+#fileman .project { padding-left:18px;display:block;font-weight:bold;color:#585858;background-image:url("/ecco/images/project.gif");background-repeat:no-repeat; }
+#fileman .directory { padding-left:18px;font-weight:bold;color:gray;background-image:url("/ecco/images/directory.gif");background-repeat:no-repeat; }
+#fileman .file { padding-left:18px;background-image:url("/ecco/images/file.gif");background-repeat:no-repeat; }
 
 #fileman .closed { display:none; }	
 #fileman .opened { display:block; }
 
-#fileman-menu { position:absolute;border-top:1px solid gray;border-right:2px solid gray;border-bottom:2px solid gray;border-left:1px solid gray;background-color:#ddd;display:none;-moz-border-radius:3px;border-radius:3px; }
-#fileman-menu a { display:block;cursor:pointer;cursor:hand;text-decoration:none;padding:1px 3px;color:black }
-#fileman-menu a:hover { background-color:silver; }
+#fileman-menu { padding:0;position:absolute;border-top:1px solid gray;border-right:2px solid gray;border-bottom:2px solid gray;border-left:1px solid gray;background-color:#ddd;display:none;-moz-border-radius:3px;border-radius:3px; }
+#fileman-menu a { display:block;cursor:pointer;cursor:hand;text-decoration:none;padding:1px 3px 1px 20px;color:black }
+#fileman-menu a:hover { background-color:#eee; }
+#fileman-menu .newfile { background:url("/ecco/images/new.gif") no-repeat 2px; }
+#fileman-menu .newdirectory {  }
+#fileman-menu .newproject {  }
+#fileman-menu .upload {  }
+#fileman-menu .rename {  }
+#fileman-menu .move {  }
+#fileman-menu .mail { background:url("/ecco/images/mail.gif") no-repeat 2px; }
+#fileman-menu .remove { background:url("/ecco/images/remove.gif") no-repeat 2px; }

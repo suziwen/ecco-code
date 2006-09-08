@@ -2,7 +2,9 @@
 
 <html>
 <head>
-	<title>ECCO</title>
+	<title>ECCO - Web IDE</title>
+	<link rel="SHORTCUT ICON" href="/ecco/images/favicon.ico" />
+	
 	<link type="text/css" rel="stylesheet" href="styles/ecco.css" />
 	<link type="text/css" rel="stylesheet" href="styles/content.css" />
 	<link type="text/css" rel="stylesheet" href="styles/fileman.css" />
@@ -29,44 +31,36 @@
 <body>
 
 <table width="100%" height="100%" border="0" cellpadding=0 cellspacing=0>
-	<tr><td colspan="2" height="40"><h1>ECCO</h1></td></tr>
+	<tr><td colspan="2" height="40"><h1><img src="images/ecco.gif" /></h1></td></tr>
 	<tr height="16"><td colspan="2">
+
 		<div id="focusout"></div>
 		<div id="confirmation"></div>
 		<div id="messages"></div>
-	</td></tr>	
+
+	</td></tr>
 	<tr><td valign="top" width="200">
-	
+
 		<div id="fileman-menu"></div>
 		<div id="fileman"></div>
-		
-		<!-- a href=javascript:void(0) onclick="Fileman.update()">[carrega xml novamente]</a -->
-	
+
 	</td><td id="editor">
 
-		<!--div id="editor"-->
-			<div id="tabs"></div>
-			<div id="text"></div>
-			<div id="tools">
-				<button id="save" onclick="Editor.save()"><img src="images/save.gif" align="top" /> Salvar</button>
-				<button id="compile"><img src="images/compile.gif" align="top" /> Compilar</button>
-				<button id="execute"><img src="images/execute.gif" align="top" /> Executar</button>
-			</div>
-		<!--/div-->
+		<div id="tabs"></div>
+		<div id="text"></div>
+		<div id="tools"></div>
 
 	</td></tr>
 	
 	<tr><td colspan="2" id="console">
-		<!--div id="console"-->
-			<textarea id="output"></textarea>
-			<div id="input"><form onsubmit="Console.execute();return false;">
-			shell>> <input type="text" id="command"></form>
-			</div>
-		<!--/div-->
-	</td></tr>
-	
-</table>	
 
+		<textarea id="output"></textarea>
+		<div id="input"><form onsubmit="Console.execute();return false;">
+		shell>> <input type="text" id="command"></form>
+		</div>
+
+	</td></tr>
+</table>	
 
 </body>
 </html>
