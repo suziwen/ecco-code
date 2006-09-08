@@ -64,12 +64,6 @@ Editor = function() {
 		alert('TODO: editor options');
 	}
 	
-	this.isChanged = function(id) {
-//		txt = ;
-		clearTimeout(toid);
-		files[id].changed = this.getText().length;
-	}
-	
 	this.edit = function(fullName) {
 		var extension = this.getFileExtension(fullName);
 		var fileInfo = Content.getFileInfo(extension);
@@ -91,17 +85,17 @@ Editor = function() {
 
 		$('text').appendChild(divIFrame);
 		
-		toid = setTimeout("Editor.isChanged("+fileCount+")",1000);
 		this.updateTabs();
 		this.focus(fileCount);
 		fileCount++
 	}
 	
 	this.close = function(id) {
-		if(files[id].changed != this.getText().length && files[id].changed != 0) {
-			alert(files[id].changed +"!="+ this.getText().length);
+		/* TODO: alert if text changed
+		if(files[id].changed != 0 && files[id].changed != this.getText(id).length) {
+			alert(files[id].changed +"!="+ this.getText(id).length);
 			if ( confirm('Close file without saving?') == false ) return
-			}
+			}*/
 
   		$('text').removeChild($('text'+id));
 		$('tab-list').removeChild($('tab'+id));
@@ -154,8 +148,8 @@ Editor = function() {
 			}
 	}
 	
-	this.getText = function() {
-		IFrameObj = $('text'+currentFile)
+	this.getText = function(id) {
+		IFrameObj = $('text'+id)
 
 		if (IFrameObj.contentDocument) // For NS6
 		    IFrameDoc = IFrameObj.contentDocument; 
@@ -168,8 +162,17 @@ Editor = function() {
 		return IFrameDoc.body.innerHTML;
 	}
 	
+	this.compile = function() {
+		alert('compile');
+	}
+
+	this.execute = function() {
+		alert('execute');
+	}
+
+	
 	this.save = function() {
-		text = this.getText();
+		text = this.getText(currentFile);
 		text = text.replace(/<br>/gi,'\n');
 		text = text.replace(/<\/p>/gi,'\r');		
 		text = text.replace(/<p>/gi,'\n');
@@ -177,10 +180,8 @@ Editor = function() {
 		text = text.replace(/<.*?>/g,'');
 		text = text.replace(/&lt;/g,'<');
 		text = text.replace(/&gt;/g,'>');
-//		text = text.replace(/\n+/,'');
+//		text = text.replace(/\n+/,''); // maybe IE will need this
 
-		// files[currentFile].changed = text.length;
-		
 		AJAX.get(cfg['docEditor'], { 
 			parameters:'action=save&file='+files[currentFile].name+'&content='+text,
 			method:'post',

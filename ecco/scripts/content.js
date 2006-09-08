@@ -136,12 +136,15 @@ Content = function() {
 	
 	this.getMenuItems = function(type) {
 		var out = '';
+		var id;
 		var obj = messages['fileman'];
 		obj = obj.documentElement.getElementsByTagName('menu')[0];
 		obj = obj.getElementsByTagName(type)[0];		
 		obj = obj.getElementsByTagName('item');
+
 		for(var i=0; i<obj.length; i++) {
-			out += '<a href="javascript:void(0)" onclick="'+obj[i].getAttribute('action')+'" onmouseover="clearTimeout(timeoutId)">'+obj[i].firstChild.nodeValue+'</a>';
+			id = obj[i].getAttribute('id');
+			out += '<a href="javascript:void(0)" class="'+id+'" onclick="Fileman.'+id+'()" onmouseover="clearTimeout(timeoutId)">'+obj[i].firstChild.nodeValue+'</a>';
 		}
 		return out;
 		
