@@ -1,4 +1,3 @@
-<?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
 <head>
@@ -6,16 +5,15 @@
 <meta name="description" content="ECCO stands for online code editor and compiler. It's a programming IDE which supports many languages and is accessed through the browser. In other words, isn't necessary that the user has previously installed a programming environment to start to code" />
 <meta name="keywords" content="programming, code, source, compiler, ide, java, perl, c++, console, web, browser, javascript, ajax, online, edit, e-learning" />
 
-<title>ECCO</title>
+<title>ECCO - Web IDE</title>
 <style>
-/*<![CDATA[*/
 
 body { background-color:#eee;font-family: 'Lucida Grande', Verdana, Arial, Sans-Serif;text-align:center;padding:20px 0;margin:0; }
 a { font-size:14px;color:blue; }
 a:hover { text-decoration:none;color:darkblue; }
 
-#container { width:760px;border:2px solid #ccc;background-color:white;-moz-border-radius: 8px; border-radius: 8px; margin-left: auto;margin-right: auto; }
-#head { background-color:gray;margin:20px;color:#eee;padding:10px 10px;-moz-border-radius: 8px; border-radius: 8px;border:1px solid silver;font-family:Garamond; }
+#container { width:760px;border:1px solid #ccc;background-color:white;-moz-border-radius: 6px; border-radius: 6px; margin-left: auto;margin-right: auto; }
+#head { background-color:gray;margin:20px;color:#eee;padding:10px 10px;-moz-border-radius: 6px; border-radius: 6px;border:1px solid silver;font-family:Garamond; }
 h1 { padding:0;margin:0;font-size:45px }
 h2 { font-size:20px;padding:0;margin:0; }
 
@@ -24,9 +22,10 @@ p { text-align:left;margin:20px 30px; }
 
 #diagram-head { text-align:left;margin:20px 0 0 30px;font-size:13px;font-weight:bold; }
 
-ul { text-align:left; margin:0 47px;}
+ul { text-align:left; margin:0 47px;font-size:11px;padding:0}
+li { padding:0;margin-top:2px; }
 
-#devel-head { text-align:left;margin:10px 0 0 30px;font-size:13px;font-weight:bold; }
+#devel-head { text-align:left;margin:20px 0 0 30px;font-size:13px;font-weight:bold; }
 #devel-team { margin:0; }
 
 #sflogo { margin:25px 0 15px 0 }
@@ -35,7 +34,6 @@ table { margin-left:28px;margin-top:16px;margin-bottom:10px; }
 td { padding-right:41px; }
 .legenda { font-size:11px; }
 
-/*]]>*/
 </style>
 </head>
 
@@ -55,52 +53,44 @@ td { padding-right:41px; }
 		</div>
 
 
-		<div id="diagram-head">Some screenshots (03 june 06 - in PT-BR):</div>
-		<table><tr>
-				<td><a href="images/ss-i-1.gif"><img src="./images/ss-t-1.gif" border="0" /></a><br><div class="legenda">initial screen</div></td>
-				<td><a href="images/ss-i-2.gif"><img src="./images/ss-t-2.gif" border="0" /></a><div class="legenda">file menu and text editor</div></td>
-				<td><a href="images/ss-i-3.gif"><img src="./images/ss-t-3.gif" border="0" /></a><div class="legenda">directory menu and console output</div></td>
-		</tr></table>
-		
+		<div id="diagram-head">Screenshot (07 september 06 - in PT-BR):</div>
+		<a href="images/screenshot.gif"><img src="./images/screenshot-small.gif" border="0" style="margin-top:10px;" /></a>
+			
 		<div id="diagram-head">Feature list (features already working are in bold):</div>
 <br />
 
 
-<style>
-ul { font:normal 10px verdana ; }
-</style>
 <ul>
-<li><strong>Interface for edit/open/close files with tabs</strong></li>
-<li>Interface for compile and execute files</li>
+<li><strong>Interface to edit/open/close files with tabs</strong></li>
+<li><strong>Interface to compile and execute console files</strong></li>
 <li><strong>Save files online</strong></li>
 <li>Undo/redu</li>
-<li>Syntax highlighting</li>
+<li><strong>Syntax highlighting for Java, PHP and HTML</strong> (other languages can be easily implemented)</li>
 <li><strong>Visual interface for managing files</strong></li>
 <li>Download of source code and binary files to local computer</li>
 <li>File upload</li>
-<li>Send files by e-mail</li>
+<li>Send files through e-mail</li>
 <li><strong>Create, rename, move and remove files, folders and projects</strong></li>
-<li>Show compilation errors in console</li>
-<li>Compile Java programs</li>
-<li><strong>Execute console programs</strong></li>
-<li><strong>Executar some linux commands (ls, rm, rmdir, mkdir, cd, pwd, mv, cp)</strong></li>
-<li>User access control</li>
+<li><strong>Show compilation errors in console</strong></li>
+<li><strong>Command-line compilation of Java programs</strong></li>
+<li><strong>Command-line execution of console programs</strong></li>
+<li><strong>Execute some linux commands (ls, rm, rmdir, mkdir, cd, pwd, mv, cp)</strong></li>
+<li><strong>Internacionalization</strong> (translations only in EN and PT-BR for now)</li>
+<li>User access control, profile and options</li>
 </ul>
 		
 		
-
+	<!-- 
 		<div id="diagram-head">Client-Server diagram:</div>
 		<div id="diagram"><img src="./images/ecco-diagram.gif" /></div>
-		<!--ul>
-			<li><a href="./images/diagramaecco.jpg">Old first diagram</a></li>
-		</ul-->
+	-->
 
 		<div id="devel-head">Developers:</div>
 		<div id="devel-team">
 			<a href="mailto:iogui@users.sourceforge.net">Fabio M. Blanco</a> | <a href="mailto:feanndor@users.sourceforge.net">Fernando Mi&ccedil;alli</a> | <a href="mailto:domolok@users.sourceforge.net">William Okuyama</a><br />
 			<br />
 			
-			Image icons by <a href="http://valkyre.deviantart.com/">valkyre</a>
+			Icons used by ECCO interface by <a href="http://valkyre.deviantart.com/">valkyre</a>
 		</div>
 		<div id="sflogo">
 			<a href="http://www.sourceforge.net/"><img src="http://sflogo.sourceforge.net/sflogo.php?group_id=162582&amp;type=1" width="88" height="31" border="0" alt="SourceForge.net Logo" /></a>
