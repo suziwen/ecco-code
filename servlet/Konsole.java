@@ -24,7 +24,7 @@ public class Konsole extends HttpServlet {
 	
 	public Konsole(){
 		//cmdParser = new CommandParser();
-		serverHome = System.getProperty("user.dir") + "/htdocs";
+		serverHome = System.getProperty("user.dir") + System.getProperty("file.separator")+"htdocs";
 	}
 	
     public void main(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
@@ -61,25 +61,7 @@ public class Konsole extends HttpServlet {
     public void execute(String command, String currentDir, String homeDir, String lastDir) {
     	String messages = "";
     	try {
-    		/*Process application;
-    		String OS = System.getProperty("os.name").toLowerCase();
     		
-    		if (OS.indexOf("windows") > -1) {
-    			command = "cmd.exe /C "+command;
-    		}
-        	
-    		application = Runtime.getRuntime().exec(command);
-
-    		StringBuffer inBuffer = new StringBuffer();
-    		InputStream inStream = application.getInputStream();
-    		new InputStreamHandler( inBuffer, inStream );
-
-    		StringBuffer errBuffer = new StringBuffer();
-    		InputStream errStream = application.getErrorStream();
-    		new InputStreamHandler(errBuffer, errStream );
-       	 	try { application.waitFor(); }
-        	catch (InterruptedException e) { error(); }
-        	out.write("<out><![CDATA["+inBuffer+errBuffer+"]]></out>");*/
     		try {
     			cmdParser = new CommandParser(homeDir, lastDir);
     			//cmdParser.setHomeDirandDefaults(homeDir);
