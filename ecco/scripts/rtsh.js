@@ -16,13 +16,13 @@ RTSH = {
 	initialize : function() {
 		this.detect();
 		if(browser.ff) { // FF
-			str = '­'; //·
+			str = '\xad';
 			document.designMode = 'on';
 			document.addEventListener('keydown', this.keyHandler, true);
 			window.blur();
 		} 
 		else if(browser.ie) { // IE
-			str = '­';
+			str = '\xad';
 			document.onkeydown = this.keyHandler;
 		}
 		else {
