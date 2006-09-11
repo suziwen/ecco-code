@@ -18,6 +18,8 @@ Console = function() {
 		currentpath = userpath;
 		lastpath = currentpath;
 		
+		$('console').onclick = function() { $('command').focus(); }
+		
 		commandHistory = new HistoryQueue();
 		commandHistory.initialize(10);
 		
@@ -60,7 +62,7 @@ Console = function() {
 		var userPathEncoded = userpath.replace(/\//g, '%2F');
 		var lastPathEncoded = lastpath.replace(/\//g, '%2F');
 		
-		//alert(userPathEncoded);
+		//alert(currentpath);
 
 		//alert(lastpath);
 		AJAX.get(cfg['docConsole'], {
@@ -99,6 +101,9 @@ Console = function() {
 		evt = (evt) ? evt : (window.event) ? event : null;
 	  	if(evt) {
 	    	charCode = (evt.charCode) ? evt.charCode : ((evt.keyCode) ? evt.keyCode : ((evt.which) ? evt.which : 0));
+			if(charCode == 13) {
+				Console.execute();
+			}
 		    if((charCode == 38) && (!evt.ctrlKey && !evt.altKey)) { // precionada tecla up
 			 	$('command').value = commandHistory.getLast();
 			} 
