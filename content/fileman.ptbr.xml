@@ -58,6 +58,9 @@
 		<msg id="sendItem">Enviar "[sendItem]" por e-mail para [sendTo]</msg>
 		<msg id="sendOK">"[sendOK]" enviado por e-mail</msg>
 		<msg id="sendError">Erro ao enviar "[sendError]" por e-mail</msg>				
+		<msg id="uploadItem">Escolha o arquivo para upload: [uploadItem]</msg>
+		<msg id="uploadOK">"[uploadOK]" enviado</msg>
+		<msg id="uploadError">Erro ao fazer upload de "[uploadError]"</msg>				
 		<msg id="downloadItem">Requisitando "[downloadItem]" ...</msg>
 		<msg id="downloadOK">"[downloadOK]" enviado</msg>
 		<msg id="downloadError">Erro no download de "[downloadError]"</msg>				

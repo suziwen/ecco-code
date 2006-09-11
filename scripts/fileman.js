@@ -135,8 +135,9 @@ Fileman = function() {
 	this.download = function() {
 		Content.showMessage("fileman","downloadItem",'xxx');
 		var action = 'download';
-		var item = Fileman.getFileInfo(obj,'full');			
-		alert('action='+action+'&item='+item);
+		var item = Fileman.getFileInfo(obj,'full');	
+		location.href = '/servlet/FileManager?action='+action+'&item='+item
+		//alert('action='+action+'&item='+item);
 	}
 
 	this.mail = function() {
@@ -144,11 +145,11 @@ Fileman = function() {
 		param[0]['name'] = 'sendItem';
 		param[0]['value'] = this.getFileInfo(obj,'name');
 		param[1]['name'] = 'sendTo';
-		param[1]['value'] = '<br /><input id="action-input">';
+		param[1]['value'] = '<br /><input id="action-input" value="eccowide@gmail.com">';
 		Content.showConfirmation('fileman','sendItem',param);
 		$('cancel').onclick = Content.hideConfirmation;
 		$('ok').onclick = function() { 
-			var action = 'send';
+			var action = 'email';
 			var to = $('action-input').value;
 			var item = Fileman.getFileInfo(obj,'full');
 			param = 'action='+action+'&item='+item+'&to='+to;
@@ -236,7 +237,22 @@ Fileman = function() {
 	}
 	
 	this.upload = function() {
-		alert('Upload de arquivos neste diretório');
+	
+		var param = [ {},{} ];
+		alert(Fileman.getFileInfo(obj,'full'));
+		param[0]['name'] = 'uploadItem';
+		param[0]['value'] = '<form enctype="Multipart/form-data" method="Post" action="/servlet/FileManager"><input type="text" name="path" value="'+Fileman.getFileInfo(obj,'full')+'"><br /><input type="file" name="myfile" id="myfile"><br><input type="submit"><input type="reset"><br></form>';
+		Content.showConfirmation('fileman','uploadItem',param);
+		$('cancel').onclick = Content.hideConfirmation;
+/*
+		$('ok').onclick = function() { 
+			var action = 'upload';
+			var item = $('myfile').value;
+//			var item = Fileman.getFileInfo(obj,'full');
+			param = 'action='+action+'&item='+item;
+			Fileman.execute(true,action,param,item);
+		} */
+
 	}
 
 	this.remove = function() {
