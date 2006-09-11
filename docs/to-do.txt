@@ -1,4 +1,6 @@
 =[TODO]================================================
+-fazer um esquema para esconder filemanager e esconder console e editor ocupar toda tela
+-criar .config/temp para arquivos zipados. Toda vez q usuario logar, deletar tudo dentro de /temp
 -gravar historico de comandos e abrí-lo quando o usuario voltar
 -auto complete para comandos do console
 -colorir arquivos no console
