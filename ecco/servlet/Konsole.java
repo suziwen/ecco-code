@@ -40,7 +40,9 @@ public class Konsole extends HttpServlet {
     	else if(action.equals("execute")) {
     		String command = request.getParameter("command");
     		String currentDir = request.getParameter("currentpath");
+    		//currentDir = currentDir.replace("/", System.getProperty("file.separator"));
     		String lastDir = request.getParameter("lastpath");
+    		//lastDir = lastDir.replace("/", System.getProperty("file.separator"));
     		if(!currentDir.startsWith(serverHome))
     			currentDir = serverHome + currentDir;
     		String homeDir = request.getParameter("userpath");

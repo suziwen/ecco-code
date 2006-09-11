@@ -163,11 +163,14 @@ Editor = function() {
 	}
 	
 	this.compile = function() {
-		alert('compile');
+		$('command').value = 'javac '+files[currentFile].name;
+		Console.execute();
 	}
 
 	this.execute = function() {
-		alert('execute');
+		directory = files[currentFile].name.replace(/\/.*/,'');
+		$('command').value = 'cd;java -classpath '+directory+' '+ this.formatFileName(files[currentFile].name).replace(/\..*$/,'')+';cd -';
+		Console.execute();
 	}
 
 	
@@ -176,11 +179,12 @@ Editor = function() {
 		text = text.replace(/<br>/gi,'\n');
 		text = text.replace(/<\/p>/gi,'\r');		
 		text = text.replace(/<p>/gi,'\n');
+		text = text.replace(/­/g,'');		
 		text = text.replace(/&nbsp;/gi,'');		
 		text = text.replace(/<.*?>/g,'');
 		text = text.replace(/&lt;/g,'<');
 		text = text.replace(/&gt;/g,'>');
-//		text = text.replace(/\n+/,''); // maybe IE will need this
+		//text = text.replace(/\n+/,'');
 
 		AJAX.get(cfg['docEditor'], { 
 			parameters:'action=save&file='+files[currentFile].name+'&content='+text,
