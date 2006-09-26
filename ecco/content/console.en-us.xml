@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<console>
+	<menu>
+		<item id="clear">Clear</item>
+	</menu>
+	<messages>
+		<msg id="fileNotFoundError">File not found: [fileNotFoundError]</msg>
+	</messages>
+</console>

@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<fileman>
+	<menu>
+		<projects>
+			<item id="newProject">New project</item>
+			<item id="mail">Send by mail</item>
+			<item id="download">Download</item>
+		</projects>
+		<project>
+			<item id="newDirectory">New directory</item>
+			<item id="newFile">New file</item>
+			<item id="upload">File upload</item>
+			<item id="rename">Rename</item>
+			<item id="remove">Delete</item>
+			<item id="move">Move</item>
+			<item id="mail">Send by mail</item>
+			<item id="download">Download</item>
+		</project>
+		<directory>
+			<item id="newFile">New file</item>
+			<item id="newDirectory">New directory</item>
+			<item id="upload">File upload</item>
+			<item id="rename">Rename</item>
+			<item id="remove">Delete</item>
+			<item id="move">Move</item>
+			<item id="mail">Send by mail</item>
+			<item id="download">Download</item>						
+		</directory>
+		<file>
+			<item id="rename">Rename</item>
+			<item id="remove">Delete</item>
+			<item id="move">Move</item>
+			<item id="mail">Send by mail</item>
+			<item id="download">Download</item>			
+		</file>
+	</menu>
+	<messages>
+		<msg id="okButton">OK</msg>
+		<msg id="cancelButton">Cancel</msg>
+		<msg id="newProjectItem">Name of new project: [newProjectItem]</msg>
+		<msg id="newProjectOK">Project "[newProjectOK]" created successfully</msg>
+		<msg id="newProjectError">Error while creating new project "[newProjectError]"</msg>		
+		<msg id="newDirectoryItem">Name of new directory: [newDirectoryItem]</msg>
+		<msg id="newDirectoryOK">Directory "[newDirectoryOK]" created successfully</msg>
+		<msg id="newDirectoryError">Error while creating directory "[newDirectoryError]"</msg>		
+		<msg id="newFileItem">Name of new file: [newFileItem]</msg>
+		<msg id="newFileOK">File "[newFileOK]" created succesfully</msg>
+		<msg id="newFileError">Error while creating file "[newFileError]"</msg>		
+		<msg id="removeItem">Delete "[removeItem]"?</msg>
+		<msg id="removeOK">"[removeOK]" deleted successfully</msg>
+		<msg id="removeError">Error while deleting "[removeError]"</msg>
+		<msg id="moveItem">Move "[moveFrom]" to [moveTo]</msg>
+		<msg id="moveOK">"[moveOK]" moved successfully</msg>
+		<msg id="moveError">Error while moving "[moveError]"</msg>
+		<msg id="renameItem">Rename "[renameFrom]" to: [renameTo]</msg>
+		<msg id="renameOK">"[renameOK]" renamed</msg>		
+		<msg id="renameError">Error while renaming "[renameError]"</msg>				
+		<msg id="sendItem">Send "[sendItem]" to [sendTo] by mail</msg>
+		<msg id="sendOK">"[sendOK]" sent by mail successfully</msg>
+		<msg id="sendError">Error while sending "[sendError]" by mail</msg>				
+		<msg id="uploadItem">Please choose the file to upload: [uploadItem]</msg>
+		<msg id="uploadOK">"[uploadOK]" uploaded successfully</msg>
+		<msg id="uploadError">Error while uploading "[uploadError]"</msg>				
+		<msg id="downloadItem">Querying "[downloadItem]" ...</msg>
+		<msg id="downloadOK">"[downloadOK]" sent</msg>
+		<msg id="downloadError">Error while downloading "[downloadError]"</msg>				
+		<msg id="fileNotFoundError">File not found: [fileNotFoundError]</msg>
+		<msg id="fileWriteError">File [fileWriteError] not found</msg>
+	</messages>
+</fileman>

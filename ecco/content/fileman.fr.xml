@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<fileman>
+	<menu>
+		<projects>
+			<item id="newProject">Nouveau projet</item>
+			<item id="mail">Envoyer par e-mail</item>
+			<item id="download">Télécharger</item>
+		</projects>
+		<project>
+			<item id="newDirectory">Nouveau dossier</item>
+			<item id="newFile">Nouveau fichier</item>
+			<item id="upload">Envoyer un fichier</item>
+			<item id="rename">Renommer</item>
+			<item id="remove">Supprimer</item>
+			<item id="move">Déplacer</item>
+			<item id="mail">Envoyer par e-mail</item>
+			<item id="download">Télécharger</item>
+		</project>
+		<directory>
+			<item id="newFile">Nouveau fichier</item>
+			<item id="newDirectory">Nouveau dossier</item>
+			<item id="upload">Envoyer un fichier</item>
+			<item id="rename">Renommer</item>
+			<item id="remove">Supprimer</item>
+			<item id="move">Déplacer</item>
+			<item id="mail">Envoyer par e-mail</item>
+			<item id="download">Télécharger</item>						
+		</directory>
+		<file>
+			<item id="rename">Renommer</item>
+			<item id="remove">Supprimer</item>
+			<item id="move">Déplacer</item>
+			<item id="mail">Envoyer par e-mail</item>
+			<item id="download">Télécharger</item>			
+		</file>
+	</menu>
+	<messages>
+		<msg id="okButton">OK</msg>
+		<msg id="cancelButton">Annuler</msg>
+		<msg id="newProjectItem">Nom du nouveau projet: [newProjectItem]</msg>
+		<msg id="newProjectOK">Projet "[newProjectOK]" créé avec succès</msg>
+		<msg id="newProjectError">Erreur lors de la création du nouveau projet "[newProjectError]"</msg>		
+		<msg id="newDirectoryItem">Nom du nouveau dossier: [newDirectoryItem]</msg>
+		<msg id="newDirectoryOK">Dossier "[newDirectoryOK]" créé avec succès</msg>
+		<msg id="newDirectoryError">Erreur lors de la création du nouveau dossier "[newDirectoryError]"</msg>		
+		<msg id="newFileItem">Nom du nouveau fichier: [newFileItem]</msg>
+		<msg id="newFileOK">Fichier "[newFileOK]" créé avec succès</msg>
+		<msg id="newFileError">Erreur lors de la création du fichier "[newFileError]"</msg>		
+		<msg id="removeItem">Supprimer "[removeItem]"?</msg>
+		<msg id="removeOK">"[removeOK]" supprimé avec succès</msg>
+		<msg id="removeError">Erreur lors de la suppression de "[removeError]"</msg>
+		<msg id="moveItem">Déplacer "[moveFrom]" vers [moveTo]</msg>
+		<msg id="moveOK">"[moveOK]" déplacé avec succès</msg>
+		<msg id="moveError">Erreur lors du déplacement de "[moveError]"</msg>
+		<msg id="renameItem">Renommer "[renameFrom]" pour: [renameTo]</msg>
+		<msg id="renameOK">"[renameOK]" renommé avec succès</msg>		
+		<msg id="renameError">Erreur en renommant "[renameError]"</msg>				
+		<msg id="sendItem">Envoyer "[sendItem]" vers [sendTo] par e-mail</msg>
+		<msg id="sendOK">"[sendOK]" envoyé par e-mail avec succès</msg>
+		<msg id="sendError">Erreur en envoyant "[sendError]" par e-mail</msg>				
+		<msg id="uploadItem">Veuillez choisir le fichier à envoyer: [uploadItem]</msg>
+		<msg id="uploadOK">"[uploadOK]" envoyé avec succès</msg>
+		<msg id="uploadError">Erreur lors de l'envoi de "[uploadError]"</msg>				
+		<msg id="downloadItem">Téléchargement en cours de "[downloadItem]" ...</msg>
+		<msg id="downloadOK">"[downloadOK]" envoyé avec succès</msg>
+		<msg id="downloadError">Erreur lors du téléchargement de "[downloadError]"</msg>				
+		<msg id="fileNotFoundError">Fichier introuvable: [fileNotFoundError]</msg>
+		<msg id="fileWriteError">Fichier [fileWriteError] introuvable</msg>
+	</messages>
+</fileman>
