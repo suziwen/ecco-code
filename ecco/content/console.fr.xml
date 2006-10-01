@@ -1,8 +1,5 @@
 <?xml version="1.0" encoding="iso-8859-1"?>
 <console>
-	<menu>
-		<item id="clear">Effacer</item>
-	</menu>
 	<messages>
 		<msg id="fileNotFoundError">Fichier introuvable: [fileNotFoundError]</msg>
 	</messages>

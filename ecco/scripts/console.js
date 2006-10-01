@@ -14,6 +14,7 @@ Console = function() {
 		out = '';
 		utils = new Utils();
 		$('output').readOnly = true;
+		$('user').innerHTML = cfg['user'];
 		userpath = cfg['path'] + '/users/'  + cfg['user'];
 		currentpath = userpath;
 		lastpath = currentpath;

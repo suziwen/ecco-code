@@ -2,7 +2,7 @@
 
 cfg = { };
 
-cfg['language'] = 'ptbr';
+cfg['language'] = 'en-us';
 cfg['path'] = '/ecco';
 cfg['user'] = 'feanndor'; // nome de usuario por enquanto estatico
 

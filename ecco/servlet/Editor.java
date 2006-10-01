@@ -16,7 +16,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-
+ 
 public class Editor extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	PrintWriter out = null;
@@ -91,7 +91,7 @@ public class Editor extends HttpServlet {
 							"<script type=\"text/javascript\" src=\"/ecco/scripts/rtsh.js\"></script>" +
 							"<script type=\"text/javascript\">RTSH.language = '"+type+"';</script>" +
 							"</head>");
-					out.write("<body contenteditable='true' id='edt'><PRE>");
+					out.write("<body id='ffedt'><pre id='ieedt'>");
 				    Pattern lt = Pattern.compile("<");
 				    Pattern gt = Pattern.compile(">");
 				    Matcher m1;
@@ -106,7 +106,7 @@ public class Editor extends HttpServlet {
 	    	        }
 				}
 
-    	        out.write("</PRE></body></html>");
+    	        out.write("</pre></body></html>");
     	        in.close();
     	    } 
     	 catch (IOException e) {
