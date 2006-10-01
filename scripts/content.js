@@ -71,7 +71,7 @@ Content = function() {
 		this.hideConfirmation()
 		if(arguments[2]) out = out.replace('\['+id+'\]',arguments[2]);
 		divMessages.style.backgroundColor = (id.indexOf('Error')!=-1) ? '#ffa8a8' : 'gold';
-		divMessages.style.border = '1px solid silver';
+		divMessages.style.border = '1px solid gray';
 		divMessages.innerHTML = out;
 		clearTimeout(timeoutId);
 		timeoutId = setTimeout('Content.clearMessage()',10000);

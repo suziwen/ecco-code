@@ -14,6 +14,8 @@
 	<files>
 		<item extensions="java|" type="java" actions="save|execute|compile">Java</item>
 		<item extensions="html|htm|shl|xml|" type="html" actions="save">HTML/XML</item>
+		<item extensions="css|" type="css" actions="save">CSS</item>
+		<item extensions="js|" type="javascript" actions="save">JavaScript</item>		
 		<item extensions="php|" type="php" actions="save">PHP</item>		
 		<item extensions="txt|bat|sh|nfo|" type="text" actions="save">Plain text</item>
 		<item extensions="class|exe|gif|jpg|jpeg|mov|png|doc|pdf|mp3|swf|fla|mpg|mpeg|qt|avi|" type="binary" actions="">Binary</item>

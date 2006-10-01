@@ -1,17 +1,40 @@
 <?xml version="1.0" encoding="iso-8859-1"?>
 <ecco>
-	<user>
-		<logout>Enregistrer et quitter</logout>
-		<language>Veuillez choisir votre langue</language>
-	</user>
-	
 	<menu>
-		
-	
+		<item id="signin">Sign in</item>
+		<item id="signout">Sign out</item>
+		<item id="settings">Settings</item>
+		<item id="about">About</item>
+		<item id="itutor">iTutorials</item>
+		<item id="help">Help</item>
 	</menu>
+
+	<settings>
+		<item id="profile">Profile</item>
+		<item id="options">Options</item>
+	</settings>
+
+	<profile>
+		<item id="language">Language</item>
+		<item id="fullName">Full name</item>
+		<item id="email">E-mail</item>
+		<item id="class">Class</item>
+	</profile>
 	
+	<options>
+		<item id="language">Command line for [language]</item>
+	</options>
+	
+	<about>
+		<![CDATA[
+			About text here
+		]]>
+	</about>
+
 	<messages>
-	
-	
+		<msg id="saveButton">Save</msg>
+		<msg id="cancelButton">Cancel</msg>
+		<msg id="settingsSaveOK">Your settings has been saved</msg>
+		<msg id="settingsSaveError">There was an error saving your settings, please try again</msg>		
 	</messages>
 </ecco>
