@@ -1,20 +1,4 @@
 <?xml version="1.0" encoding="iso-8859-1"?>
 <user>
-	<adduser>
-		<item id="language">Language</item>
-		<item id="fullName">Full name</item>
-		<item id="userName">Username</item>
-		<item id="email">E-mail</item>
-		<item id="class">Class</item>		
-	</adduser>
-	
-	<messages>
-		<msg id="lostPassword">Lost password</msg>
-		<msg id="sentMail">An e-mail has been sent to you with your password</msg>
-		<msg id="rememberMe">Remember me on this computer</msg>
-		<msg id="userAdded">New user added</msg>
-		<msg id="userExistError">Username [userExistError] already exist, please choose a different one</msg>
-		<msg id="emailExistError">E-mail [emailExistError] already exist, please choose a different one</msg>		
-		<msg id="fieldsRequiredError">All fields are required</msg>
-	</messages>
+
 </user>
