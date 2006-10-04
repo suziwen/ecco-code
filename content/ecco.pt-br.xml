@@ -1,40 +1,60 @@
 <?xml version="1.0" encoding="iso-8859-1"?>
 <ecco>
 	<menu>
-		<item id="signin">Sign in</item>
-		<item id="signout">Sign out</item>
-		<item id="settings">Settings</item>
-		<item id="about">About</item>
-		<item id="itutor">iTutorials</item>
-		<item id="help">Help</item>
+		<i id="signOut">Sign out</i>
+		<i id="settings">Settings</i>
+		<i id="about">About</i>
+		<i id="iTutorials">Interactive Tutorials</i>
+		<i id="help">Help</i>
 	</menu>
 
 	<settings>
-		<item id="profile">Profile</item>
-		<item id="options">Options</item>
+		<i id="profile">Profile</i>
+		<i id="options">Options</i>
+		<i id="saveButton">Save</i>
+		<i id="cancelButton">Cancel</i>
+		<i id="settingsSaveOK">Your settings has been saved</i>
+		<i id="settingsSaveError">There was an error saving your settings, please try again</i>
 	</settings>
 
-	<profile>
-		<item id="language">Language</item>
-		<item id="fullName">Full name</item>
-		<item id="email">E-mail</item>
-		<item id="class">Class</item>
-	</profile>
-	
 	<options>
-		<item id="language">Command line for [language]</item>
+		<i id="language">Language</i>
+		<i id="compile">Comand line to compile</i>				
+		<i id="execute">Comand line to execute</i>	
+		<i id="view">View in new browser window</i>
 	</options>
-	
-	<about>
-		<![CDATA[
-			About text here
-		]]>
-	</about>
 
-	<messages>
-		<msg id="saveButton">Save</msg>
-		<msg id="cancelButton">Cancel</msg>
-		<msg id="settingsSaveOK">Your settings has been saved</msg>
-		<msg id="settingsSaveError">There was an error saving your settings, please try again</msg>		
-	</messages>
+	<profile>
+		<i id="displayLanguage">ECCO display language</i>
+		<i id="fullName">Full name</i>
+		<i id="userName">Username</i>
+		<i id="password">Password</i>		
+		<i id="email">E-mail</i>
+		<i id="class">Class</i>
+	</profile>
+
+	<login>
+		<i id="title">Sign in to your account</i>
+		<i id="username">Username</i>
+		<i id="password">Password</i>
+		<i id="signInButton">Sign in</i>
+		<i id="signInError">Username and password do not match</i>
+		<i id="rememberMe">Remember me on this computer</i>
+		<i id="lostPassword">Recover lost password</i>
+		<i id="newUser">Create new account</i>
+	</login>
+
+	<lostPassword>
+		<i id="email">Type your username or e-mail</i>
+		<i id="sendPassword">Send my password</i>		
+		<i id="sentMail">An e-mail has been sent to you with your new password</i>
+	</lostPassword>
+
+	<newUser>
+		<i id="createAccountButton">Create my account</i>
+		<i id="userAdded">New user added successfully</i>
+		<i id="userExistError">Username [userExistError] already exist, please choose a different one</i>
+		<i id="emailExistError">E-mail [emailExistError] already exist, please choose a different one</i>		
+		<i id="fieldsRequiredError">All fields are required</i>
+	</newUser>
 </ecco>

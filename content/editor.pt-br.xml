@@ -15,8 +15,13 @@
 		<item extensions="java|" type="java" actions="save|execute|compile">Java</item>
 		<item extensions="html|htm|shl|xml|" type="html" actions="save">HTML/XML</item>
 		<item extensions="css|" type="css" actions="save">CSS</item>
-		<item extensions="js|" type="javascript" actions="save">JavaScript</item>		
-		<item extensions="php|" type="php" actions="save">PHP</item>		
+		<item extensions="js|" type="javascript" actions="save">JavaScript</item>
+		<item extensions="pl|" type="perl" actions="save|execute">PERL</item>
+		<item extensions="py|" type="python" actions="save|execute">Python</item>
+		<item extensions="c|" type="c" actions="save|compile|execute">C</item>
+		<item extensions="cpp|" type="cpp" actions="save|compile|execute">C++</item>
+		<item extensions="rb|" type="ruby" actions="save|execute">Ruby</item>		
+		<item extensions="php|" type="php" actions="save">PHP</item>
 		<item extensions="txt|bat|sh|nfo|" type="text" actions="save">Texto</item>
 		<item extensions="class|exe|gif|jpg|jpeg|mov|png|doc|pdf|mp3|swf|fla|mpg|mpeg|qt|avi|" type="binary" actions="">Binario</item>
 	</files>
