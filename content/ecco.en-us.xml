@@ -23,38 +23,4 @@
 		<i id="execute">Comand line to execute</i>	
 		<i id="view">View in new browser window</i>
 	</options>
-
-	<profile>
-		<i id="displayLanguage">ECCO display language</i>
-		<i id="fullName">Full name</i>
-		<i id="userName">Username</i>
-		<i id="password">Password</i>		
-		<i id="email">E-mail</i>
-		<i id="class">Class</i>
-	</profile>
-
-	<login>
-		<i id="title">Sign in to your account</i>
-		<i id="username">Username</i>
-		<i id="password">Password</i>
-		<i id="signInButton">Sign in</i>
-		<i id="signInError">Username and password do not match</i>
-		<i id="rememberMe">Remember me on this computer</i>
-		<i id="lostPassword">Recover lost password</i>
-		<i id="newUser">Create new account</i>
-	</login>
-
-	<lostPassword>
-		<i id="email">Type your username or e-mail</i>
-		<i id="sendPassword">Send my password</i>		
-		<i id="sentMail">An e-mail has been sent to you with your new password</i>
-	</lostPassword>
-
-	<newUser>
-		<i id="createAccountButton">Create my account</i>
-		<i id="userAdded">New user added successfully</i>
-		<i id="userExistError">Username [userExistError] already exist, please choose a different one</i>
-		<i id="emailExistError">E-mail [emailExistError] already exist, please choose a different one</i>		
-		<i id="fieldsRequiredError">All fields are required</i>
-	</newUser>
 </ecco>
