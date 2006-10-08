@@ -49,7 +49,7 @@ Console = function() {
 		commandHistory.push(command);
 		
 		// Guardando chamada do comando pra exibir na tela
-		outputHistory.push("shell>> "+command+"\n");
+		outputHistory.push(cfg['user']+"@ecco ~$ "+command+"\n");
 		
 		// Tratando os comandos cls e clear
 		if(utils.trim(command) == 'cls' || utils.trim(command) == 'clear'){
