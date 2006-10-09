@@ -2,69 +2,69 @@
 <fileman>
 	<menu>
 		<projects>
-			<item id="newProject">Nouveau projet</item>
-			<item id="mail">Envoyer par e-mail</item>
-			<item id="download">Télécharger</item>
+			<i id="newProject">Nouveau projet</i>
+			<i id="mail">Envoyer par e-mail</i>
+			<i id="download">Télécharger</i>
 		</projects>
 		<project>
-			<item id="newDirectory">Nouveau dossier</item>
-			<item id="newFile">Nouveau fichier</item>
-			<item id="upload">Envoyer un fichier</item>
-			<item id="rename">Renommer</item>
-			<item id="remove">Supprimer</item>
-			<item id="move">Déplacer</item>
-			<item id="mail">Envoyer par e-mail</item>
-			<item id="download">Télécharger</item>
+			<i id="newDirectory">Nouveau dossier</i>
+			<i id="newFile">Nouveau fichier</i>
+			<i id="upload">Envoyer un fichier</i>
+			<i id="rename">Renommer</i>
+			<i id="remove">Supprimer</i>
+			<i id="move">Déplacer</i>
+			<i id="mail">Envoyer par e-mail</i>
+			<i id="download">Télécharger</i>
 		</project>
 		<directory>
-			<item id="newFile">Nouveau fichier</item>
-			<item id="newDirectory">Nouveau dossier</item>
-			<item id="upload">Envoyer un fichier</item>
-			<item id="rename">Renommer</item>
-			<item id="remove">Supprimer</item>
-			<item id="move">Déplacer</item>
-			<item id="mail">Envoyer par e-mail</item>
-			<item id="download">Télécharger</item>						
+			<i id="newFile">Nouveau fichier</i>
+			<i id="newDirectory">Nouveau dossier</i>
+			<i id="upload">Envoyer un fichier</i>
+			<i id="rename">Renommer</i>
+			<i id="remove">Supprimer</i>
+			<i id="move">Déplacer</i>
+			<i id="mail">Envoyer par e-mail</i>
+			<i id="download">Télécharger</i>						
 		</directory>
 		<file>
-			<item id="rename">Renommer</item>
-			<item id="remove">Supprimer</item>
-			<item id="move">Déplacer</item>
-			<item id="mail">Envoyer par e-mail</item>
-			<item id="download">Télécharger</item>			
+			<i id="rename">Renommer</i>
+			<i id="remove">Supprimer</i>
+			<i id="move">Déplacer</i>
+			<i id="mail">Envoyer par e-mail</i>
+			<i id="download">Télécharger</i>			
 		</file>
 	</menu>
 	<messages>
-		<msg id="okButton">OK</msg>
-		<msg id="cancelButton">Annuler</msg>
-		<msg id="newProjectItem">Nom du nouveau projet: [newProjectItem]</msg>
-		<msg id="newProjectOK">Projet "[newProjectOK]" créé avec succès</msg>
-		<msg id="newProjectError">Erreur lors de la création du nouveau projet "[newProjectError]"</msg>		
-		<msg id="newDirectoryItem">Nom du nouveau dossier: [newDirectoryItem]</msg>
-		<msg id="newDirectoryOK">Dossier "[newDirectoryOK]" créé avec succès</msg>
-		<msg id="newDirectoryError">Erreur lors de la création du nouveau dossier "[newDirectoryError]"</msg>		
-		<msg id="newFileItem">Nom du nouveau fichier: [newFileItem]</msg>
-		<msg id="newFileOK">Fichier "[newFileOK]" créé avec succès</msg>
-		<msg id="newFileError">Erreur lors de la création du fichier "[newFileError]"</msg>		
-		<msg id="removeItem">Supprimer "[removeItem]"?</msg>
-		<msg id="removeOK">"[removeOK]" supprimé avec succès</msg>
-		<msg id="removeError">Erreur lors de la suppression de "[removeError]"</msg>
-		<msg id="moveItem">Déplacer "[moveFrom]" vers [moveTo]</msg>
-		<msg id="moveOK">"[moveOK]" déplacé avec succès</msg>
-		<msg id="moveError">Erreur lors du déplacement de "[moveError]"</msg>
-		<msg id="renameItem">Renommer "[renameFrom]" pour: [renameTo]</msg>
-		<msg id="renameOK">"[renameOK]" renommé avec succès</msg>		
-		<msg id="renameError">Erreur en renommant "[renameError]"</msg>				
-		<msg id="sendItem">Envoyer "[sendItem]" vers [sendTo] par e-mail</msg>
-		<msg id="sendOK">"[sendOK]" envoyé par e-mail avec succès</msg>
-		<msg id="sendError">Erreur en envoyant "[sendError]" par e-mail</msg>				
-		<msg id="uploadItem">Veuillez choisir le fichier à envoyer: [uploadItem]</msg>
-		<msg id="uploadOK">"[uploadOK]" envoyé avec succès</msg>
-		<msg id="uploadError">Erreur lors de l'envoi de "[uploadError]"</msg>				
-		<msg id="downloadItem">Téléchargement en cours de "[downloadItem]" ...</msg>
-		<msg id="downloadOK">"[downloadOK]" envoyé avec succès</msg>
-		<msg id="downloadError">Erreur lors du téléchargement de "[downloadError]"</msg>				
-		<msg id="fileNotFoundError">Fichier introuvable: [fileNotFoundError]</msg>
-		<msg id="fileWriteError">Fichier [fileWriteError] introuvable</msg>
+		<i id="okButton">OK</i>
+		<i id="cancelButton">Annuler</i>
+		<i id="newProjectItem">Nom du nouveau projet: [newProjectItem]</i>
+		<i id="newProjectOK">Projet "[newProjectOK]" créé avec succès</i>
+		<i id="newProjectError">Erreur lors de la création du nouveau projet "[newProjectError]"</i>		
+		<i id="newDirectoryItem">Nom du nouveau dossier: [newDirectoryItem]</i>
+		<i id="newDirectoryOK">Dossier "[newDirectoryOK]" créé avec succès</i>
+		<i id="newDirectoryError">Erreur lors de la création du nouveau dossier "[newDirectoryError]"</i>		
+		<i id="newFileItem">Nom du nouveau fichier: [newFileItem]</i>
+		<i id="newFileOK">Fichier "[newFileOK]" créé avec succès</i>
+		<i id="newFileError">Erreur lors de la création du fichier "[newFileError]"</i>		
+		<i id="removeItem">Supprimer "[removeItem]"?</i>
+		<i id="removeOK">"[removeOK]" supprimé avec succès</i>
+		<i id="removeError">Erreur lors de la suppression de "[removeError]"</i>
+		<i id="moveItem">Déplacer "[moveFrom]" vers [moveTo]</i>
+		<i id="moveOK">"[moveOK]" déplacé avec succès</i>
+		<i id="moveError">Erreur lors du déplacement de "[moveError]"</i>
+		<i id="renameItem">Renommer "[renameFrom]" pour: [renameTo]</i>
+		<i id="renameOK">"[renameOK]" renommé avec succès</i>		
+		<i id="renameError">Erreur en renommant "[renameError]"</i>				
+		<i id="sendItem">Envoyer "[sendItem]" vers [sendTo] par e-mail</i>
+		<i id="sendOK">"[sendOK]" envoyé par e-mail avec succès</i>
+		<i id="sendError">Erreur en envoyant "[sendError]" par e-mail</i>				
+		<i id="uploadItem">Veuillez choisir le fichier à envoyer: [uploadItem]</i>
+		<i id="uploadOK">"[uploadOK]" envoyé avec succès</i>
+		<i id="uploadError">Erreur lors de l'envoi de "[uploadError]"</i>				
+		<i id="downloadItem">Téléchargement en cours de "[downloadItem]" ...</i>
+		<i id="downloadOK">"[downloadOK]" envoyé avec succès</i>
+		<i id="downloadError">Erreur lors du téléchargement de "[downloadError]"</i>				
+		<i id="fileNotFoundError">Fichier introuvable: [fileNotFoundError]</i>
+		<i id="fileWriteError">Fichier [fileWriteError] introuvable</i>
 	</messages>
 </fileman>

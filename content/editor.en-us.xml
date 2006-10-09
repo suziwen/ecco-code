@@ -1,28 +1,28 @@
 <?xml version="1.0" encoding="iso-8859-1"?>
 <editor>
 	<tools>
-		<item id="save">Save</item>
-		<item id="compile">Compile</item>
-		<item id="execute">Run</item>
-		<item id="options">Options</item>
+		<i id="save">Save</i>
+		<i id="view">View</i>
+		<i id="compile">Compile</i>
+		<i id="execute">Run</i>
 	</tools>
 	<messages>
-		<msg id="fileOpenError">Error while loading file: [fileOpenError]</msg>
-		<msg id="fileNotFoundError">File not found: [fileNotFoundError]</msg>
-		<msg id="fileSaveOK">File saved: [fileSaveOK]</msg>		
+		<i id="fileOpenError">Error while loading file: [fileOpenError]</i>
+		<i id="fileNotFoundError">File not found: [fileNotFoundError]</i>
+		<i id="fileSaveOK">File saved: [fileSaveOK]</i>		
 	</messages>
 	<files>
-		<item extensions="java|" type="java" actions="save|execute|compile">Java</item>
-		<item extensions="html|htm|shl|xml|" type="html" actions="save">HTML/XML</item>
-		<item extensions="css|" type="css" actions="save">CSS</item>
-		<item extensions="js|" type="javascript" actions="save">JavaScript</item>
-		<item extensions="pl|" type="perl" actions="save|execute">PERL</item>
-		<item extensions="py|" type="python" actions="save|execute">Python</item>
-		<item extensions="c|" type="c" actions="save|compile|execute">C</item>
-		<item extensions="cpp|" type="cpp" actions="save|compile|execute">C++</item>
-		<item extensions="rb|" type="ruby" actions="save|execute">Ruby</item>		
-		<item extensions="php|" type="php" actions="save">PHP</item>		
-		<item extensions="txt|bat|sh|nfo|" type="text" actions="save">Plain text</item>
-		<item extensions="class|exe|gif|jpg|jpeg|mov|png|doc|pdf|mp3|swf|fla|mpg|mpeg|qt|avi|" type="binary" actions="">Binary</item>
+		<i extensions="java|" type="java" actions="save|execute|compile|">Java</i>
+		<i extensions="html|htm|shl|xml|" type="html" actions="save|view|">HTML/XML</i>
+		<i extensions="css|" type="css" actions="save|">CSS</i>
+		<i extensions="js|" type="javascript" actions="save|">JavaScript</i>
+		<i extensions="pl|" type="perl" actions="save|execute|">PERL</i>
+		<i extensions="py|" type="python" actions="save|execute|">Python</i>
+		<i extensions="c|" type="c" actions="save|compile|execute|">C</i>
+		<i extensions="cpp|" type="cpp" actions="save|compile|execute|">C++</i>
+		<i extensions="rb|" type="ruby" actions="save|execute|">Ruby</i>
+		<i extensions="php|" type="php" actions="save|view|">PHP</i>
+		<i extensions="txt|bat|sh|nfo|" type="text" actions="save|">Plain text</i>
+		<i extensions="class|exe|gif|jpg|jpeg|mov|png|doc|pdf|mp3|swf|fla|mpg|mpeg|qt|avi|" type="binary" actions="">Binary</i>
 	</files>
 </editor>
