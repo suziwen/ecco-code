@@ -237,13 +237,17 @@ Fileman = function() {
 	}
 	
 	this.upload = function() {
-	
 		var param = [ {},{} ];
-		alert(Fileman.getFileInfo(obj,'full'));
 		param[0]['name'] = 'uploadItem';
-		param[0]['value'] = '<form enctype="Multipart/form-data" method="Post" action="/servlet/FileManager"><input type="text" name="path" value="'+Fileman.getFileInfo(obj,'full')+'"><br /><input type="file" name="myfile" id="myfile"><br><input type="submit"><input type="reset"><br></form>';
+		param[0]['value'] = '<form id="uploadForm" enctype="Multipart/form-data" method="Post" action="/servlet/FileManager" target="hiddenIframe">';
+		param[0]['value'] += '<input type="hidden" name="path" value="'+Fileman.getFileInfo(obj,'full')+'"><br />';
+		param[0]['value'] += '<input type="file" name="myfile" id="myfile">';
+		param[0]['value'] += '<br></form><iframe name="hiddenIframe" style="display:none"></iframe>';
 		Content.showConfirmation('fileman','uploadItem',param);
 		$('cancel').onclick = Content.hideConfirmation;
+		$('ok').onclick = function() {
+			$('uploadForm').submit();
+		}
 /*
 		$('ok').onclick = function() { 
 			var action = 'upload';

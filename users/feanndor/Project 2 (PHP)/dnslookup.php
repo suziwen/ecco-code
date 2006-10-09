@@ -6,7 +6,7 @@
 </head>
 <body>
 <h1>DNS lookup for
-<?
+<?php
 	$dns = $_REQUEST['dns'];
 	print $dns;
 	print "</h1>";

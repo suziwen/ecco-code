@@ -202,10 +202,24 @@ languages = {
 //	/([\{\}:;])/g,'<u>$1</u>', // dividers // SHY BUG HERE !!!!!!!!!
 	/([\"\'].*?[\"\'])/g,'<s>$1</s>', // strings
 	/\/\*(.*?)\*\//g,'<i>/*$1*/</i>', // comments	
-	
 ],
 	text : [
 	// do nothing, as expected
+],
+	perl : [
+	// to do
+],
+	python : [
+	// to do
+],
+	c : [
+	// to do
+],
+	ruby : [
+	// to do
+],
+	cpp : [
+	// to do
 ] }
 
 onload = function() {

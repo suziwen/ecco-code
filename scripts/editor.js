@@ -17,17 +17,13 @@ Editor = function() {
 
 	this.updateTools = function() {
 		for(i=0;i<tools.length;i++) {
-			if(tools[i] != 'options') {
-				$(tools[i]).disabled = true;
-				$(tools[i]).style.padding = '1px';
-			}
+			$(tools[i]).style.display = 'none';			
 		}
 
 		if(arguments[0]) {
 			for(i=0;i<arguments[0].length;i++) {
 				if(arguments[0][i]!='') {
-					$(arguments[0][i]).disabled = false;
-					$(tools[i]).style.padding = '0';
+					$(arguments[0][i]).style.display = 'inline';				
 				}
 			}
 		}
@@ -35,7 +31,7 @@ Editor = function() {
 
 	this.open = function(fullName) {
 
-		for(var i=0;i<files.length;i++) { // nao abre arquivos ja abertos
+		for(var i=0;i<files.length;i++) { // do not open already open files
 			if(fullName == files[i].name && files[i].open) {
 				this.focus(i);
 				return;
@@ -67,7 +63,6 @@ Editor = function() {
 	this.edit = function(fullName) {
 		var extension = this.getFileExtension(fullName);
 		var fileInfo = Content.getFileInfo(extension);
-
 		files[fileCount] =  { name:'',type:'',changed:'',actions:'',open:'',fname:'' };
 		files[fileCount].name = fullName;
 		files[fileCount].type = fileInfo[0];
@@ -102,11 +97,11 @@ Editor = function() {
 		files[id].open = false;
 		var tmp = id;
 		
-		while (!files[tmp].open && tmp < files.length-1) { // tenta encontrar a proxima aba com texto
+		while (!files[tmp].open && tmp < files.length-1) { // find next tab
 			tmp++;
 		}
 
-		if(!files[tmp].open) { // se nao achou aba com texto, olha para as abas anteriores
+		if(!files[tmp].open) { // didnt find next tab, look to previous tabs
 			tmp = id;
 			while (!files[tmp].open && tmp > 0) {
 				tmp--;
@@ -151,7 +146,7 @@ Editor = function() {
 	this.getText = function(id) {
 		IFrameObj = $('text'+id)
 
-		if (IFrameObj.contentDocument) // For NS6
+		if (IFrameObj.contentDocument) // For FF, NS6
 		    IFrameDoc = IFrameObj.contentDocument; 
 		else if (IFrameObj.contentWindow) // For IE5.5 and IE6
 		    IFrameDoc = IFrameObj.contentWindow.document;
@@ -163,23 +158,26 @@ Editor = function() {
 	}
 	
 	this.compile = function() {
-		$('command').value = 'javac '+files[currentFile].name;
+		$('command').value = 'javac "'+files[currentFile].name+'"';
 		Console.execute();
 	}
 
 	this.execute = function() {
 		directory = files[currentFile].name.replace(/\/.*/,'');
-		$('command').value = 'cd;java -classpath '+directory+' '+ this.formatFileName(files[currentFile].name).replace(/\..*$/,'')+';cd -';
+		$('command').value = 'cd;java -classpath "'+directory+'" '+ this.formatFileName(files[currentFile].name).replace(/\..*$/,'')+';cd -';
 		Console.execute();
 	}
 
+	this.view = function() {
+		open(cfg['path']+'/users/'+cfg['user']+'/'+files[currentFile].name);
+	}
 	
 	this.save = function() {
 		text = this.getText(currentFile);
 		text = text.replace(/<br>/gi,'\n');
 		text = text.replace(/<\/p>/gi,'\r');		
 		text = text.replace(/<p>/gi,'\n');
-		text = text.replace(/\xad/g,'');		
+		text = text.replace(/&shy;/g,'');		
 		text = text.replace(/&nbsp;/gi,'');		
 		text = text.replace(/<.*?>/g,'');
 		text = text.replace(/&lt;/g,'<');

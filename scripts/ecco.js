@@ -37,10 +37,7 @@ ECCO = function() {
 	this.detect = function() {
 		// detectar resolucao do monitor ... minimo 800x600
 		// detectar outras configuracoes de browser necessarias para rodar o ECCO
-	
 	}
-	
-	
 }
 
 // metodo global

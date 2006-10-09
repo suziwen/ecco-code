@@ -55,7 +55,7 @@ Content = function() {
 		var out = '';
 		var obj = messages[mod];
 		obj = obj.documentElement.getElementsByTagName('messages')[0];
-		obj = obj.getElementsByTagName('msg');
+		obj = obj.getElementsByTagName('i');
 
 		for(var i=0; i<obj.length; i++) {
 			if(obj[i].getAttribute('id')==id) {
@@ -107,8 +107,7 @@ Content = function() {
 	this.getFileInfo = function(extension) {
 		var obj = messages['editor'];
 		obj = obj.documentElement.getElementsByTagName('files')[0];
-		obj = obj.getElementsByTagName('item');
-		
+		obj = obj.getElementsByTagName('i');
 		for(var i=0; i<obj.length; i++) {
 			if(obj[i].getAttribute('extensions').indexOf(extension+'|')!=-1) {
 				return [ obj[i].getAttribute('type'), obj[i].getAttribute('actions').split('|') ];
@@ -122,7 +121,7 @@ Content = function() {
 		var obj = messages['editor'];
 		var tools = [];
 		obj = obj.documentElement.getElementsByTagName('tools')[0];
-		obj = obj.getElementsByTagName('item');
+		obj = obj.getElementsByTagName('i');
 		for(var i=0; i<obj.length; i++) {
 			id = obj[i].getAttribute('id');
 			value = obj[i].firstChild.nodeValue;
@@ -140,7 +139,7 @@ Content = function() {
 		var obj = messages['fileman'];
 		obj = obj.documentElement.getElementsByTagName('menu')[0];
 		obj = obj.getElementsByTagName(type)[0];		
-		obj = obj.getElementsByTagName('item');
+		obj = obj.getElementsByTagName('i');
 
 		for(var i=0; i<obj.length; i++) {
 			id = obj[i].getAttribute('id');

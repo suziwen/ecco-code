@@ -2,9 +2,16 @@
 
 cfg = { };
 
+// user config
 cfg['language'] = 'en-us';
-cfg['path'] = '/ecco';
 cfg['user'] = 'feanndor'; // nome de usuario por enquanto estatico
+cfg['password'] = 'yut76t79ts867f8sadyf7890aysdf7asd8ad'; // md5 crypted password
+cfg['fullname'] = 'Fernando M.';
+cfg['email'] = 'feanndor@gmail.com';
+cfg['class'] = ''; // for future use
+////
+
+cfg['path'] = '/ecco';
 
 // talvez juntar todas as mensagens dentro do ecco.xml ao inves de colocar separado
 cfg['docFilemanContent'] = cfg['path']+'/content/fileman.'+cfg['language']+'.xml';
