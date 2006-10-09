@@ -1,0 +1,89 @@
+<html>
+<head>
+<title>teste</title>
+<style>
+#tutor {border:1px solid black;background:gold;padding:10px;position:absolute;width:200px;-moz-border-radius:4px;z-index:2;}
+#tutor-shadow {filter:alpha(opacity=25);-moz-opacity:.25;opacity:.25;border:1px solid black;background:black;padding:10px;position:absolute;width:200px;-moz-border-radius:4px;z-index:1;}
+#text {}
+#filemanager {position:absolute;top:70px;left:20px;background:silver;width:160px;height:70%;background:silver;}
+#editor {position:absolute;top:70px;left:200px;width:70%;height:70%;background:silver;}
+#console {position:absolute;top:550px;left:20px;background:silver;width:88%;height:80px}
+#next {float:right;font-weight:bold;}
+#close {float:right;color:red;font-weight:bold;}
+.arrow {position:absolute;width:20px;height:20px;}
+	#arrow-top {top:-20px;background-image:url(arrow-top.gif)}
+	#arrow-right {right:-20px;background-image:url(arrow-right.gif)}
+	#arrow-bottom {bottom:-20px;background-image:url(arrow-bottom.gif)}
+	#arrow-left {left:-20px;background-image:url(arrow-left.gif)}
+	#arrow-none {display:none;background-image:none}
+#previous {float:left;}
+</style>
+</head>
+<body>
+<div id="filemanager">filemanager</div>
+<div id="editor">editor</div>
+<div id="console">console</div>
+<div id="tutor"></div>
+<div id="tutor-shadow"></div>
+
+<script>
+$ = function(id) {
+	if(!arguments[1]) return document.getElementById(id);
+	else document.getElementById(id).style[arguments[1]] = arguments[2];
+}
+iTutor = {
+	actual : -1,
+	config : {arrow:'none',modx:0,mody:0},
+	next : [
+		{text:'lalalalalall lalala asdf asdf asdf asdfa sdf asdf asdf',ref:'filemanager'},
+		{text:'lelelel elelelela sdfa sdf asdf asdf asdf asdf',ref:'console'},
+		{text:'askldf alksdj fla da sdf asdfa sdfa sdfasd fads fadsf',ref:'editor'},
+	],
+	
+	getPos : function(obj) {
+		var pos = { x: obj.offsetLeft||0, y: obj.offsetTop||0 };
+		while(obj = obj.offsetParent) {
+			pos.x += obj.offsetLeft||0;
+			pos.y += obj.offsetTop||0;
+		}
+		return pos;
+	},
+
+	setConfigs : function(ref) {
+		if(ref=='console') this.config = {arrow:'bottom',modx:100,mody:-110};
+		else if(ref=='save-button') this.config = {arrow:'bottom',modx:10,mody:10};
+		else if(ref=='filemanager') this.config = {arrow:'left',modx:150,mody:10};
+		else if(ref=='editor') this.config = {arrow:'right',modx:-190,mody:10};
+		else this.config = {arrow:'none',modx:10,mody:10};
+	},
+
+	close : function() {
+		$('tutor').style.display=$('tutor-shadow').style.display='none';
+		$('tutor-shadow').innerHTML=$('tutor-shadow').innerHTML='';
+	},
+
+	placePos : function(ref) {
+		p = this.getPos($(ref));
+		$('tutor').style.top=p.y+this.config.mody+'px';
+		$('tutor').style.left=p.x+this.config.modx+'px';
+		$('tutor-shadow').style.top=p.y+this.config.mody+4+'px';
+		$('tutor-shadow').style.left=p.x+this.config.modx+4+'px';
+	},
+
+	go : function(way) {
+		this.actual += way;
+		this.setConfigs(this.next[this.actual].ref);			
+		this.placePos(this.next[this.actual].ref);	
+		var page = '<div id="text"><div id="arrow-'+this.config.arrow+'" class="arrow"></div>Página '+(this.actual+1)+'/'+this.next.length+'<br />'+this.next[this.actual].text+'</div>';
+		if(this.actual != 0) page += '<button onclick="iTutor.go(-1)" id="previous">anterior</button>';
+		if(this.actual != this.next.length-1) page += '<button onclick="iTutor.go(1)" id="next">proximo</button>';
+		else page += '<button onclick="iTutor.close()" id="close">fechar</button>';
+		$('tutor-shadow').innerHTML = $('tutor').innerHTML = page;
+	}
+}
+
+onload = function() { iTutor.go(1) };
+</script>
+</body>
+
+</html>
