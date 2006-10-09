@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="iso-8859-1"?>
 <console>
 	<messages>
-		<msg id="fileNotFoundError">Arquivo não encontrado: [fileNotFoundError]</msg>
+		<i id="fileNotFoundError">Arquivo não encontrado: [fileNotFoundError]</i>
 	</messages>
 </console>

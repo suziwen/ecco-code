@@ -2,69 +2,69 @@
 <fileman>
 	<menu>
 		<projects>
-			<item id="newProject">Novo projeto</item>
-			<item id="mail">Enviar por e-mail</item>
-			<item id="download">Download</item>
+			<i id="newProject">Novo projeto</i>
+			<i id="mail">Enviar por e-mail</i>
+			<i id="download">Download</i>
 		</projects>
 		<project>
-			<item id="newDirectory">Novo diretório</item>
-			<item id="newFile">Novo arquivo</item>
-			<item id="upload">Upload de arquivo</item>
-			<item id="rename">Renomear</item>
-			<item id="remove">Apagar</item>
-			<item id="move">Mover</item>
-			<item id="mail">Enviar por e-mail</item>
-			<item id="download">Download</item>
+			<i id="newDirectory">Novo diretório</i>
+			<i id="newFile">Novo arquivo</i>
+			<i id="upload">Upload de arquivo</i>
+			<i id="rename">Renomear</i>
+			<i id="remove">Apagar</i>
+			<i id="move">Mover</i>
+			<i id="mail">Enviar por e-mail</i>
+			<i id="download">Download</i>
 		</project>
 		<directory>
-			<item id="newFile">Novo arquivo</item>
-			<item id="newDirectory">Novo diretório</item>
-			<item id="upload">Upload de arquivo</item>
-			<item id="rename">Renomear</item>
-			<item id="remove">Apagar</item>
-			<item id="move">Mover</item>
-			<item id="mail">Enviar por e-mail</item>
-			<item id="download">Download</item>						
+			<i id="newFile">Novo arquivo</i>
+			<i id="newDirectory">Novo diretório</i>
+			<i id="upload">Upload de arquivo</i>
+			<i id="rename">Renomear</i>
+			<i id="remove">Apagar</i>
+			<i id="move">Mover</i>
+			<i id="mail">Enviar por e-mail</i>
+			<i id="download">Download</i>						
 		</directory>
 		<file>
-			<item id="rename">Renomear</item>
-			<item id="remove">Apagar</item>
-			<item id="move">Mover</item>
-			<item id="mail">Enviar por e-mail</item>
-			<item id="download">Download</item>			
+			<i id="rename">Renomear</i>
+			<i id="remove">Apagar</i>
+			<i id="move">Mover</i>
+			<i id="mail">Enviar por e-mail</i>
+			<i id="download">Download</i>			
 		</file>
 	</menu>
 	<messages>
-		<msg id="okButton">ok</msg>
-		<msg id="cancelButton">cancelar</msg>
-		<msg id="newProjectItem">Nome do novo projeto: [newProjectItem]</msg>
-		<msg id="newProjectOK">Projeto "[newProjectOK]" criado</msg>
-		<msg id="newProjectError">Erro ao criar projeto "[newProjectError]"</msg>		
-		<msg id="newDirectoryItem">Nome do novo diretorio: [newDirectoryItem]</msg>
-		<msg id="newDirectoryOK">Diretorio "[newDirectoryOK]" criado</msg>
-		<msg id="newDirectoryError">Erro ao criar diretorio "[newDirectoryError]"</msg>		
-		<msg id="newFileItem">Nome do novo arquivo: [newFileItem]</msg>
-		<msg id="newFileOK">Arquivo "[newFileOK]" criado</msg>
-		<msg id="newFileError">Erro ao criar arquivo "[newFileError]"</msg>		
-		<msg id="removeItem">Apagar "[removeItem]"?</msg>
-		<msg id="removeOK">"[removeOK]" apagado</msg>
-		<msg id="removeError">Erro ao apagar "[removeError]"</msg>
-		<msg id="moveItem">Mover "[moveFrom]" para [moveTo]</msg>
-		<msg id="moveOK">"[moveOK]" movido</msg>
-		<msg id="moveError">Erro ao mover "[moveError]"</msg>
-		<msg id="renameItem">Renomear "[renameFrom]" para: [renameTo]</msg>
-		<msg id="renameOK">"[renameOK]" renomeado</msg>		
-		<msg id="renameError">Erro ao renomear "[renameError]"</msg>				
-		<msg id="sendItem">Enviar "[sendItem]" por e-mail para [sendTo]</msg>
-		<msg id="sendOK">"[sendOK]" enviado por e-mail</msg>
-		<msg id="sendError">Erro ao enviar "[sendError]" por e-mail</msg>				
-		<msg id="uploadItem">Escolha o arquivo para upload: [uploadItem]</msg>
-		<msg id="uploadOK">"[uploadOK]" enviado</msg>
-		<msg id="uploadError">Erro ao fazer upload de "[uploadError]"</msg>				
-		<msg id="downloadItem">Requisitando "[downloadItem]" ...</msg>
-		<msg id="downloadOK">"[downloadOK]" enviado</msg>
-		<msg id="downloadError">Erro no download de "[downloadError]"</msg>				
-		<msg id="fileNotFoundError">Arquivo não encontrado: [fileNotFoundError]</msg>
-		<msg id="fileWriteError">Arquivo [fileWriteError] não encontrado</msg>
+		<i id="okButton">ok</i>
+		<i id="cancelButton">cancelar</i>
+		<i id="newProjectItem">Nome do novo projeto: [newProjectItem]</i>
+		<i id="newProjectOK">Projeto "[newProjectOK]" criado</i>
+		<i id="newProjectError">Erro ao criar projeto "[newProjectError]"</i>		
+		<i id="newDirectoryItem">Nome do novo diretorio: [newDirectoryItem]</i>
+		<i id="newDirectoryOK">Diretorio "[newDirectoryOK]" criado</i>
+		<i id="newDirectoryError">Erro ao criar diretorio "[newDirectoryError]"</i>		
+		<i id="newFileItem">Nome do novo arquivo: [newFileItem]</i>
+		<i id="newFileOK">Arquivo "[newFileOK]" criado</i>
+		<i id="newFileError">Erro ao criar arquivo "[newFileError]"</i>		
+		<i id="removeItem">Apagar "[removeItem]"?</i>
+		<i id="removeOK">"[removeOK]" apagado</i>
+		<i id="removeError">Erro ao apagar "[removeError]"</i>
+		<i id="moveItem">Mover "[moveFrom]" para [moveTo]</i>
+		<i id="moveOK">"[moveOK]" movido</i>
+		<i id="moveError">Erro ao mover "[moveError]"</i>
+		<i id="renameItem">Renomear "[renameFrom]" para: [renameTo]</i>
+		<i id="renameOK">"[renameOK]" renomeado</i>		
+		<i id="renameError">Erro ao renomear "[renameError]"</i>				
+		<i id="sendItem">Enviar "[sendItem]" por e-mail para [sendTo]</i>
+		<i id="sendOK">"[sendOK]" enviado por e-mail</i>
+		<i id="sendError">Erro ao enviar "[sendError]" por e-mail</i>				
+		<i id="uploadItem">Escolha o arquivo para upload: [uploadItem]</i>
+		<i id="uploadOK">"[uploadOK]" enviado</i>
+		<i id="uploadError">Erro ao fazer upload de "[uploadError]"</i>				
+		<i id="downloadItem">Requisitando "[downloadItem]" ...</i>
+		<i id="downloadOK">"[downloadOK]" enviado</i>
+		<i id="downloadError">Erro no download de "[downloadError]"</i>				
+		<i id="fileNotFoundError">Arquivo não encontrado: [fileNotFoundError]</i>
+		<i id="fileWriteError">Arquivo [fileWriteError] não encontrado</i>
 	</messages>
 </fileman>

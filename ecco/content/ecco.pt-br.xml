@@ -23,4 +23,10 @@
 		<i id="execute">Comand line to execute</i>	
 		<i id="view">View in new browser window</i>
 	</options>
+
+	<messages>
+		<i id="browserError">Este browser não contém suporte para funções utilizadas pelo ECCO</i>
+		<i id="resolutionError">ECCO funciona melhor com monitores na resolução 1024x768 ou maiores</i>
+	</messages>
+	
 </ecco>
