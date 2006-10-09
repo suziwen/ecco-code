@@ -322,6 +322,9 @@ public class FileManager extends HttpServlet {
 		List items=null;
 		String path = "projeto1/folderTest1/";
 		//String path = req.getParameter("path");
+		res.setContentType("text/html");
+		PrintWriter out = res.getWriter();
+
 		if(ServletFileUpload.isMultipartContent(req)){
 		
 			//Create a factory for disk-based file items
@@ -340,21 +343,26 @@ public class FileManager extends HttpServlet {
 				
 				e.printStackTrace();
 			}
-
+			String fileName = null;
 			//Process the uploaded items
 			Iterator iter = items.iterator();
 			while (iter.hasNext()) {
 			    FileItem item = (FileItem) iter.next();
 			    if (!item.isFormField()) {
-			    	String fileName = item.getName(); 
+			    	fileName = item.getName(); 
 			    	//Path para o arquivo 
-			    	File uploadedFile = new File(usersPath+path+fileName);
+			    	File uploadedFile = new File(usersPath+path+"/"+fileName);
 			    	try {
 						item.write(uploadedFile);
-					} catch (Exception e) {
+						out.write("<script>top.Content.showMessage('fileman','uploadOK','"+fileName+"');top.Content.hideConfirmation();</script>");
+			    	} catch (Exception e) {
 						// TODO Auto-generated catch block
-						e.printStackTrace();
+						out.write("<script>top.Content.showMessage('fileman','uploadError','"+fileName+"');top.Content.hideConfirmation();</script>");
+			    		e.printStackTrace();
 					}
+			    }
+			    else if (item.isFormField()) {
+		 			path = item.getString();
 			    }
 			}
 		}
