@@ -294,6 +294,8 @@ public class FileManager extends HttpServlet {
 			
 			if(action.equals("download")){
 				// Use a ServletOutputStream because we may pass binary information
+				File tempo = null;
+				BufferedInputStream is;
 				final ServletOutputStream outi = res.getOutputStream();
 				res.setContentType("application/octet-stream");
 				
@@ -302,19 +304,25 @@ public class FileManager extends HttpServlet {
 				//ZipUtility a = new ZipUtility("c:/temp","c:/tcc/asd.zip");
 				
 				File file = new File(usersPath+path);
-				String temp = "c:/Work/"+file.getName()+".zip";
-				ZipUtility a = new ZipUtility(usersPath+path,temp);
-				File tempo = new File(temp);
-				res.setHeader("Content-Disposition", "attachment; filename=" + tempo.getName());
-				BufferedInputStream is = new BufferedInputStream(new FileInputStream(tempo));
-				byte[] buf = new byte[128 * 1024]; // 4K buffer
+				
+				String temp = usersPath+".config"+File.separator+"temp"+file.getName()+".zip";
+				if(file.isDirectory()){
+					ZipUtility a = new ZipUtility(usersPath+path,temp);
+					tempo = new File(temp);
+					is = new BufferedInputStream(new FileInputStream(tempo));
+					res.setHeader("Content-Disposition", "attachment; filename=\""+file.getName()+".zip\"");
+				}else{
+					res.setHeader("Content-Disposition", "attachment; filename=\""+file.getName()+"\"");
+					is = new BufferedInputStream(new FileInputStream(file));
+				}
+				byte[] buf = new byte[128 * 1024]; //o 4K buffer
 				int bytesRead;
 				while ((bytesRead = is.read(buf)) != -1) {
 					outi.write(buf, 0, bytesRead);
 				}
 				is.close();
 				outi.close(); 
-				
+				tempo.delete();
 			}
 		}
 	}
@@ -354,7 +362,7 @@ public class FileManager extends HttpServlet {
 			    	File uploadedFile = new File(usersPath+path+"/"+fileName);
 			    	try {
 						item.write(uploadedFile);
-						out.write("<script>top.Content.showMessage('fileman','uploadOK','"+fileName+"');top.Content.hideConfirmation();</script>");
+						out.write("<script>top.Content.showMessage('fileman','uploadOK','"+fileName+"');top.Content.hideConfirmation(); top.Fileman.update();</script>");
 			    	} catch (Exception e) {
 						// TODO Auto-generated catch block
 						out.write("<script>top.Content.showMessage('fileman','uploadError','"+fileName+"');top.Content.hideConfirmation();</script>");
