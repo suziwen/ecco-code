@@ -3,10 +3,10 @@
 	font-weight:bold;font-family:verdana;font-size:11px;
 	-moz-border-radius:4px;border-radius:4px;
 	padding:1px 0;
-	margin:-16px 180px 0 180px;
+	margin:-9px 180px 0 180px;
 }
 #confirmation { 
-	position:absolute;top:300px;left:100px;
+	position:absolute;top:30%;left:35%;
 	border:1px solid black;-moz-border-radius:4px;border-radius:4px; 
 	background-color:#ddd;
 	display:none;
