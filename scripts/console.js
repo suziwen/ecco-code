@@ -20,7 +20,8 @@ Console = function() {
 		lastpath = currentpath;
 		
 		$('console').onclick = function() { $('command').focus(); }
-		
+		$('console').ondblclick = this.resizeArea;
+			
 		commandHistory = new HistoryQueue();
 		commandHistory.initialize(10);
 		
@@ -40,6 +41,20 @@ Console = function() {
 			document.onkeydown = this.keyHandler;
 		}*/
 		
+	}
+	
+	this.resizeArea = function() {
+		if($('console').style.height=='auto') {
+			$('console').style.height = '150px'; 
+			$('console').style.top = 'auto'; 
+			$('output').style.height = '90%';
+			$('output').scrollTop = $('output').scrollHeight;
+		} 
+		else {
+			$('console').style.height = 'auto'; 
+			$('console').style.top = '60px';
+			$('output').style.height = '98%';
+		}
 	}
 	
 	this.execute = function() {
