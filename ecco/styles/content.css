@@ -7,7 +7,7 @@
 }
 #confirmation { 
 	position:absolute;top:30%;left:35%;
-	border:1px solid black;-moz-border-radius:4px;border-radius:4px; 
+	border:2px solid gray;-moz-border-radius:4px;border-radius:4px; 
 	background-color:#ddd;
 	display:none;
 	text-align:center;vertical-align:middle;
@@ -16,8 +16,8 @@
 }
 #confirmation button { width:100px;margin:2px 5px }
 #confirmation h6 { margin:10px;font-family:verdana;font-size:13px; }
-#confirmation input { margin-top:5px;width:208px }
-#confirmation select { margin-top:5px;width:208px }
+#confirmation input { margin-top:5px;width:208px;border:2px solid gold;padding:2px; }
+#confirmation select { margin-top:5px;width:208px; }
 
 #focusout { 
 	display:none;
