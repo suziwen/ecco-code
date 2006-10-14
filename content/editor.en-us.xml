@@ -2,7 +2,7 @@
 <editor>
 	<tools>
 		<i id="save">Save</i>
-		<i id="view">View</i>
+		<i id="view">Preview</i>
 		<i id="compile">Compile</i>
 		<i id="execute">Run</i>
 	</tools>
