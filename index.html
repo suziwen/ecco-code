@@ -1,35 +1,57 @@
-<HTML>
-<HEAD>
-   <TITLE>Welcome Home Page </TITLE>
-</HEAD>
-<BODY bgcolor=#aaaaee>
-<center><H1>Webserver is working!</H1></center>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 
-<BR>
+<html>
+<head>
+	<title>ECCO - Web-based IDE</title>
+	<link type="image/x-icon" rel="shortcut icon" href="/ecco/images/favicon.ico" />
+	
+	<link type="text/css" rel="stylesheet" href="styles/ecco.css" />
+	<link type="text/css" rel="stylesheet" href="styles/content.css" />
+	<link type="text/css" rel="stylesheet" href="styles/fileman.css" />
+	<link type="text/css" rel="stylesheet" href="styles/editor.css" />
+	<link type="text/css" rel="stylesheet" href="styles/console.css" />	
+	
+	<script type="text/javascript" src="scripts/config.js"></script>
+	<script type="text/javascript" src="scripts/ajax.js"></script>
+	<script type="text/javascript" src="scripts/content.js"></script>	
+	<script type="text/javascript" src="scripts/ecco.js"></script>
+	<script type="text/javascript" src="scripts/editor.js"></script>
+	<script type="text/javascript" src="scripts/fileman.js"></script>
+	<script type="text/javascript" src="scripts/console.js"></script>	
+	<script type="text/javascript">
+	
+	onload = function() {
+		new ECCO();
+		ECCO.initialize();
+	}
 
+	</script>
+</head>
 
+<body>
 
-This page has been accessed <img src="/servlet/gifCounter?username=gzhang&fgcolor=ffffff&bgcolor=aaaaee"></img> times<br>
-<ul>
-<b>Please following these steps if you want to use the server in production mode instead of debugging mode:<br>
-<li>Trun auto reload servlet off. Click <a href="http://viscomp.utdallas.edu/FACADE/websrv/docs/faq.html#SetAutoReloadOff"> here to see how</a>
-<li>On the UI, in "File" menu, unselect all options.  Those options displays information in the UI and slows the server down.
-<li>Remove the example servlets that come with the server in "servlets/" directory.
-</ul>
-<ul>
-  <li><a href="docs/quickhowto.html">Quick Howto Help</a>
-  <li><a href="/srvConfig/">Config the server</a>, <b>After login, click on <i>Edit user list</i> link and change the admin password first!!</b>
-  <li><a href="upload.html">Upload a file (need to map the upload servlet first to use)</a>
-  <li><a href="http://viscomp.utdallas.edu/FACADE/websrv/docs/faq.html">FAQ</a><br>
-  <li><a href="http://viscomp.utdallas.edu/FACADE/websrv"> updates </a>
-</ul>
-  <br>
-  <b>Note: auto servlet reload greatly reduce performence.  Please turn it off in production mode
-     use the config servlet. </b>  Click on <b>Edit Common Properties</b> , set <i>Set Auto Servlet reload </i> to OFF and click on
-     the save button.
-  <br>
-<br>
+<h1><img src="images/ecco.gif" />
+<div id="user-menu"><u>settings</u> &#149; <u>help</u> &#149; <u>about</u> &#149; <u>sign off</u></div>
+</h1>
 
-<br>
-</BODY>
-</HTML>
+<div id="focusout"></div>
+<div id="confirmation"></div>
+<div id="messages"></div>
+
+<div id="fileman"></div>
+<div id="fileman-menu"></div>
+	
+<div id="editor">
+	<div id="tabs"></div>
+	<div id="text"></div>
+	<div id="tools"></div>
+</div>
+
+<div id="console">
+	<textarea id="output"></textarea>
+	<div id="input"><span id="user"></span>@ecco ~$ <input type="text" id="command"></div>
+</div>
+
+</body>
+</html>
+
