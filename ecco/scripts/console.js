@@ -108,7 +108,11 @@ Console = function() {
 		outputHistory.push(obj.firstChild.nodeValue);
 		//var $teste = outputHistory.getAllInOne();
 		//alert($teste);
-		$('output').innerHTML = outputHistory.getAllInOne();
+//		$('output').innerHTML = outputHistory.getAllInOne();
+		newNode = document.createElement('div');
+		textNode = document.createTextNode(outputHistory.getLast()+'\n')
+		newNode.appendChild(textNode)
+		$('output').appendChild(newNode);
 		$('output').scrollTop = $('output').scrollHeight;
 		Fileman.update()
 	}
@@ -142,6 +146,7 @@ HistoryQueue = function(){
 	var last = Number;
 	var qSize = Number;
 	var currentLast = Boolean;
+	var count = Number;
 
 	//HistoryQueue = this;
 	
@@ -151,6 +156,7 @@ HistoryQueue = function(){
 		currentIndex = 0;
 		first = 0;
 		last = 0;
+		count = 0;
 		currentLast = false;
 	}
 	
@@ -159,6 +165,7 @@ HistoryQueue = function(){
 		currentIndex = 0;
 		first = 0;
 		last = 0;
+		count = 0;
 	}
 	
 	this.pop = function(){
@@ -167,6 +174,7 @@ HistoryQueue = function(){
 			result = queue[((first+1) % qSize)];
 			if(currentIndex == first) currentIndex = (currentIndex + 1) % qSize
 			first = (first + 1) % qSize;
+
 		}else
 			result = null;
 			
@@ -174,12 +182,14 @@ HistoryQueue = function(){
 	}
 	
 	this.push = function(item){
+		// added by feanndor
+		// $('output').removeChild($('output').firstChild);
+		/////
 		last = (last + 1) % qSize;
 		if(first == last) first = (first + 1) % qSize;
 		queue[last] = item;
 		currentIndex = last;
 		currentLast = true;
-		
 		//alert(queue);
 	}
 	
@@ -200,6 +210,10 @@ HistoryQueue = function(){
 	
 	this.getLast = function(){
 		var result = "";
+
+		count++;
+		if(count>qSize) $('output').removeChild($('output').firstChild);
+
 		if(last != first){
 			if(currentLast == true){
 				currentLast = false;
@@ -210,7 +224,6 @@ HistoryQueue = function(){
 			if(currentIndex < 0) currentIndex = qSize - 1;
 			result = this.getCurrent();
 		}
-		
 		return result;
 	}
 	
