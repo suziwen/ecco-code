@@ -4,6 +4,8 @@ import java.io.FileFilter;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.Arrays;
+import java.util.Comparator;
 import java.util.Iterator;
 import java.util.List;
 
@@ -57,6 +59,12 @@ public class FileManager extends HttpServlet {
 	public void listProjects(File dir, PrintWriter out) {
 		try {
 			File[] dirs = dir.listFiles();
+			Arrays.sort( dirs, new Comparator() {
+				public int compare( Object obj1, Object obj2 ) {
+					return ((File)obj1).compareTo((File)obj2);
+				}
+			});
+			
 			for (int i = 0; i < dirs.length; i++) {
 				if (dirs[i].isDirectory()) {
 					if (!dirs[i].getName().equals(".config")) {
@@ -77,10 +85,16 @@ public class FileManager extends HttpServlet {
 		}
 	}
 
-	public void listDir(File dir, PrintWriter out) {
+	public void listDir(File dir, PrintWriter out) { 
 		try {
 			if (dir.isDirectory()) {
 				File[] files = dir.listFiles();
+				Arrays.sort( files, new Comparator() {
+					public int compare( Object obj1, Object obj2 ) {
+						return ((File)obj1).compareTo((File)obj2);
+					}
+				});
+				
 				for (int i = 0; i < files.length; i++) {
 					if (files[i].isDirectory()) {
 						existDirectories = true;
@@ -105,6 +119,12 @@ public class FileManager extends HttpServlet {
 	public void listFiles(File dir, PrintWriter out) {
 		if (dir.isDirectory()) {
 			File[] files = dir.listFiles();
+			Arrays.sort( files, new Comparator() {
+				public int compare( Object obj1, Object obj2 ) {
+					return ((File)obj1).compareTo((File)obj2);
+				}
+			});
+			
 			for (int i = 0; i < files.length; i++) {
 				if (!files[i].isDirectory()) {
 					out.write("<file name=\"" + files[i].getName() + "\"/>");
