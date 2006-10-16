@@ -158,32 +158,30 @@ RTSH = {
 	}
 }
 
-// language specific regular expressions
-// TODO: distribute languages into specific [language].js files
+// Regular Expressions for syntax highlighting
 languages = { 
 	java : [
 	/([\"\'].*?[\"\'])/g,'<s>$1</s>', // strings
-	/(abstract|continue|for|new|switch|assert|default|goto|package|synchronized|boolean|do|if|private|this|break|double|implements|protected|throw|byte|else|import|public|throws|case|enum|instanceof|return|transient|catch|extends|int|short|try|char|final|interface|static|void|class|finally|long|strictfp|volatile|const|float|native|super|while)([ \.\"\'\{\(;&<])/g,'<b>$1</b>$2', // reserved words
+	/(\W|^)(abstract|continue|for|new|switch|assert|default|goto|package|synchronized|boolean|do|if|private|this|break|double|implements|protected|throw|byte|else|import|public|throws|case|enum|instanceof|return|transient|catch|extends|int|short|try|char|final|interface|static|void|class|finally|long|strictfp|volatile|const|float|native|super|while)(\b)/g,'$1<b>$2</b>$3', // reserved words
 	/([^:])\/\/(.*?)(<br>|<\/P>)/g,'$1<i>//$2</i>$3', // comments
 	/\/\*(.*?)\*\//g,'<i>/*$1*/</i>' // comments
 ],
 	javascript : [
-	/([\"\'].*?[\"\'])/g,'<s>$1</s>', // strings
+	/([\"\'])(.*?)([\"\']|<br>|<\/P>)/g,'<s>$1$2$3</s>', // strings
 	/(break|continue|do|for|new|this|void|case|default|else|function|return|typeof|while|if|label|switch|var|with|catch|boolean|int|try|false|throws|null|true|goto)([ \.\"\'\{\(\);,&<])/g,'<b>$1</b>$2', // reserved words
 	/(alert|isNaN|parent|Array|parseFloat|parseInt|blur|clearTimeout|prompt|prototype|close|confirm|length|Date|location|scroll|Math|document|element|name|self|elements|setTimeout|navigator|status| String|escape|Number|submit|eval|Object|event|onblur|focus|onerror|onfocus|top|onload|toString|onunload|unescape|open|opener|valueOf|window)([ \.\"\'\{\(\);,&<])/g,'<u>$1</u>$2', // special words
-//	/([&\|\\\/=!\[\]\(\)])([ \.\"\'\{\(;\xad&<])/g,'<em>$1</em>$2', // special chars;
-	/([\(\){}\?\[\]])/g,'<em>$1</em>', // special chars;
+	/([\(\){}])/g,'<em>$1</em>', // special chars;
 	/([^:])\/\/(.*?)(<br>|<\/P>)/g,'$1<i>//$2</i>$3', // comments
-	/\/\*(.*?)\*\//g,'<i>/*$1*/</i>' // comments
+	/(\/\*)(.*?)\*\//g,'<i>$1$2*/</i>' // comments
 ],
 	php : [
 	/(&lt;[^!\?]*?&gt;)/g,'<b>$1</b>', // all tags
 	/(&lt;style.*?&gt;)(.*?)(&lt;\/style&gt;)/g,'<em>$1</em><em>$2</em><em>$3</em>', // style tags
 	/(&lt;script.*?&gt;)(.*?)(&lt;\/script&gt;)/g,'<u>$1</u><u>$2</u><u>$3</u>', // script tags
-	/([\"\'].*?[\"\'])/g,'<s>$1</s>', // strings
+	/([\"\'])(.*?)([\"\']|<br>|<\/P>)/g,'<s>$1$2$3</s>', // strings	
 	/(&lt;\?.*?\?&gt;)/g,'<strong>$1</strong>', // bgcolor inside php tags	
-	/(&lt;\?php|\?&gt;)/g,'<cite>$1</cite>', // php tags		
-	/(\$.*?)([ \)\(\[\{\+\-\*\/&!\|%=;])/g,'<var>$1</var>$2',
+	/(&lt;\?php|&lt;\?=|&lt;\?|\?&gt;)/g,'<cite>$1</cite>', // php tags		
+	/(\$[\w\.]*)/g,'<var>$1</var>', // vars
 	/(and|or|xor|__FILE__|exception|__LINE__|array|as|break|case|class|const|continue|declare|default|die|do|echo|else|elseif|empty|enddeclare|endfor|endforeach|endif|endswitch|endwhile|eval|exit|extends|for|foreach|function|global|if|include|include_once|isset|list|new|print|require|require_once|return|static|switch|unset|use|var|while|__FUNCTION__|__CLASS__|__METHOD__|final|php_user_filter|interface|implements|extends|public|private|protected|abstract|clone|try|catch|throw|this)([ \.\"\'\{\(;&<])/g,'<ins>$1</ins>$2', // reserved words
 	/([^:])\/\/(.*?)(<br>|<\/P>)/g,'$1<i>//$2</i>$3', // php comments
 	/\/\*(.*?)\*\//g,'<i>/*$1*/</i>', // php comments
@@ -193,7 +191,8 @@ languages = {
 	/(&lt;[^!]*?&gt;)/g,'<b>$1</b>', // all tags
 	/(&lt;style.*?&gt;)(.*?)(&lt;\/style&gt;)/g,'<em>$1</em><em>$2</em><em>$3</em>', // style tags
 	/(&lt;script.*?&gt;)(.*?)(&lt;\/script&gt;)/g,'<u>$1</u><u>$2</u><u>$3</u>', // script tags
-	/=(["'].*?["'])/g,'=<s>$1</s>', // atributes
+	/=(".*?")/g,'=<s>$1</s>', // atributes double quote
+	/=('.*?')/g,'=<s>$1</s>', // atributes single quote
 	/(&lt;!--.*?--&gt.)/g,'<i>$1</i>' // comments 
 ],
 	css : [
@@ -201,7 +200,7 @@ languages = {
 	/([\{;])(.*?):/g,'$1<em>$2</em>:', // keys
 //	/([\{\}:;])/g,'<u>$1</u>', // dividers // SHY BUG HERE !!!!!!!!!
 	/([\"\'].*?[\"\'])/g,'<s>$1</s>', // strings
-	/\/\*(.*?)\*\//g,'<i>/*$1*/</i>', // comments	
+	/\/\*(.*?)\*\//g,'<i>/*$1*/</i>', // comments
 ],
 	text : [
 	// do nothing, as expected

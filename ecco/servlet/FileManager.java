@@ -205,7 +205,7 @@ public class FileManager extends HttpServlet {
 			if (action.equals("list")) {
 				PrintWriter out = res.getWriter();
 				out.write("<?xml version=\"1.0\" encoding=\"iso-8859-1\"?>");
-				out.write("<projects name=\"Projetos\">");
+				out.write("<projects name=\"Projects\">");
 				listProjects(dir, out);
 				out.write("</projects>");
 			}
