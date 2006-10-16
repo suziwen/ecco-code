@@ -65,10 +65,10 @@ Fileman = function() {
 	
 	this.action = function(obj) {
 		if(obj.className=='projects') 
-			alert('ação sobre todos os projetos');
-		else if(obj.className=='project') // ação sobre projeto especifico
+			alert('all projects action');
+		else if(obj.className=='project') // specific project action
 			obj.nextSibling.className = (obj.nextSibling.className!='closed') ? 'closed' : 'opened';
-		else if(obj.className=='directory') // ação sobre diretório especifico
+		else if(obj.className=='directory') // specific directory action
 			obj.nextSibling.className = (obj.nextSibling.className!='closed') ? 'closed' : 'opened';
 		else 
 			Editor.open(this.getFileInfo(obj,'full'));
@@ -133,9 +133,9 @@ Fileman = function() {
 	}
 	
 	this.download = function() {
-		Content.showMessage("fileman","downloadItem",'xxx');
 		var action = 'download';
-		var item = Fileman.getFileInfo(obj,'full');	
+		var item = Fileman.getFileInfo(obj,'full');
+		Content.showMessage("fileman","downloadItem",item);		
 		location.href = '/servlet/FileManager?action='+action+'&item='+item
 	}
 
