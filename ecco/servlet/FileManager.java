@@ -278,8 +278,9 @@ public class FileManager extends HttpServlet {
 				}
 			}
 
-			if (action.equals("email")) {
+			if (action.equals("send")) {
 				PrintWriter out = res.getWriter();
+				out.write("<?xml version=\"1.0\" encoding=\"iso-8859-1\"?>");
 				String path = req.getParameter("item");
 				String to = req.getParameter("to");
 				EmailAttachment attachment = new EmailAttachment();
@@ -313,20 +314,23 @@ public class FileManager extends HttpServlet {
 				email.setHostName("smtp.sao.terra.com.br");
 				try {
 					email.addTo(to, "EccoUser");
-					email.setFrom("ecco@ecco.org", "ECCO - Fire in the hole!");
+					email.setFrom("ecco@ecco.org", "ECCO - "+file.getName());
 					email.setSubject("Project File(s)");
-					email
-							.setMsg("Here, the files that you requested, thank you.");
+					email.setMsg("Here, the files that you requested, thank you.");
 
 					// add the attachment
 					email.attach(attachment);
 
 					// send the email
 					email.send();
+					
+					out.write("<info>ok</info>");
+					
 				} catch (EmailException e) {
 					// TODO Auto-generated catch block
-					e.printStackTrace();
-					out.write(e.toString());
+					//e.printStackTrace();
+					//out.write(e.toString());
+					out.write("<info>error</info>");
 				}
 			}
 
@@ -409,14 +413,12 @@ public class FileManager extends HttpServlet {
 							+ fileName);
 					try {
 						item.write(uploadedFile);
-						out
-								.write("<script>top.Content.showMessage('fileman','uploadOK','"
+						out.write("<script>top.Content.showMessage('fileman','uploadOK','"
 										+ fileName
 										+ "');top.Content.hideConfirmation(); top.Fileman.update();</script>");
 					} catch (Exception e) {
 						// TODO Auto-generated catch block
-						out
-								.write("<script>top.Content.showMessage('fileman','uploadError','"
+						out.write("<script>top.Content.showMessage('fileman','uploadError','"
 										+ fileName
 										+ "');top.Content.hideConfirmation();</script>");
 						e.printStackTrace();

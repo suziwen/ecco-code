@@ -137,7 +137,6 @@ Fileman = function() {
 		var action = 'download';
 		var item = Fileman.getFileInfo(obj,'full');	
 		location.href = '/servlet/FileManager?action='+action+'&item='+item
-		//alert('action='+action+'&item='+item);
 	}
 
 	this.mail = function() {
@@ -149,7 +148,7 @@ Fileman = function() {
 		Content.showConfirmation('fileman','sendItem',param);
 		$('cancel').onclick = Content.hideConfirmation;
 		$('ok').onclick = function() { 
-			var action = 'email';
+			var action = 'send';
 			var to = $('action-input').value;
 			var item = Fileman.getFileInfo(obj,'full');
 			param = 'action='+action+'&item='+item+'&to='+to;
