@@ -125,7 +125,7 @@ Console = function() {
 				Console.execute();
 			}
 		    if((charCode == 38) && (!evt.ctrlKey && !evt.altKey)) { // precionada tecla up
-			 	$('command').value = commandHistory.getLast();
+			 	$('command').value = commandHistory.getLast(1);
 			} 
 			
 			if((charCode == 40) && (!evt.ctrlKey && !evt.altKey)) { // precionada tecla down
@@ -211,8 +211,10 @@ HistoryQueue = function(){
 	this.getLast = function(){
 		var result = "";
 
-		count++;
-		if(count>qSize) $('output').removeChild($('output').firstChild);
+		if(!arguments[0]) {
+			count++;
+			if(count>qSize) $('output').removeChild($('output').firstChild);
+		}
 
 		if(last != first){
 			if(currentLast == true){
