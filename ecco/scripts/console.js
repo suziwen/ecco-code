@@ -110,8 +110,10 @@ Console = function() {
 		//alert($teste);
 //		$('output').innerHTML = outputHistory.getAllInOne();
 		newNode = document.createElement('div');
+		textNodeCmd = document.createTextNode(outputHistory.getLast(1)+'\n')
 		textNode = document.createTextNode(outputHistory.getLast()+'\n')
 		newNode.appendChild(textNode)
+		newNode.appendChild(textNodeCmd)
 		$('output').appendChild(newNode);
 		$('output').scrollTop = $('output').scrollHeight;
 		Fileman.update()
