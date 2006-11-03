@@ -1,0 +1,25 @@
+#itutor {border:1px solid black;background:gold;padding:10px;position:absolute;width:286px;-moz-border-radius:4px;z-index:2;display:none;}
+#itutor-shadow {filter:alpha(opacity=25);-moz-opacity:.25;opacity:.25;border:1px solid black;background:black;padding:10px;position:absolute;width:286px;-moz-border-radius:4px;z-index:1;display:none;}
+#itutor #video {height:256px;border:1px solid silver;padding:2px;background:#eee;margin:3px 0}
+#itutor h2 { font-family:arial;font-size:14px;font-weight:bold;padding:0;margin:0 0 10px 0; }
+#itutor #text { font-family:arial;font-size:12px;margin-bottom:10px; }
+#itutor #text img {vertical-align:bottom;}
+#itutor #page {position:absolute;bottom:13px;left:40%;font-size:10px;color:#9d9d00;}
+#itutor textarea {height:160px;width:99%;margin:5px 0;overflow:auto;background-color:white;border:1px solid silver;padding:3px;color:gray;}
+#itutor code { color:#9d009d;font-weight:bold; }
+#itutor #minimize {position:absolute;right:10px;top:8px;}
+#itutor #minimize:hover {filter:alpha(opacity=75);-moz-opacity:.75;opacity:.75;} 
+#itutor #next {float:right;font-weight:bold;}
+#itutor #close {float:right;color:red;font-weight:bold;}
+#itutor .arrow {position:absolute;width:20px;height:20px;}
+#itutor #arrow-top {top:-20px;background-image:url(/ecco/images/arrow-top.gif)}
+#itutor #arrow-right {right:-20px;background-image:url(/ecco/images/arrow-right.gif)}
+#itutor #arrow-bottom {bottom:-20px;background-image:url(/ecco/images/arrow-bottom.gif)}
+#itutor #arrow-left {left:-20px;background-image:url(/ecco/images/arrow-left.gif)}
+#itutor #arrow-none {display:none;background-image:none}
+#itutor #previous {float:left;}
+
+#itutor-controls {width:226px;position:absolute;top:20px;right:250px;}
+#itutor-controls select {width:200px;border:1px solid silver;background:#e9e9e9;}
+#itutor-controls #itstatus {display:none;padding:1px;position:absolute;top:0;right:2px;height:17px;}
+#itutor-controls #maximize:hover {filter:alpha(opacity=75);-moz-opacity:.75;opacity:.75;} 

@@ -10,6 +10,7 @@
 	<link type="text/css" rel="stylesheet" href="styles/fileman.css" />
 	<link type="text/css" rel="stylesheet" href="styles/editor.css" />
 	<link type="text/css" rel="stylesheet" href="styles/console.css" />	
+	<link type="text/css" rel="stylesheet" href="styles/itutor.css" />		
 	
 	<script type="text/javascript" src="scripts/config.js"></script>
 	<script type="text/javascript" src="scripts/ajax.js"></script>
@@ -18,6 +19,7 @@
 	<script type="text/javascript" src="scripts/editor.js"></script>
 	<script type="text/javascript" src="scripts/fileman.js"></script>
 	<script type="text/javascript" src="scripts/console.js"></script>	
+	<script type="text/javascript" src="scripts/itutor.js"></script>	
 	<script type="text/javascript">
 	
 	onload = function() {
@@ -31,7 +33,16 @@
 <body>
 
 <h1><img src="images/ecco.gif" />
-<div id="user-menu"><u>settings</u> &#149; <u>help</u> &#149; <u>about</u> &#149; <u>sign out</u></div>
+	<div id="itutor-controls">
+		<select onchange="iTutor.initialize()">
+			<option>Tutoriais Interativos</option>
+			<option>Java iniciante</option>
+			<option>Java intermediário</option>
+			<option>Java avançado</option>
+		</select>
+		<span id="itstatus"></span>
+	</div>
+	<div id="user-menu"><u>settings</u> &#149; <u>help</u> &#149; <u>about</u> &#149; <u>sign out</u></div>
 </h1>
 
 <div id="fileman"></div>
@@ -47,10 +58,13 @@
 	<div id="input"><span id="user"></span>@ecco ~$ <input type="text" id="command" autocomplete="off"></div>
 </div>
 
+<div id="itutor"></div>
+<div id="itutor-shadow"></div>
 <div id="focusout"></div>
 <div id="confirmation"></div>
 <div id="messages"></div>
 <div id="fileman-menu"></div>
+
 
 </body>
 </html>
