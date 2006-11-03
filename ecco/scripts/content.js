@@ -95,11 +95,13 @@ Content = function() {
 		divConfirmation.style.top = document.body.clientHeight/2 - 200;
 		$('focusout').style.display='block';
 		$('confirmation','display','block');
+		$('itutor','visibility','hidden');
 		if($('action-input')) $('action-input').focus();
 		
 	}
 
 	this.hideConfirmation = function() {	
+		$('itutor','visibility','visible');
 		$('focusout','display','none');
 		$('confirmation','display','none');			
 	}
