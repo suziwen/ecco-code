@@ -100,8 +100,23 @@ iTutor = {
 		$('itutor').style.display=$('itutor-shadow').style.display='block';
 		this.status('play');
 	},
+
 	
-	video : function(url) {
+	video : function(url) { // for flash (swf+flv)
+		url = url.replace('.mpg','');
+		v = '<div id="video"><object classid="clsid:D27CDB6E-AE6D-11cf-96B8-444553540000" codebase="http://download.macromedia.com/pub/shockwave/cabs/flash/swflash.cab#version=7,0,0,0" width="280" height="210" id="FLVPlayer">';
+	  v += '<param name="movie" value="/ecco/content/itutor/player.swf" />';
+	  v += '<param name="salign" value="lt" />';
+	  v += '<param name="quality" value="high" />';
+	  v += '<param name="scale" value="noscale" />';
+	  v += '<param name="FlashVars" value="&MM_ComponentVersion=1&skinName=/ecco/content/itutor/skin&streamName='+url+'&autoPlay=true&autoRewind=false" />';
+	  v += '<embed src="/ecco/content/itutor/player.swf" flashvars="&MM_ComponentVersion=1&skinName=/ecco/content/itutor/skin&streamName='+url+'&autoPlay=true&autoRewind=false" quality="high" scale="noscale" width="280" height="210" name="FLVPlayer" salign="LT" type="application/x-shockwave-flash" pluginspage="http://www.macromedia.com/go/getflashplayer" />';
+		v += '</object></div>';
+		return v;
+	},
+	
+	/*
+	video : function(url) { // for other videos (mpeg, avi, etc)
 		v = '<div id="video"><OBJECT ID="MediaPlayer" WIDTH="280" HEIGHT="256" classid="CLSID:6BF52A52-394A-11d3-B153-00C04F79FAA6" ';
 		v += 'STANDBY="Loading Windows Media Player components..." TYPE="application/x-oleobject">';
 		v += '<PARAM NAME="FileName" VALUE="'+url+'"><PARAM name="autostart" VALUE="true">';
@@ -113,7 +128,7 @@ iTutor = {
 		v += 'ShowDisplay="0" autostart="1"></EMBED>';
 		v += '</OBJECT></div>';
 		return v;
-	},
+	},*/
 
 
 	go : function(way) {

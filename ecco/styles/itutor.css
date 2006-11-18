@@ -1,6 +1,6 @@
 #itutor {border:1px solid black;background:gold;padding:10px;position:absolute;width:286px;-moz-border-radius:4px;z-index:2;display:none;}
 #itutor-shadow {filter:alpha(opacity=25);-moz-opacity:.25;opacity:.25;border:1px solid black;background:black;padding:10px;position:absolute;width:286px;-moz-border-radius:4px;z-index:1;display:none;}
-#itutor #video {height:256px;border:1px solid silver;padding:2px;background:#eee;margin:3px 0}
+#itutor #video {height:210px;border:1px solid silver;padding:2px;background:#eee;margin:3px 0;background:#eee;}
 #itutor h2 { font-family:arial;font-size:14px;font-weight:bold;padding:0;margin:0 0 10px 0; }
 #itutor #text { font-family:arial;font-size:12px;margin-bottom:10px; }
 #itutor #text img {vertical-align:bottom;}
