@@ -70,7 +70,7 @@ Content = function() {
 		var out = this.getMessage(mod, id);
 		this.hideConfirmation()
 		if(arguments[2]) out = out.replace('\['+id+'\]',arguments[2]);
-		divMessages.style.backgroundColor = (id.indexOf('Error')!=-1) ? '#ffa8a8' : 'gold';
+		divMessages.style.backgroundColor = (id.indexOf('Error')!=-1) ? '#ffa8a8' : '#d9eab9';
 		divMessages.style.border = '1px solid gray';
 		divMessages.innerHTML = out;
 		clearTimeout(timeoutId);
