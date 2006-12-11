@@ -69,7 +69,7 @@ Content = function() {
 	this.showMessage = function(mod, id) {
 		var out = this.getMessage(mod, id);
 		this.hideConfirmation()
-		if(arguments[2]) out = out.replace('\['+id+'\]',arguments[2]);
+		if(arguments[2]) out = out.replace('\['+id+'\]','<strong>'+arguments[2]+'</strong>');
 		divMessages.style.backgroundColor = (id.indexOf('Error')!=-1) ? '#ffa8a8' : '#d9eab9';
 		divMessages.style.border = '1px solid gray';
 		divMessages.innerHTML = out;
