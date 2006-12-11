@@ -22,8 +22,6 @@ import org.apache.commons.mail.EmailAttachment;
 import org.apache.commons.mail.EmailException;
 import org.apache.commons.mail.MultiPartEmail;
 
-//TODO Arrumar os out.write() na última versão.
-
 /**
  * File manager class
  * 
@@ -34,8 +32,8 @@ public class FileManager extends HttpServlet {
 
 	private static final long serialVersionUID = 1L;
 
-	private static String login = "feanndor"; // aqui eh uma variavel de
-												// sessao, por enquanto estatica
+	private static String login = "feanndor"; // session var
+
 
 	private static String usersPath = System.getProperty("user.dir")
 			+ File.separator + "htdocs" + File.separator + "ecco"
@@ -314,9 +312,9 @@ public class FileManager extends HttpServlet {
 				email.setHostName("smtp.sao.terra.com.br");
 				try {
 					email.addTo(to, "EccoUser");
-					email.setFrom("ecco@ecco.org", "ECCO - "+file.getName());
-					email.setSubject("Project File(s)");
-					email.setMsg("Here, the files that you requested, thank you.");
+					email.setFrom("ecco@ecco.org", "ECCO IDE Online");
+					email.setSubject("ECCO - Arquivos enviados por e-mail: "+file.getName());
+					email.setMsg("Anexo estão os arquivos ("+file.getName()+") enviados pelo usuário "+login);
 
 					// add the attachment
 					email.attach(attachment);
@@ -391,7 +389,7 @@ public class FileManager extends HttpServlet {
 			// Create a new file upload handler
 			ServletFileUpload upload = new ServletFileUpload(factory);
 
-			// Seta tamanho maximo
+			// Set max size
 			// upload.setSizeMax();
 
 			// Parse the request
@@ -408,7 +406,7 @@ public class FileManager extends HttpServlet {
 				FileItem item = (FileItem) iter.next();
 				if (!item.isFormField()) {
 					fileName = item.getName();
-					// Path para o arquivo
+					// Path for file
 					File uploadedFile = new File(usersPath + path + "/"
 							+ fileName);
 					try {
