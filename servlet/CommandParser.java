@@ -42,9 +42,11 @@ public class CommandParser {
 		StringBuffer inBuffer = new StringBuffer();
 		StringBuffer errBuffer = new StringBuffer();
 		String result = ""; 
+		InputStream in = null;
+		InputStream er = null;
 		String OS = System.getProperty("os.name").toLowerCase();
 		
-		for(int i = 0; i < command.length; i++){
+		for(int i = 0; i < command.length; i++){ 
 			
 			String strCd = command[i].trim().toLowerCase();
 			if(strCd.length() > 1 && strCd.substring(0,2).equals("cd")){
@@ -54,7 +56,11 @@ public class CommandParser {
 			}
 			
 			if (OS.indexOf("windows") > -1) {
-				command[i] = "cmd.exe /C "+command[i];
+				//command[i] = "cmd.exe /C "+command[i];
+				application = Runtime.getRuntime().exec(new String[] {"cmd.exe","/C",command[i]}, null, new File(currentDir));
+			}
+			else {
+				application = Runtime.getRuntime().exec(new String[] {"sh","-c",command[i]}, null, new File(currentDir));
 			}
 	    	/*String[] cmd = { "cmd.exe", "/C", command };
 	    		application = Runtime.getRuntime().exec(cmd);
@@ -62,18 +68,34 @@ public class CommandParser {
 			else {
 				application = Runtime.getRuntime().exec(command);
 			}*/
-			application = Runtime.getRuntime().exec(command[i], null, new File(currentDir));
-	
+
+			//application = Runtime.getRuntime().exec(new String[] {"sh","-c","ls -la \"/User Guides And Information/\""});
+
+			//application = Runtime.getRuntime().exec(command[i], null, new File(currentDir));
+
 			if(application == null) continue;
 			
+		    in = application.getInputStream();
+		    er = application.getErrorStream();
+		    int ch;
+		    StringBuffer sb = new StringBuffer(1024);
+		    while ((ch = in.read())!=-1){
+		    	sb.append((char) ch);
+		    }
+		    while ((ch = er.read())!=-1){
+		    	sb.append((char) ch);
+		    }
+		    
+			/*
 			InputStream inStream = application.getInputStream();
 			new InputStreamHandler( inBuffer, inStream );
 	
 			InputStream errStream = application.getErrorStream();
 			new InputStreamHandler(errBuffer, errStream );
 	   	 	application.waitFor();
-	   	 	
-	   	 	result += (inBuffer.toString()+errBuffer.toString());
+	   	 	*/
+	   	 	//result += (inBuffer.toString()+errBuffer.toString());
+		    result += sb;
 		}
     	
    	 	return result;
