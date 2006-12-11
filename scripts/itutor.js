@@ -69,7 +69,7 @@ iTutor = {
 		else if(ref=='compile') this.config = {arrow:'bottom',left:0,top:null,right:null,bottom:20};
 		else if(ref=='execute') this.config = {arrow:'bottom',left:0,top:null,right:null,bottom:20};
 		else if(ref=='fileman') this.config = {arrow:'left',left:210,top:10,right:null,bottom:null};
-		else if(ref=='editor') this.config = {arrow:'top',left:50,top:null,right:20,bottom:-820};
+		else if(ref=='editor') this.config = {arrow:'top',left:290,top:null,right:40,bottom:-160};
 		else this.config = {arrow:'none',left:window.innerWidth/3,top:window.innerHeight/3-100,right:null,bottom:null};
 	},
 
@@ -81,7 +81,7 @@ iTutor = {
 	},
 	
 	placePos : function(ref) {
-		if($(ref))	p = this.getPos($(ref));
+		if($(ref))	p = (ref=='editor') ? this.getPos($('console')) : this.getPos($(ref));
 		else p = this.getPos(document.getElementsByTagName('body')[0]);
 		
 		$('itutor').style.width = $('itutor-shadow').style.width = (ref=='editor') ? 'auto' : '286px';
@@ -106,12 +106,12 @@ iTutor = {
 	video : function(url) { // for flash (swf+flv)
 		url = url.replace('.mpg','');
 		v = '<div id="video"><object classid="clsid:D27CDB6E-AE6D-11cf-96B8-444553540000" codebase="http://download.macromedia.com/pub/shockwave/cabs/flash/swflash.cab#version=7,0,0,0" width="280" height="210" id="FLVPlayer">';
-	  v += '<param name="movie" value="/ecco/content/itutor/player.swf" />';
-	  v += '<param name="salign" value="lt" />';
-	  v += '<param name="quality" value="high" />';
-	  v += '<param name="scale" value="noscale" />';
-	  v += '<param name="FlashVars" value="&MM_ComponentVersion=1&skinName=/ecco/content/itutor/skin&streamName='+url+'&autoPlay=true&autoRewind=false" />';
-	  v += '<embed src="/ecco/content/itutor/player.swf" flashvars="&MM_ComponentVersion=1&skinName=/ecco/content/itutor/skin&streamName='+url+'&autoPlay=true&autoRewind=false" quality="high" scale="noscale" width="280" height="210" name="FLVPlayer" salign="LT" type="application/x-shockwave-flash" pluginspage="http://www.macromedia.com/go/getflashplayer" />';
+	  	v += '<param name="movie" value="/ecco/content/itutor/player.swf" />';
+		v += '<param name="salign" value="lt" />';
+	  	v += '<param name="quality" value="high" />';
+	  	v += '<param name="scale" value="noscale" />';
+	  	v += '<param name="FlashVars" value="&MM_ComponentVersion=1&skinName=/ecco/content/itutor/skin&streamName='+url+'&autoPlay=true&autoRewind=false" />';
+	  	v += '<embed src="/ecco/content/itutor/player.swf" flashvars="&MM_ComponentVersion=1&skinName=/ecco/content/itutor/skin&streamName='+url+'&autoPlay=true&autoRewind=false" quality="high" scale="noscale" width="280" height="210" name="FLVPlayer" salign="LT" type="application/x-shockwave-flash" pluginspage="http://www.macromedia.com/go/getflashplayer" />';
 		v += '</object></div>';
 		return v;
 	},
