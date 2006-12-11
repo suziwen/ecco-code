@@ -158,17 +158,37 @@ Editor = function() {
 	}
 	
 	this.compile = function() {
-		$('command').value = 'javac "'+files[currentFile].name+'"';
+		if(files[currentFile].name.indexOf('.cpp')!=-1) { // remove this soon
+			$('command').value = 'cpp "'+ files[currentFile].name+'" -o "'+ files[currentFile].name.replace(/\..*$/,'')+'"';
+		}
+		else if(files[currentFile].name.indexOf('.java')!=-1) {
+			$('command').value = 'javac "'+files[currentFile].name+'"';
+		}
+		else {
+			$('command').value = "";
+		}
 		Console.execute();
 	}
 
 	this.execute = function() {
 		directory = files[currentFile].name.replace(/\/.*/,'');
-		if(files[currentFile].name.indexOf('pl')!=-1) { // remove this soon
+		if(files[currentFile].name.indexOf('.pl')!=-1) { // remove this soon
 			$('command').value = 'cd;perl "'+directory+'/'+ this.formatFileName(files[currentFile].name)+'";cd -';
 		}
-		else {
+		else if(files[currentFile].name.indexOf('.py')!=-1) { // remove this soon
+			$('command').value = 'cd;python "'+directory+'/'+ this.formatFileName(files[currentFile].name)+'";cd -';
+		}
+		else if(files[currentFile].name.indexOf('.rb')!=-1) { // remove this soon
+			$('command').value = 'cd;ruby "'+directory+'/'+ this.formatFileName(files[currentFile].name)+'";cd -';
+		}
+		else if(files[currentFile].name.indexOf('.cpp')!=-1) { // remove this soon
+			$('command').value = 'cd;"'+directory+'/'+ this.formatFileName(files[currentFile].name).replace(/\..*$/,'')+'";cd -';
+		}
+		else if(files[currentFile].name.indexOf('.java')!=-1){
 			$('command').value = 'cd;java -classpath "'+directory+'" '+ this.formatFileName(files[currentFile].name).replace(/\..*$/,'')+';cd -';
+		}
+		else {
+			$('command').value = '';
 		}
 		Console.execute();
 	}
