@@ -4,7 +4,6 @@
  */
 //import java.io.File;
 import java.io.IOException;
-import java.io.InputStream;
 import java.io.OutputStreamWriter;
 import java.io.PrintWriter;
 
@@ -19,7 +18,7 @@ public class Konsole extends HttpServlet {
 	HttpServletResponse response = null;
 	CommandParser cmdParser;
 	String serverHome;
-//	private static String login = "feanndor"; // aqui eh uma variavel de sessao, por enquanto estatica
+//	private static String login = "feanndor"; // session var here
 //  private static String usersPath = System.getProperty("user.dir")+File.separator+"htdocs"+File.separator+"ecco"+File.separator+"users"+File.separator;
 	
 	public Konsole(){

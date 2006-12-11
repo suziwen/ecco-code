@@ -35,12 +35,10 @@ public class CommandParser {
 	}
 
 	public String exec(String[] command, String currentDir) throws Exception{
-		// TODO: Criar exception personalizada para resolver este problema usando throw
+		// TODO: use specific try/catch here
 		if(command == null) return "";
 		
 		Process application = null;
-		StringBuffer inBuffer = new StringBuffer();
-		StringBuffer errBuffer = new StringBuffer();
 		String result = ""; 
 		InputStream in = null;
 		InputStream er = null;
@@ -56,23 +54,11 @@ public class CommandParser {
 			}
 			
 			if (OS.indexOf("windows") > -1) {
-				//command[i] = "cmd.exe /C "+command[i];
 				application = Runtime.getRuntime().exec(new String[] {"cmd.exe","/C",command[i]}, null, new File(currentDir));
 			}
 			else {
 				application = Runtime.getRuntime().exec(new String[] {"sh","-c",command[i]}, null, new File(currentDir));
 			}
-	    	/*String[] cmd = { "cmd.exe", "/C", command };
-	    		application = Runtime.getRuntime().exec(cmd);
-			} 
-			else {
-				application = Runtime.getRuntime().exec(command);
-			}*/
-
-			//application = Runtime.getRuntime().exec(new String[] {"sh","-c","ls -la \"/User Guides And Information/\""});
-
-			//application = Runtime.getRuntime().exec(command[i], null, new File(currentDir));
-
 			if(application == null) continue;
 			
 		    in = application.getInputStream();
@@ -86,15 +72,6 @@ public class CommandParser {
 		    	sb.append((char) ch);
 		    }
 		    
-			/*
-			InputStream inStream = application.getInputStream();
-			new InputStreamHandler( inBuffer, inStream );
-	
-			InputStream errStream = application.getErrorStream();
-			new InputStreamHandler(errBuffer, errStream );
-	   	 	application.waitFor();
-	   	 	*/
-	   	 	//result += (inBuffer.toString()+errBuffer.toString());
 		    result += sb;
 		}
     	
@@ -102,7 +79,6 @@ public class CommandParser {
 	}
 	
 	public String exec(String command, String currentDir) throws Exception{
-		// TODO: Criar exception personalizada para resolver este problema usando throw
 		if(!parse(command))
 			return "Invalid command\n";
 		
@@ -120,13 +96,7 @@ public class CommandParser {
 		File dir = null;
 		String parentDir = "";
 		String msg = "";
-		
-		/* if(strCd != null && !strCd.equals("..")){
-			File dir = new File(currentDir +"/"+ strCd);
-			
-			strCd = dir.exists() && dir.isDirectory()? currentDir +"/"+ strCd: strCd;
-		} */
-		
+
 		if(strCd == null || strCd.equals("~")){
 			lastDir = currentDir;
 			tmpCurDir = homeDir;
@@ -162,7 +132,7 @@ public class CommandParser {
 			tmpCurDir = strCd;
 		}
 		
-		// TODO: Verificar se o cara esta no seu dir e caso tenha saido, devolvê-lo a ele
+		// TODO: verify if user is in own directory, if not, return user to its directory
 		if(!tmpCurDir.startsWith(this.homeDir)){
 			tmpCurDir = currentDir;
 		}
@@ -170,7 +140,7 @@ public class CommandParser {
 		
 		this.currentDir = tmpCurDir;
 			
-		return msg; // TODO: verificar necessidade de retornar algo aqui
+		return msg;
 	}
 	
 	public void setHomeDir(String homeDir){

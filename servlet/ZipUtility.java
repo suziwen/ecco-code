@@ -25,7 +25,7 @@ public class ZipUtility {
 		try {
 			File cpFile = new File(strSource);
 			if (!cpFile.isFile() && !cpFile.isDirectory()) {
-				System.out.println("\nSource file/directory Not Found!");
+				System.out.println("\nSource file/directory not found");
 				return;
 			}
 			FileOutputStream fos = new FileOutputStream(strTarget);
@@ -38,7 +38,7 @@ public class ZipUtility {
 					+ " from source " + strSource);
 			System.out.println("\n Total of  " + numOfFiles
 					+ " files are Zipped ");
-			System.out.println("\n Total of  " + size + " bytes are Zipped  ");
+			System.out.println("\n Total of  " + size + " bytes are Zipped ");
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

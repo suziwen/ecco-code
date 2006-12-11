@@ -21,7 +21,7 @@ public class Editor extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	PrintWriter out = null;
 	HttpServletResponse response = null;
-	private static String login = "feanndor"; // aqui eh uma variavel de sessao, por enquanto estatica
+	private static String login = "feanndor"; // session var
  	private static String usersPath = System.getProperty("user.dir")+File.separator+"htdocs"+File.separator+"ecco"+File.separator+"users"+File.separator;
 	
     public void main(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
@@ -71,7 +71,7 @@ public class Editor extends HttpServlet {
     public void open(String file, String type) {
     	try {
     			File f = new File(usersPath+login+File.separator+file);
-    		    // verificar aqui se é arquivo binario e dar erro
+    		    // if binary file, send error
     	        BufferedReader in = new BufferedReader(new FileReader(f));
     	        String str;
 
