@@ -11,7 +11,7 @@ public class ShellCaller {
 	private StringBuffer sb;
 	private StringBuffer esb;
 	private int estado;
-	private String erro;
+	private String erro; 
 	
 	
 	private Process exec(String[] command, boolean wait){
@@ -25,7 +25,7 @@ public class ShellCaller {
 		try{
 			p = Runtime.getRuntime().exec(command);
 		}catch(IOException e){
-			erro = "Erro na execução do comando!!";
+			erro = "Command error";
 			return null;
 		}
 		
@@ -58,7 +58,7 @@ public class ShellCaller {
 				p.getOutputStream().close();
 				p.getErrorStream().close();
 			}catch(IOException e){
-				erro = "Erro na manipulação de stream";
+				erro = "Stream error";
 				return null;
 			}
 		}
