@@ -5,6 +5,8 @@
 	padding:1px 0;
 	margin:-9px 180px 0 180px;
 }
+#messages strong { color:#007d3f; }
+
 #confirmation { 
 	position:absolute;top:30%;left:35%;
 	border:2px solid gray;-moz-border-radius:4px;border-radius:4px; 

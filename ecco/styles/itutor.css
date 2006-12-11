@@ -19,7 +19,7 @@
 #itutor #arrow-none {display:none;background-image:none}
 #itutor #previous {float:left;}
 
-#itutor-controls {width:226px;position:absolute;top:20px;right:250px;}
-#itutor-controls select {width:200px;border:1px solid silver;background:#e9e9e9;}
+#itutor-controls {width:226px;position:absolute;top:20px;right:20px;}
+#itutor-controls select {width:200px;border:1px solid silver;background:#e4e4e4;}
 #itutor-controls #itstatus {display:none;padding:1px;position:absolute;top:0;right:2px;height:17px;}
 #itutor-controls #maximize:hover {filter:alpha(opacity=75);-moz-opacity:.75;opacity:.75;} 

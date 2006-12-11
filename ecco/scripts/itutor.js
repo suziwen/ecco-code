@@ -40,15 +40,16 @@ iTutor = {
 	loadPages : function() {
 		this.pages = [
 			{text:'<h2>Tutorial Java para iniciantes</h2>'+ iTutor.video('/ecco/content/itutor/page1.mpg')+'Introdução',ref:'center'},
-			{text:'<h2>Tutorial Java para iniciantes</h2>'+ iTutor.video('/ecco/content/itutor/page2.mpg')+'Criação de um novo Projeto',ref:'fileman'},
-			{text:'<h2>Tutorial Java para iniciantes</h2>Clique com o botão direito do mouse sobre seu novo projeto e clique em <em>"Novo arquivo"</em> e nomeie-o como <code>Teste.java</code>.<br><br><strong>Atenção:</strong> note que o "T" de <code>Teste.java</code> é maiúsculo.',ref:'fileman'},
-			{text:'<h2>Tutorial Java para iniciantes</h2>Clique sobre o seu projeto e em seguida clique sobre o arquivo Teste.java criado. Ele será aberto no editor.',ref:'fileman'},
-			{text:'<h2>Tutorial Java para iniciantes</h2><textarea wrap="off" disabled="disabled">class Teste {\n    public static void main(String args[]) {\n        System.out.println(\"iTutorial teste\");\n    }\n}</textarea><br>Digite o código acima na área do editor',ref:'editor'},
+			{text:'<h2>Tutorial Java para iniciantes</h2>'+ iTutor.video('/ecco/content/itutor/page2.mpg')+'Criação de um novo projeto',ref:'fileman'},
+			{text:'<h2>Tutorial Java para iniciantes</h2>Clique com o botão direito do mouse sobre seu novo projeto e clique em <em>Novo arquivo</em> e nomeie-o como <code>Teste.java</code>.<br><br><strong>Atenção:</strong> note que o "T" de <code>Teste.java</code> é maiúsculo.',ref:'fileman'},
+			{text:'<h2>Tutorial Java para iniciantes</h2>Clique em seu projeto e em seguida clique sobre o arquivo <code>Teste.java</code>. Ele será aberto no editor.',ref:'fileman'},
+			{text:'<h2>Tutorial Java para iniciantes</h2><textarea wrap="off" disabled="disabled">class Teste {\n    public static void main(String args[]) {\n        System.out.println(\"iTutorial teste\");\n    }\n}</textarea><br>Digite o código acima na área do editor.',ref:'editor'},
 			{text:'<h2>Tutorial Java para iniciantes</h2>Clique no botão salvar <img src="images/save.gif">',ref:'save'},
-			{text:'<h2>Tutorial Java para iniciantes</h2>Para compilar o seu programa, digite a linha abaixo no console:<br><br><code>javac Teste.java</code><br><br><strong>Atenção:</strong> java diferencia letras maiúsculas e minúsculas. Tenha certeza em digitar Teste.java com "T" maiúsculo',ref:'console'},			
+			{text:'<h2>Tutorial Java para iniciantes</h2>Entre no diretório do projeto que você criou digitando no console o comando<br><code>cd [nome do projeto]</code>',ref:'console'},
+			{text:'<h2>Tutorial Java para iniciantes</h2>Para compilar o seu programa, digite a linha abaixo no console:<br><br><code>javac Teste.java</code><br><br><strong>Atenção:</strong> java diferencia letras maiúsculas e minúsculas. Tenha certeza em digitar Teste.java com "T" maiúsculo',ref:'console'},
 //			{text:'<h2>Tutorial Java para iniciantes</h2>Clique no botão compilar <img src="images/compile.gif"><br><br>Ao clicar em compilar seu arquivo <code>OlaMundo.java</code> será interpretado pelo compilador javac e será criado o arquivo <code>OlaMundo.class</code>, contendo o bytecode que pode ser executado pelo computador.<br><br><em>Se houver um erro de compilação <a href="javascript:iTutor.go(-2)">clique aqui</a> para voltar ao código e digitá-lo novamente.</em>',ref:'compile'},
-			{text:'<h2>Tutorial Java para iniciantes</h2>Clique em executar <img src="images/execute.gif"><br><br>Ao clicar em executar, a virtual machine do Java executará o arquivo em bytecode <code>OlaMundo.class</code>.',ref:'execute'},
-			{text:'<h2>Tutorial Java para iniciantes</h2><img src="images/end.gif" height=103 align=center>Tutorial concluído.',ref:'center'},		
+			{text:'<h2>Tutorial Java para iniciantes</h2>Clique em executar <img src="images/execute.gif"><br><br>Ao clicar em executar, a máquina virtual do Java executará o arquivo <code>Teste.class</code>.',ref:'execute'},
+			{text:'<h2>Tutorial Java para iniciantes</h2><img src="images/end.gif" height=103 align=left><br><strong>Tutorial concluído.</strong><br>Você pode agora enviar seu projeto para seu e-mail ou fazer download para seu computador.<br><br><br>',ref:'center'},		
 		]
 	},
 	

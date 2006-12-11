@@ -164,7 +164,12 @@ Editor = function() {
 
 	this.execute = function() {
 		directory = files[currentFile].name.replace(/\/.*/,'');
-		$('command').value = 'cd;java -classpath "'+directory+'" '+ this.formatFileName(files[currentFile].name).replace(/\..*$/,'')+';cd -';
+		if(files[currentFile].name.indexOf('pl')!=-1) { // remove this soon
+			$('command').value = 'cd;perl "'+directory+'/'+ this.formatFileName(files[currentFile].name)+'";cd -';
+		}
+		else {
+			$('command').value = 'cd;java -classpath "'+directory+'" '+ this.formatFileName(files[currentFile].name).replace(/\..*$/,'')+';cd -';
+		}
 		Console.execute();
 	}
 

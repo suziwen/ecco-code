@@ -16,11 +16,12 @@
 #fileman-menu { padding:0;position:absolute;border-top:1px solid gray;border-right:2px solid gray;border-bottom:2px solid gray;border-left:1px solid gray;background-color:#ddd;display:none;-moz-border-radius:3px;border-radius:3px; }
 #fileman-menu a { display:block;cursor:pointer;cursor:hand;text-decoration:none;padding:1px 3px 1px 20px;color:black }
 #fileman-menu a:hover { background-color:#eee; }
-#fileman-menu .newfile { background:url("/ecco/images/new.gif") no-repeat 2px; }/* */
-#fileman-menu .newdirectory {  }
-#fileman-menu .newproject {  }
-#fileman-menu .upload {  }
-#fileman-menu .rename {  }
-#fileman-menu .move {  }
-#fileman-menu .mail { background:url("/ecco/images/mail.gif") no-repeat 2px; } /**/
-#fileman-menu .remove { background:url("/ecco/images/remove.gif") no-repeat 2px; } /**/
+#fileman-menu .newFile { background:url("/ecco/images/new-file.gif") no-repeat 2px; }
+#fileman-menu .newDirectory { background:url("/ecco/images/new-directory.gif") no-repeat 2px; }
+#fileman-menu .newProject { background:url("/ecco/images/new-project.gif") no-repeat 2px; }
+#fileman-menu .upload { background:url("/ecco/images/upload.gif") no-repeat 2px; }
+#fileman-menu .download { background:url("/ecco/images/download.gif") no-repeat 2px; }
+#fileman-menu .rename { background:url("/ecco/images/rename.gif") no-repeat 2px; }
+#fileman-menu .move { background:url("/ecco/images/move.gif") no-repeat 2px; }
+#fileman-menu .mail { background:url("/ecco/images/mail.gif") no-repeat 2px; }
+#fileman-menu .remove { background:url("/ecco/images/remove.gif") no-repeat 2px; }

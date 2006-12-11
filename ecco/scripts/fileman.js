@@ -65,7 +65,8 @@ Fileman = function() {
 	
 	this.action = function(obj) {
 		if(obj.className=='projects') 
-			alert('all projects action');
+			return null;
+			//alert('all projects action');
 		else if(obj.className=='project') // specific project action
 			obj.nextSibling.className = (obj.nextSibling.className!='closed') ? 'closed' : 'opened';
 		else if(obj.className=='directory') // specific directory action

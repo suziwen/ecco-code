@@ -82,7 +82,7 @@ public class CommandParser {
 	public String exec(String command, String currentDir) throws Exception{
 		// TODO: Criar exception personalizada para resolver este problema usando throw
 		if(!parse(command))
-			return "ERRO: Comando malformado \n";
+			return "Invalid command\n";
 		
 		this.currentDir = currentDir;
 		return exec(parsedCommand, currentDir);
@@ -125,9 +125,9 @@ public class CommandParser {
 			dir = new File(currentDir +fileSep+ strCd);
 			
 			if(!dir.exists()){
-				msg = "ERROR: Directory not found\n";
+				msg = "Directory not found\n";
 			}else if(!dir.isDirectory()){	
-				msg = "ERROR: It is not a dyrectory\n";
+				msg = "Not a directory\n";
 			}
 			
 			if(msg.startsWith("ERROR")){

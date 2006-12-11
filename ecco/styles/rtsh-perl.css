@@ -1,2 +1,12 @@
 body {margin-top:13px;_margin-top:15px;background:white;font-family:monospace;font-size:13px;margin-left:32px;white-space:pre;background-image:url("/ecco/images/linenumbers.gif");background-repeat:repeat-y;background-position:0 3px;line-height:16px;}
 html>body{background-position:0 2px;}
+
+b,i,ss,s,u {display:inline;font-size:12px;font-weight:bold;text-decoration:none;letter-spacing:1px}
+b {color:#7F0055;} /* reserved words */
+ss var {color:#2A00FF;font-weight:normal;}
+i, i b, i s, ss, i u {color:gray;font-weight:normal;} /* comments */
+ss, s, ss, s b {color:#2A00FF;font-weight:normal;} /* strings */
+i var, i ss, i s {color:green:font-weight:normal;}
+var {color:#006700;font-weight:bold;font-size:12px;letter-spacing:1px;font-style:normal;} /* variables */
+u {color:darkblue;}
+em {font-weight:bold;font-style:normal;}
