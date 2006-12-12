@@ -98,7 +98,7 @@ public class CommandParser {
 		String msg = "";
 		String strCdCmd = strCd;
 		
-		if(strCd.indexOf("\"") == 0 && strCd.lastIndexOf("\"") > 0){
+		if(strCd != null && (strCd.indexOf("\"") == 0 && strCd.lastIndexOf("\"") == strCd.length() -1)){
 			strCdCmd = strCd.substring(1,strCd.length()-1);
 		}
 
