@@ -96,40 +96,43 @@ public class CommandParser {
 		File dir = null;
 		String parentDir = "";
 		String msg = "";
+		String strCdCmd = strCd;
+		
+		if(strCd.indexOf("\"") == 0 && strCd.lastIndexOf("\"") > 0){
+			strCdCmd = strCd.substring(1,strCd.length()-1);
+		}
 
-		if(strCd == null || strCd.equals("~")){
+		if(strCdCmd == null || strCdCmd.equals("~")){
 			lastDir = currentDir;
 			tmpCurDir = homeDir;
-		}else if(strCd.equals("-")){
+		}else if(strCdCmd.equals("-")){
 			tmpCurDir = lastDir;
 			lastDir = currentDir;
-		}else if(strCd.equals("..")){
+		}else if(strCdCmd.equals("..")){
 			dir = new File(currentDir);
 			parentDir = dir.exists() && dir.isDirectory()? dir.getParent(): currentDir;
 			
 			lastDir = currentDir;
 			tmpCurDir = parentDir;
-		}else if(strCd.equals(fileSep)){
+		}else if(strCdCmd.equals(fileSep)){
 			lastDir = currentDir;
 			tmpCurDir = homeDir;
 		}else{
 			msg = "";
-			dir = new File(currentDir +fileSep+ strCd);
+			dir = new File(currentDir +fileSep+ strCdCmd);
 			
 			if(!dir.exists()){
 				msg = "Directory not found\n";
+				return msg;
 			}else if(!dir.isDirectory()){	
 				msg = "Not a directory\n";
+				return msg;
 			}
 			
-			if(msg.startsWith("ERROR")){
-				return msg;
-			}else{
-				strCd = currentDir +fileSep+ strCd;
-			}
+			strCdCmd = currentDir +fileSep+ strCdCmd;
 			
 			lastDir = currentDir;
-			tmpCurDir = strCd;
+			tmpCurDir = strCdCmd;
 		}
 		
 		// TODO: verify if user is in own directory, if not, return user to its directory
